@@ -125,11 +125,11 @@
     </style>
   </head>
 
-  <body class="bg-dark">
+  <body>
     <header>
       <!-- place navbar here -->
       <nav
-      class="navbar navbar-expand-sm navbar-dark bg-transparent p-1"
+      class="navbar navbar-expand-sm navbar-light bg-transparent p-1"
     >
       <div class="container-fluid px-5 ">
         <button
@@ -157,8 +157,8 @@
           </ul>
           <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#"><img style="height: 60px;" src="logoo.png" alt=""> <img src="Copilot_20260604_1.png" alt="" style="height: 40px;"></a>
           
-          <a href="#" class="nav-link"><i class="bi bi-heart px-5 fs-4 text-white"></i></a>
-          <a href="#" class="nav-link"><i class="bi bi-bag-heart fs-4 text-white"></i></a>
+          <a href="#" class="nav-link"><i class="bi bi-heart px-5 fs-4"></i></a>
+          <a href="#" class="nav-link"><i class="bi bi-bag-heart fs-4"></i></a>
         </div>
       </div>
       </nav> 
@@ -205,11 +205,13 @@
       /* Set the width of the side navigation to 250px */
       function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
       }
 
       /* Set the width of the side navigation to 0 */
       function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
+        document.body.style.backgroundColor = "white";
       } 
 
       /* Open */
