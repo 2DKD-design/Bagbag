@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="light" style="height: 100%">
   <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -13,16 +13,18 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+    <!--Bootstrap icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   </head>
 
   <body>
     <header>
       <!-- place navbar here -->
        <nav
-        class="navbar navbar-expand-sm navbar-light bg-light"
+        class="navbar navbar-expand-sm navbar-light bg-light sticky shadow p-1"
        >
         <div class="container">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#"><img style="height: 60px;" src="logoo.png" alt=""> <img src="Copilot_20260604_1.png" alt="" style="height: 40px;"></a>
           <button
             class="navbar-toggler d-lg-none"
             type="button"
@@ -35,7 +37,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0 px-5">
               <li class="nav-item">
                 <a class="nav-link active" href="#" aria-current="page"
                   >Home
@@ -53,7 +55,7 @@
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                  >Dropdown</a
+                  >Categories</a
                 >
                 <div
                   class="dropdown-menu"
