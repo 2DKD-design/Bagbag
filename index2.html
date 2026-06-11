@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Luxury Carousel</title>
+  
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    /* Base Slider Setup */
+    .hub-carousel {
+      position: relative;
+      width: 100%;
+      height: 85vh;
+      overflow: hidden;
+      background-color: #111;
+    }
+
+    .carousel-track {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .hub-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      /* The transition now only smoothly handles the opacity of the overall slide */
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+      z-index: 1;
+    }
+
+    /* Slide Activation */
+    .hub-slide.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+    }
+
+    .slide-image {
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Caption Layer Positioning */
+    .caption-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center; 
+      justify-content: flex-start; 
+      padding-left: 8%; 
+      background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
+      z-index: 3;
+    }
+
+    .caption-block {
+      max-width: 550px;
+      color: #ffffff;
+      padding-right: 20px;
+    }
+
+    /* Captions are completely independent of sliding/staggered transitions.
+       They rely directly on the parent's opacity state to appear instantly 
+       without any transform motions or delay offsets.
+    */
+    .caption-block .sub-tag,
+    .caption-block .main-title,
+    .caption-block .description,
+    .caption-block .cta-btn {
+      transform: none;
+      transition: none;
+    }
+
+    /* Typography Details */
+    .caption-block .sub-tag {
+      display: block;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+      color: #d4af37; 
+    }
+
+    .caption-block .main-title {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.1;
+      margin: 0 0 20px 0;
+      letter-spacing: 1px;
+    }
+
+    .caption-block .description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 35px;
+      color: #e0e0e0;
+    }
+
+    .caption-block .cta-btn {
+      display: inline-block;
+      padding: 12px 35px;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .caption-block .cta-btn:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* Quick Responsive Tweak for Mobile Screen views */
+    @media (max-width: 768px) {
+      .hub-carousel { height: 70vh; }
+      .caption-block .main-title { font-size: 2.2rem; }
+      .caption-container { padding-left: 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hub-carousel">
+    <div class="carousel-track">
+      
+      <div class="hub-slide active">
+        <div class="slide-image">
+          <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=1600&q=80" alt="Premium Leather Bags Collection">
+        </div>
+        <div class="caption-container">
+          <div class="caption-block">
+            <span class="sub-tag">New Season Arrival</span>
+            <h2 class="main-title">Crafted Masterpieces</h2>
+            <p class="description">Explore luxury leather goods designed for modern paths and everyday travel architectural standards.</p>
+            <a href="#" class="cta-btn">Shop Collection</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hub-slide">
+        <div class="slide-image">
+          <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1600&q=80" alt="Minimalist Luxury Accessories">
+        </div>
+        <div class="caption-container">
+          <div class="caption-block">
+            <span class="sub-tag">Exclusive Access</span>
+            <h2 class="main-title">Timeless Elegance</h2>
+            <p class="description">Minimalist silhouettes executed flawlessly in premium, top-grain handpicked leather skins.</p>
+            <a href="#" class="cta-btn">Explore Access</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const slides = document.querySelectorAll(".hub-slide");
+      let currentIndex = 0;
+      const displayDuration = 5000; // Rotates every 5 seconds
+
+      function advanceSlide() {
+        // Clear active class from the current slide
+        slides[currentIndex].classList.remove("active");
+
+        // Move to next slide layout index position
+        currentIndex = (currentIndex + 1) % slides.length;
+
+        // Apply active class to the newly targeted slide index
+        slides[currentIndex].classList.add("active");
+      }
+
+      // Initialize automated seamless loop cycle
+      setInterval(advanceSlide, displayDuration);
+    });
+  </script>
+
+</body>
+</html>
