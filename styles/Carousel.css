@@ -35,14 +35,14 @@
       visibility: hidden;
       /* The transition now only smoothly handles the opacity of the overall slide */
       transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
-      z-index: 1;
+      z-index: 0;
     }
 
     /* Slide Activation */
     .hub-slide.active {
       opacity: 1;
       visibility: visible;
-      z-index: 2;
+      z-index: 0;
     }
 
     .slide-image {
@@ -68,7 +68,7 @@
       justify-content: flex-start; 
       padding-left: 8%; 
       background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
-      z-index: 3;
+      z-index: 0;
     }
 
     .caption-block {

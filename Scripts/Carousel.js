@@ -17,3 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
       // Initialize automated seamless loop cycle
       setInterval(advanceSlide, displayDuration);
     });
+
+
+  const myCarousel = document.querySelector('#demo');
+  const carousel = new bootstrap.Carousel(myCarousel, {
+    interval: 4000,   // 4 seconds
+    ride: 'carousel'  // auto start
+  });
+
