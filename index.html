@@ -23,40 +23,46 @@
   <body>
     <header>
       <!-- place navbar here -->
-      <nav
-      class="navbar navbar-expand-sm navbar-light bg-transparent p-1"
-    >
-      <div class="container-fluid px-5 ">
-        <button
-          class="navbar-toggler d-lg-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapsibleNavId"
-          aria-controls="collapsibleNavId"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav me-auto mt-2 mt-lg-0 px-1 fs-5">
-
-            <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"><span onclick="openNav()" class="d-flex flex-row"><i class="bi bi-list"></i><p class="ps-2"> Menu</p></span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"><span onclick="openSearch()"><i class="bi bi-search px-3 fs-6"></i>Search</span></a>
-            </li>
-            
-            
-          </ul>
-          <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#"><img style="height: 60px;" src="Assets/logo/logoo.png" alt=""> <img class="pe-5" src="Assets/logo/Copilot_20260604_1.png" alt="" style="height: 40px;"></a>
+       <nav
+        class="navbar navbar-expand-sm navbar-light bg-light p-1"
+       >
+        <div class="container-fluid px-5">
           
-          <a href="#" class="nav-link"><i class="bi bi-heart px-5 fs-4"></i></a>
-          <a href="#" class="nav-link"><i class="bi bi-bag fs-4"></i></a>
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+              <li class="nav-item">
+              <a class="nav-link active" href="#" aria-current="page"><span onclick="openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2"></i><p class="ps-2 pe-1 pt-2"> Menu</p></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#" aria-current="page"><span onclick="openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2"><i class="bi bi-search p-1 fs-6 border-secondary-subtle"></i>Search</span></a>
+            </li>
+            </ul>
+            <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-2 mb-0 fs-5">
+              <a class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill pe-md-5" href="#"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
+            </ul>
+            
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+              <a href="#" class="nav-link d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-heart px-md-5 fs-4"></i></a>
+          
+          <a href="#" class="nav-link d-flex flex-row flex-sm-col"><i class="bi bi-bag fs-4"></i></a>
+            </ul>
+          
+         
+          
+          </div>
         </div>
-      </div>
-      </nav> 
+       </nav>
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">About</a>
@@ -68,18 +74,21 @@
       <!-- Use any element to open the sidenav -->
       
       <!-- The overlay -->
-      <div id="myNav" class="overlay">
-
+      <div id="myNav" class="overlay" style="height: 100vh;">
+        <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#"><img style="height: 60px;" src="Assets/logo/logoo.png" alt="" onclick="closeSearch()"> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;" onclick="closeSearch()"></a>
         <!-- Button to close the overlay navigation -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeSearch()">&times;</a>
 
-        <!-- Overlay content -->
-        <div class="overlay-content">
+        <div class="overlay-content container w-75 mt-0 h-100">
+          <div class="form-outline pb-5 mt-0" data-mdb-input-init>
+            <input type="search" id="form1" class="form-control p-3 rounded-pill border-secondary-subtle" placeholder="Search for a product" aria-label="Search" />
+          </div>
           <a href="#">About</a>
           <a href="#">Services</a>
           <a href="#">Clients</a>
           <a href="#">Contact</a>
         </div>
+
 
       </div>
       
@@ -101,23 +110,23 @@
   <!-- The slideshow/carousel -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="la.jpg" alt="Los Angeles" class="d-block w-100">
+      <img src="Assets/banners/larry-george-ii-s6M63HPGb5E-unsplash.jpg" alt="Los Angeles" class="d-block w-100">
     </div>
     <div class="carousel-item">
-      <img src="chicago.jpg" alt="Chicago" class="d-block w-100">
+      <img src="Assets/banners/tamara-bellis-kGvBLcBGZpI-unsplash.jpg" alt="Chicago" class="d-block w-100">
     </div>
     <div class="carousel-item">
-      <img src="ny.jpg" alt="New York" class="d-block w-100">
+      <img src="Assets/banners/alexey-demidov-LqrPxTcc09E-unsplash.jpg" alt="New York" class="d-block w-100">
     </div>
   </div>
 
   <!-- Left and right controls/icons -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+  <!-- <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
     <span class="carousel-control-next-icon"></span>
-  </button>
+  </button> -->
 </div>
     </main>
       
@@ -125,6 +134,48 @@
       <div class="hub-carousel">
     <div class="carousel-track">
       
+      <div class="hub-slide active">
+        <div class="slide-image">
+          <img src="Assets/banners/WOMEN_BC_PREFALL26_12_FEB26_DI3.jpg" alt="Premium Leather Bags Collection">
+        </div>
+        <div class="caption-container">
+          <div class="caption-block">
+            <span class="sub-tag">New Season Arrival</span>
+            <h2 class="main-title">Crafted Masterpieces</h2>
+            <p class="description">Explore luxury leather goods designed for modern paths and everyday travel architectural standards.</p>
+            <a href="#" class="cta-btn">Shop Collection</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hub-slide active">
+        <div class="slide-image">
+          <img src="Assets/banners/hhhhh.jpg" alt="Premium Leather Bags Collection">
+        </div>
+        <div class="caption-container">
+          <div class="caption-block">
+            <span class="sub-tag">New Season Arrival</span>
+            <h2 class="main-title">Crafted Masterpieces</h2>
+            <p class="description">Explore luxury leather goods designed for modern paths and everyday travel architectural standards.</p>
+            <a href="#" class="cta-btn">Shop Collection</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hub-slide active">
+        <div class="slide-image">
+          <img src="Assets/banners/MEN_SPEEDY_P9_26_STILL_LIFE_113_NO_LOGO.jpg" alt="Premium Leather Bags Collection">
+        </div>
+        <div class="caption-container">
+          <div class="caption-block">
+            <span class="sub-tag">New Season Arrival</span>
+            <h2 class="main-title">Crafted Masterpieces</h2>
+            <p class="description">Explore luxury leather goods designed for modern paths and everyday travel architectural standards.</p>
+            <a href="#" class="cta-btn">Shop Collection</a>
+          </div>
+        </div>
+      </div>
+
       <div class="hub-slide active">
         <div class="slide-image">
           <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=1600&q=80" alt="Premium Leather Bags Collection">
@@ -141,7 +192,7 @@
 
       <div class="hub-slide">
         <div class="slide-image">
-          <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1600&q=80" alt="Minimalist Luxury Accessories">
+          <img src="Assets/banners/MEN_BC_LG_MONOGRAM_SHADOW_2_MARS2026_DI3.webp" alt="Minimalist Luxury Accessories">
         </div>
         <div class="caption-container">
           <div class="caption-block">
@@ -158,8 +209,6 @@
 
     </main>
 
-    <div class="container"></div>
-    <div class="container"></div>
   
     <footer>
       <!-- place footer here -->
@@ -172,6 +221,6 @@
     ></script>
     <script src="Scripts/Nav.js"></script>
     <script src="Scripts/Search.Js"></script>
-    <script src="Scripts/Carousel.js\"></script>
+    <script src="Scripts/Carousel.js"></script>
   </body>
 </html>
