@@ -23,40 +23,46 @@
   <body>
     <header>
       <!-- place navbar here -->
-      <nav
-      class="navbar navbar-expand-sm navbar-light bg-transparent p-1"
-    >
-      <div class="container-fluid px-5 ">
-        <button
-          class="navbar-toggler d-lg-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapsibleNavId"
-          aria-controls="collapsibleNavId"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav me-auto mt-2 mt-lg-0 px-1 fs-5">
-
-            <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"><span onclick="openNav()" class="d-flex flex-row"><i class="bi bi-list"></i><p class="ps-2"> Menu</p></span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"><span onclick="openSearch()"><i class="bi bi-search px-3 fs-6"></i>Search</span></a>
-            </li>
-            
-            
-          </ul>
-          <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#"><img style="height: 60px;" src="Assets/logo/logoo.png" alt=""> <img class="pe-5" src="Assets/logo/Copilot_20260604_1.png" alt="" style="height: 40px;"></a>
+       <nav
+        class="navbar navbar-expand-sm navbar-light bg-light p-1"
+       >
+        <div class="container-fluid px-5">
           
-          <a href="#" class="nav-link"><i class="bi bi-heart px-5 fs-4"></i></a>
-          <a href="#" class="nav-link"><i class="bi bi-bag fs-4"></i></a>
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+              <li class="nav-item">
+              <a class="nav-link active" href="#" aria-current="page"><span onclick="openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2"></i><p class="ps-2 pe-1 pt-2"> Menu</p></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#" aria-current="page"><span onclick="openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2"><i class="bi bi-search p-1 fs-6 border-secondary-subtle"></i>Search</span></a>
+            </li>
+            </ul>
+            <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-2 mb-0 fs-5">
+              <a class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill pe-md-5" href="#"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
+            </ul>
+            
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+              <a href="#" class="nav-link d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-heart px-md-5 fs-4"></i></a>
+          
+          <a href="#" class="nav-link d-flex flex-row flex-sm-col"><i class="bi bi-bag fs-4"></i></a>
+            </ul>
+          
+         
+          
+          </div>
         </div>
-      </div>
-      </nav> 
+       </nav>
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">About</a>
@@ -68,12 +74,21 @@
       <!-- Use any element to open the sidenav -->
       
       <!-- The overlay -->
-      <div id="myNav" class="overlay">
-
+      <div id="myNav" class="overlay" style="height: 100vh;">
+        <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#"><img style="height: 60px;" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
         <!-- Button to close the overlay navigation -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeSearch()">&times;</a>
 
-       
+        <div class="overlay-content container w-75 mt-0 h-100">
+          <div class="form-outline pb-5 mt-0" data-mdb-input-init>
+            <input type="search" id="form1" class="form-control p-3 rounded-pill border-secondary-subtle" placeholder="Search for a product" aria-label="Search" />
+          </div>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a>
+        </div>
+
 
       </div>
       
