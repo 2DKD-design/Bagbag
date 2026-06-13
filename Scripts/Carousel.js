@@ -19,9 +19,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  const myCarousel = document.querySelector('#demo');
-  const carousel = new bootstrap.Carousel(myCarousel, {
-    interval: 3000,   // 4 seconds
-    ride: 'carousel'  // auto start
-  });
-
