@@ -24,11 +24,11 @@
     <header>
       <!-- place navbar here -->
        <nav
-        class="navbar navbar-expand-sm navbar-light bg-light p-1"
+        class="navbar navbar-expand navbar-light bg-light p-1"
        >
-        <div class="container-fluid px-5">
+        <div class="container-fluid px-4">
           
-          <button
+          <!-- <button
             class="navbar-toggler d-lg-none"
             type="button"
             data-bs-toggle="collapse"
@@ -38,18 +38,18 @@
             aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button> -->
           <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
               <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"><span onclick="openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2 text-dark"></i><p class="ps-2 pe-1 pt-2 text-dark"> Menu</p></span></a>
+              <a class="nav-link active" href="#" aria-current="page"><span onclick="openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2 text-dark"></i><p class="ps-2 pe-1 pt-2 text-dark d-none d-md-block"> Menu</p></span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page"><span onclick="openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2 text-dark"><i class="bi bi-search p-1 fs-6 text-dark"></i>Search</span></a>
+              <a class="nav-link active" href="#" aria-current="page"><span onclick="openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2 text-dark"><i class="bi bi-search p-1 fs-6 text-dark"></i><p class=" d-none d-md-block">Search</p></span></a>
             </li>
             </ul>
-            <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-2 mb-0 fs-5">
-              <a class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill pe-md-5" href="#"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
+            <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-1 mb-1 fs-5">
+              <a class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill my-0 pe-md-4 me-md-5" href="#"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
             </ul>
             
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
@@ -74,122 +74,134 @@
       <!-- Use any element to open the sidenav -->
       
       <!-- The overlay -->
-      <div id="myNav" class="overlay" style="height: 0;">
-        <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#"><img style="height: 60px;" src="Assets/logo/logoo.png" alt="" onclick="closeSearch()"> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;" onclick="closeSearch()"></a>
-        <!-- Button to close the overlay navigation -->
-        <a href="javascript:void(0)" class="closebtn" onclick="closeSearch()">&times;</a>
+        <div id="myNav" class="overlay">
+          <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#"><img style="height: 60px;" src="Assets/logo/logoo.png" alt="" onclick="closeSearch()"> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;" onclick="closeSearch()"></a>
+          <!-- Button to close the overlay navigation -->
+          <a href="javascript:void(0)" class="closebtn fs-3 m-0 p-0" onclick="closeSearch()">&times;</a>
 
-        <div class="overlay-content container w-75 mt-0 h-100">
-          <div class="form-outline pb-5 mt-0" data-mdb-input-init>
-            <input type="search" id="form1" class="form-control p-3 rounded-pill border-secondary-subtle" placeholder="Search for a product" aria-label="Search" />
-          
-            <div class="row">
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+          <div class="overlay-content container-fluid mt-5">
+            <div class="form-outline pb-5 mt-0 d-flex justify-content-center" data-mdb-input-init>
+              <input type="search" id="form1" class="form-control p-3 rounded-pill border-secondary-subtle w-75" placeholder="Search for a product" aria-label="Search" />
+            </div>
+
+            <div class="row pt-5 mt-5">
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0  mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0  mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0  mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0  mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0  mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0  mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
             </div>
 
-            
-            <div class="row">
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+            <div class="row mb-0 pb-0">
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0  mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0 mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0 mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0 mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0  mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="card-title">Title</h3>
-                    <p class="card-text">Text</p>
+              <div class="col-lg-2 col-md-4 col-sm-6 col-12 px-0 mb-4 pb-5">
+                <div class="card bg-secondary-subtle text-dark">
+                  <img src="Assets/Search-cards/louis-vuitton-escale--M28503_PM2_Front view.avif" class="card-img" alt="...">
+                  <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                    <small class="card-title">Card title</small>
+                    <small class="card-text">This is a wider card </small>
                   </div>
                 </div>
               </div>
             </div>
             
+          </div>
 
 
-      </div>
-      
+        </div>
       
       
     </header>

@@ -1,6 +1,7 @@
 /* The Overlay (background) */
       .overlay {
-        /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+        /* Height & width depends on how you want to reveal the overlay (see JS below) */ 
+        max-height: 150vh;  
         height: 0;
         width: 100%;
         position: fixed; /* Stay in place */
@@ -9,9 +10,10 @@
         top: 0;
         background-color: rgb(233, 227, 227); /* Black fallback color */
         background-color: rgba(231, 221, 221, 0.9); /* Black w/opacity */
-        overflow-y: hidden; /* Disable vertical scroll */
+        overflow-y: scroll; /* hidden - Disables vertical scroll */
         transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
       }
+      
 
       /* Position the content inside the overlay */
       .overlay-content {
@@ -44,7 +46,12 @@
         right: 45px;
         font-size: 60px;
       }
-
+      .card {
+        border: none;
+        border-radius: 0%;
+        height: 400px;
+        background-image: linear-gradient(150deg, rgb(199, 200, 195) ,  rgb(233, 228, 224) ,  rgb(233, 228, 224));
+      }
       /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
       @media screen and (max-height: 450px) {
         .overlay a {font-size: 20px}
