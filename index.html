@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="styles/SearchOverlay.css">
     <link rel="stylesheet" href="styles/Carousel.css">
     <link rel="stylesheet" href="styles/nav.css">
-  
+    <link rel="stylesheet" href="bannerimg.css">
   </head>
 
   <body>
@@ -65,13 +65,42 @@
           </div>
         </div>
        </nav>
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-      </div>
+
+       
+        <!-- <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#" onclick="toggleSecondaryNav()">Women</a>
+          <a href="#" onclick="toggleSecondaryNav()">Men</a>
+          <a href="#" onclick="toggleSecondaryNav()">Brands</a>
+          <a href="#" onclick="toggleSecondaryNav()">Services</a>
+          <a href="#" onclick="toggleSecondaryNav()">Contact us</a>
+        </div>
+         -->
+
+         <!-- Your Existing Primary Sidenav -->
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#" onclick="openSecondaryNav('Women')">Women</a>
+          <a href="#" onclick="openSecondaryNav('Men')">Men</a>
+          <a href="#" onclick="openSecondaryNav('Brands')">Brands</a>
+          <a href="#" onclick="openSecondaryNav('Services')">Services</a>
+          <a href="#" onclick="openSecondaryNav('Contact us')">Contact us</a>
+        </div>
+
+        <!-- NEW: Secondary Nested Sidenav -->
+        <div id="mySecondaryNav" class="secondary-sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeSecondaryNav()">&times;</a>
+          <h2 id="secondaryTitle" style="padding-left: 32px; font-size: 25px;">Category</h2>
+          <!-- These links will change dynamically or can be static -->
+          <div id="secondaryLinks">
+            <a href="#">New Arrivals</a>
+            <a href="#">Clothing</a>
+            <a href="#">Shoes</a>
+            <a href="#">Accessories</a>
+          </div>
+        </div>
+
+
 
       <!-- Use any element to open the sidenav -->
       
@@ -208,8 +237,14 @@
       
     </header>
 
-    
-      
+    <div class="banner-hero">
+      <div class="banner-content">
+        <img src="Assets/banners/img_b559806c.png" alt="Website Banner">
+
+      </div>
+    </div>
+
+
     <main>
 
       <div class="hub-carousel">
@@ -285,6 +320,7 @@
     <!-- Scripts -->
     <script src="Scripts/Search.Js"></script>
     <script src="Scripts/Nav.js"></script>
+    <script src="Scripts/sidenav.js"></script>
     <script src="Scripts/Carousel.js"></script>
     
   </body>
