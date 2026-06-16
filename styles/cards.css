@@ -1,0 +1,226 @@
+
+        :root {
+            --brand-accent: #a34d52;
+            --charcoal: #2d2d2d;
+            --muted-grey: #757575;
+            --light-border: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        /* Responsive grid that adjusts based on screen size */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--light-border);
+            overflow: hidden;
+            position: relative;
+            /* transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease; */
+        }
+
+        /* .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        } */
+
+        /* 1:1 Aspect Ratio Box for Product Images */
+        .image-frame {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; 
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .product-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .product-img.visible {
+            opacity: 1;
+        }
+
+        /* Handles the hover switch effect smoothly */
+        .hover-view { z-index: 1; }
+        .product-card:hover .visible + .hover-view { opacity: 1; }
+
+        /* Badges */
+        .discount-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 2;
+            background-color: var(--brand-accent);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Content Layout */
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            text-decoration: none;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .icon-gift {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .current-price {
+            color: var(--brand-accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .original-price {
+            color: var(--muted-grey);
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        /* Variant Swatches */
+        .swatch-group {
+            border: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        .swatch-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .swatch-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .variant-input:checked + .swatch-btn {
+            /* border-color: var(--brand-accent); */
+            transform: scale(1.07);
+        }
+
+        /* Ratings */
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star {
+            width: 14px;
+            height: 14px;
+            fill: var(--brand-accent);
+        }
+
+        .star.muted {
+            fill-opacity: 0.3;
+        }
+
+        .rating-num {
+            font-size: 0.8rem;
+            color: var(--muted-grey);
+            font-weight: 600;
+        }
+
+        /* Cart Button */
+        .action-row {
+            width: 100%;
+        }
+
+        .btn-cart {
+            width: 100%;
+            background-color: var(--charcoal);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-cart:hover {
+            background-color: var(--brand-accent);
+        }
+    
