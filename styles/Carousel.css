@@ -1,141 +1,110 @@
-    /* Reset & Base Styles */
-    * {
+/* #carouselId .carousel-item {
+  transition: none !important;
+} */
+* {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f9f9f9;
-      overflow-x: hidden;
-    }
-
-    /* Base Slider Setup */
-    .hub-carousel {
-      position: absolute;
-      top: 0;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+}
+.hero {
+  position: relative;
+  top: 0;
+  left: 0;
+  width:  100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.carousel-item img {
       width: 100%;
-      height: 85vh;
-      overflow: hidden;
-      background-color: #111;
-    }
-
-    .carousel-track {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-
-    .hub-slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      visibility: hidden;
-      /* The transition now only smoothly handles the opacity of the overall slide */
-      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
-      z-index: 0;
-    }
-
-    /* Slide Activation */
-    .hub-slide.active {
-      opacity: 1;
-      visibility: visible;
-      z-index: 0;
-    }
-
-    .slide-image {
-      width: 100%;
-      height: 100%;
-    }
-
-    .slide-image img {
-      width: 100%;
-      height: 100%;
+      height: 100vh;
       object-fit: cover;
+      overflow: hidden;
     }
-
-    /* Caption Layer Positioning */
-    .caption-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center; 
-      justify-content: flex-start; 
-      padding-left: 8%; 
-      background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
-      z-index: 0;
-    }
-
-    .caption-block {
-      max-width: 550px;
-      color: #ffffff;
-      padding-right: 20px;
-    }
-
-    /* Captions are completely independent of sliding/staggered transitions.
-       They rely directly on the parent's opacity state to appear instantly 
-       without any transform motions or delay offsets.
-    */
-    .caption-block .sub-tag,
-    .caption-block .main-title,
-    .caption-block .description,
-    .caption-block .cta-btn {
-      transform: none;
-      transition: none;
-    }
-
-    /* Typography Details */
-    .caption-block .sub-tag {
-      display: block;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 15px;
-      color: #d4af37; 
-    }
-
-    .caption-block .main-title {
-      font-size: 3.5rem;
-      font-weight: 300;
-      line-height: 1.1;
-      margin: 0 0 20px 0;
-      letter-spacing: 1px;
-    }
-
-    .caption-block .description {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 35px;
-      color: #e0e0e0;
-    }
-
-    .caption-block .cta-btn {
-      display: inline-block;
-      padding: 12px 35px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      transition: background 0.3s, color 0.3s, border-color 0.3s;
-    }
-
-    .caption-block .cta-btn:hover {
-      background: #ffffff;
-      color: #000000;
-    }
-
-    /* Quick Responsive Tweak for Mobile Screen views */
-    @media (max-width: 768px) {
-      .hub-carousel { height: 70vh; }
-      .caption-block .main-title { font-size: 2.2rem; }
-      .caption-container { padding-left: 5%; }
-    }
+/* Caption Layer Positioning */
+.caption-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center; 
+  justify-content: start; 
   
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.603) 0%, rgba(0, 0, 0, 0.288) 50%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+}
+
+.caption-block {
+  max-width: 100%;
+  color: #ffffff;
+  padding-top: 18vh;
+  padding-left: 10vw;
+}
+
+/* Captions are completely independent of sliding/staggered transitions.
+    They rely directly on the parent's opacity state to appear instantly 
+    without any transform motions or delay offsets.
+*/
+.caption-block .sub-tag,
+.caption-block .main-title,
+.caption-block .description,
+.caption-block .cta-btn {
+  transform: none;
+  transition: none;
+}
+
+/* Typography Details */
+.caption-block .sub-tag {
+  display: block;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 50px;
+  color: #d4af37; 
+}
+
+.caption-block .main-title {
+  font-size: 8rem;
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0 0 30px 0;
+  letter-spacing: 1px;
+}
+
+.caption-block .description {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin-bottom: 150px;
+  color: #e0e0e0;
+  max-width: 800px;
+}
+
+.caption-block .cta-btn {
+  display: inline-block;
+  padding: 20px 55px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.caption-block .cta-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Quick Responsive Tweak for Mobile Screen views */
+@media (max-width: 768px) {
+  .caption-block .main-title { font-size: 3.2rem; }
+  .caption-container { padding-left: 5%; }
+}
+
