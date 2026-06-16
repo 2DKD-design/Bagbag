@@ -1,0 +1,25 @@
+.scroll-hide {
+  overflow-x: auto;   /* allow horizontal scroll */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+.featured-prod .cta-btn {
+  display: inline-block;
+  padding: 12px 35px;
+  border: 1px solid #f5db8b;
+  color: #303030;
+  background-color: #f5db8b;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.featured-prod .cta-btn:hover {
+  background: white;
+  color: #f5db8b;
+}
