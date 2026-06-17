@@ -1,92 +1,72 @@
 /* The Overlay (background) */
-      .overlay {
-        /* Height & width depends on how you want to reveal the overlay (see JS below) */ 
-        max-height: 150vh;  
-        height: 0;
-        width: 100%;
-        position: fixed; /* Stay in place */
-        pointer-events: auto; /* Mouse ignores the overlay */
-        z-index: 9999; /* Sit on top */
-        left: 0;
-        top: 0;
-        background-color: rgb(233, 227, 227); /* Black fallback color */
-        background-color: rgba(231, 221, 221, 0.9); /* Black w/opacity */
-        overflow-y: auto; /* hidden - Disables vertical scroll */
-        overscroll-behavior: contain; /* Prevents scroll chaining to the body */
-        transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
-      }
-      
-
-      /* Position the content inside the overlay */
-      .overlay-content {
-        position: relative;
-        top: 5%; /* 25% from the top */
-        width: 100%; /* 100% width */
-        text-align: center; /* Centered text/links */
-        margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
-      }
-
-      /* The navigation links inside the overlay */
-      .overlay a {
-        padding: 8px;
-        text-decoration: none;
-        font-size: 36px;
-        color: #818181;
-        display: block; /* Display block instead of inline */
-        transition: 0.3s; /* Transition effects on hover (color) */
-      }
-
-      /* When you mouse over the navigation links, change their color */
-      .overlay a:hover, .overlay a:focus {
-        color: #f1f1f1;
-      }
-
-      /* Position the close button (top right corner) */
-      .overlay .closebtn {
-        position: absolute;
-        top: 20px;
-        right: 45px;
-        font-size: 60px;
-      }
-      .card {
-        border: none;
-        border-radius: 0%;
-        height: 400px;
-        background-image: linear-gradient(150deg, rgb(199, 200, 195) ,  rgb(233, 228, 224) ,  rgb(233, 228, 224));
-      }
-      /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-      @media screen and (max-height: 450px) {
-        .overlay a {font-size: 20px}
-        .overlay .closebtn {
-          font-size: 40px;
-          top: 15px;
-          right: 35px;
-        }
-      }
-
-      /* Card ki basic styling */
-.card {
-  width: 300px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative; /* Yeh zaroori hai taake button card ke andar hi rahe */
-  font-family: sans-serif;
-}
-.card-img {
-  width: 200px;
-  height: 200px;
-  background-image: none;
-  
-}
-
-.card img {
+.overlay {
+  height: 0;
   width: 100%;
-  display: block;
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(233, 227, 227); /* Fallback color */
+  background-color: rgba(231, 221, 221, 0.95); /* Adjusted opacity for readability */
+  overflow-y: auto; /* Enables vertical scroll when content overflows */
+  overscroll-behavior: contain; /* Prevents scroll chaining to the body */
+  transition: 0.5s; 
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  position: relative;
+  width: 100%; 
+  text-align: center; 
+  /*padding-bottom: 50px;  Added padding so bottom elements aren't cut off */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block; 
+  transition: 0.3s; 
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+/* FIXED CARD STYLING (Removed fixed widths and heights) */
+.card {
+  width: 100%; /* Let Bootstrap grid handle the width */
+  min-height: 400px; /* Keeps cards uniform in the same row */
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative; 
+  
+  background-image: linear-gradient(150deg, rgb(199, 200, 195), rgb(233, 228, 224), rgb(233, 228, 224));
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* FIXED IMAGE STYLING */
+.card-img-top, .card-img {
+  width: 100%;
+  height: 300px; /* Gives images a standard frame limit */
+  object-fit: contain; /* Keeps transparent product cuts from distorting */
+  padding: 15px; /* Adds breathing room around the product image */
 }
 
 .card-content {
-  padding: 15px;
+  padding: 30px;
+  text-align: left; /* Aligns title and description beautifully */
 }
 
 /* Heart Button ki styling */
@@ -94,31 +74,42 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background: white;
+  background: transparent;
   border: none;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.2); */
   transition: transform 0.2s ease;
+  z-index: 999; /* Ensures button stays clickable over images */
 }
 
 .fav-btn:hover {
-  transform: scale(1.1); /* Hover karne par thoda bada hoga */
+  transform: scale(1.1); 
 }
 
 .fav-btn i {
   font-size: 20px;
-  color: #888; /* Shuru mein grey color */
+  color: #888; 
   transition: color 0.2s;
 }
 
 /* Jab JavaScript se 'active' class add hogi */
 .fav-btn.active i {
-  color: #ff385c; /* Click hone par Red color */
-  font-weight: 900; /* Font Awesome mein heart ko fill karne ke liye */
+  color: #ff385c; 
+  font-weight: 900; 
+}
+
+/* Screen height fixes */
+@media screen and (max-height: 450px) {
+  .overlay a { font-size: 20px; }
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
 }
