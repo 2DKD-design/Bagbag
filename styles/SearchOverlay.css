@@ -63,3 +63,62 @@
           right: 35px;
         }
       }
+
+      /* Card ki basic styling */
+.card {
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative; /* Yeh zaroori hai taake button card ke andar hi rahe */
+  font-family: sans-serif;
+}
+.card-img {
+  width: 200px;
+  height: 200px;
+  background-image: none;
+  
+}
+
+.card img {
+  width: 100%;
+  display: block;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+/* Heart Button ki styling */
+.fav-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.fav-btn:hover {
+  transform: scale(1.1); /* Hover karne par thoda bada hoga */
+}
+
+.fav-btn i {
+  font-size: 20px;
+  color: #888; /* Shuru mein grey color */
+  transition: color 0.2s;
+}
+
+/* Jab JavaScript se 'active' class add hogi */
+.fav-btn.active i {
+  color: #ff385c; /* Click hone par Red color */
+  font-weight: 900; /* Font Awesome mein heart ko fill karne ke liye */
+}
