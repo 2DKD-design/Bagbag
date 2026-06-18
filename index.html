@@ -2,18 +2,15 @@
 <html lang="en" data-bs-theme="light" style="height: 100%">
   <head>
     <title>Title</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap CSS v5.3.8 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <!--Bootstrap icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles/Sidenav.css">
     <link rel="stylesheet" href="styles/SearchOverlay.css">
@@ -21,28 +18,18 @@
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/feat-cards.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/addToCart.css">
+    <link rel="stylesheet" href="styles/favorites.css">
     
   </head>
 
   <body>
     <header>
-      <!-- place navbar here -->
-       <nav
+      <nav
         class="navbar navbar-expand navbar-dark bg-transparent p-1 hover-bg-custom fixed-top"
        >
         <div class="container-fluid px-4">
           
-          <!-- <button
-            class="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button> -->
           <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
               <li class="nav-item">
@@ -57,30 +44,55 @@
             </ul>
             
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
-              <a href="#" class="nav-link d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-heart px-md-5 fs-4 "></i></a>
+
+              <a href="javascript:void(0)" class="nav-link d-flex flex-row flex-sm-col flex-md-row" onclick="openFavoritesNav()">
+                <i class="bi bi-heart px-md-5 fs-4 visual-fav-btn" style="cursor: pointer;"></i>
+              </a>
+
+              <div id="myFavoritesNav" class="cart-sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeFavoritesNav()">&times;</a>
+                
+                <h2>My Favorites</h2>
+                
+                <div id="favItemsContainer">
+                  <p class="empty-cart-msg">Your favorites list is empty!</p>
+                </div>
+                
+                <div class="fav-footer" id="favFooterArea" style="display: none;">
+                  <button class="fav-add-all-btn" onclick="addAllFavoritesToCart()">
+                    Add All Items to Cart
+                  </button>
+                </div>
+              </div>
           
-              <a href="#" class="nav-link d-flex flex-row flex-sm-col"><i class="bi bi-bag fs-4  "></i></a>
+
+              <a href="#" class="nav-link d-flex flex-row flex-sm-col">
+                <i onclick="openCartNav()" class="bi bi-bag fs-4 cart-btn"></i>
+              </a>
+              <div id="myCartNav" class="cart-sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeCartNav()">&times;</a>
+              
+              <h2>Your Cart</h2>
+              
+              <div id="cartItemsContainer">
+                <p class="empty-cart-msg">Your cart is empty!</p>
+              </div>
+              
+              <div class="cart-footer">
+                <div class="cart-total">
+                  <span>Total:</span>
+                  <span id="cartTotalAmount">Rs. 0</span>
+                </div>
+                <button class="checkout-btn" onclick="goToCheckout()">Continue to Checkout</button>
+              </div>
+            </div>
             </ul>
-          
-         
           
           </div>
         </div>
        </nav>
 
-       
-        <!-- <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="#" onclick="toggleSecondaryNav()">Women</a>
-          <a href="#" onclick="toggleSecondaryNav()">Men</a>
-          <a href="#" onclick="toggleSecondaryNav()">Brands</a>
-          <a href="#" onclick="toggleSecondaryNav()">Services</a>
-          <a href="#" onclick="toggleSecondaryNav()">Contact us</a>
-        </div>
-         -->
-
-         <!-- Your Existing Primary Sidenav -->
-        <div id="mySidenav" class="sidenav">
+         <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="#" onclick="openSecondaryNav('Women')">Women</a>
           <a href="#" onclick="openSecondaryNav('Men')">Men</a>
@@ -89,11 +101,9 @@
           <a href="#" onclick="openSecondaryNav('Contact us')">Contact us</a>
         </div>
 
-        <!-- NEW: Secondary Nested Sidenav -->
         <div id="mySecondaryNav" class="secondary-sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeSecondaryNav()">&times;</a>
           <h2 id="secondaryTitle" style="padding-left: 32px; font-size: 25px;">Category</h2>
-          <!-- These links will change dynamically or can be static -->
           <div id="secondaryLinks">
             <a href="#">New Arrivals</a>
             <a href="#">Clothing</a>
@@ -101,261 +111,205 @@
             <a href="#">Accessories</a>
           </div>
         </div>
-
-
-
-      <!-- Use any element to open the sidenav -->
-      
-      <!-- The overlay -->
         
       <div id="myNav" class="overlay">
-        <!-- Brand Logos -->
         <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#">
           <img style="height: 60px;" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
           <img src="Assets/logo/logo3.png" alt="Logo Sub" style="height: 40px;" onclick="closeSearch()">
         </a>
         
-        <!-- Close Button -->
         <a href="javascript:void(0)" class="closebtn fs-3 m-0 p-0" onclick="closeSearch()">&times;</a>
 
         <div class="overlay-content container-fluid mt-5">
-          <!-- Search Bar Container -->
           <div class="form-outline pb-5 mt-0 d-flex justify-content-center" data-mdb-input-init>
             <input type="search" id="form1" class="form-control p-3 rounded-pill border-secondary-subtle w-75" placeholder="Search for a product" aria-label="Search" />
           </div>
 
-          <!-- Product Grid Row (Handles 1 column on mobile, 3 on tablet, 6 on desktop) -->
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-0 mt-5 pt-5">
             
-            <!-- Card 1 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" 
+                        aria-label="Add to favorites" 
+                        data-id="1" 
+                        data-name="Convertible Pochette" 
+                        data-price="83720" 
+                        onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="MICHEAL KORS/convertible_pochette-removebg-preview.png" class="card-img" alt="Convertible Pochette">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Convertible Pochette</small>
+                  <small class="card-text text-muted">Michael Kors Classic</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="2" data-name="Crackled Leather Case" data-price="40600" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="MICHEAL KORS/crackled_leather_with_card_case-removebg-preview.png" class="card-img" alt="Crackled Leather Case">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Crackled Leather Case</small>
+                  <small class="card-text text-muted">Includes matching card holder</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="3" data-name="Saint Laurent Classic" data-price="518000" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="Saint Laurent/saint_Laurent_6-removebg-preview (1).png" class="card-img" alt="Saint Laurent Bag">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Saint Laurent Bag</small>
+                  <small class="card-text text-muted">Luxury French craftsmanship</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 4 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="4" data-name="Leather Satchel Bag" data-price="96600" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="MICHEAL KORS/leather_satchel-removebg-preview.png" class="card-img" alt="Leather Satchel">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Leather Satchel</small>
+                  <small class="card-text text-muted">Premium structural top handle</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 5 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="5" data-name="Leather Tote Bag" data-price="82600" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="MICHEAL KORS/leather_tote_bag-removebg-preview.png" class="card-img" alt="Leather Tote Bag">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Leather Tote Bag</small>
+                  <small class="card-text text-muted">Spacious everyday luxury carrier</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 6 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="6" data-name="Medium Tote Bag" data-price="74200" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="MICHEAL KORS/medium_tote_bagg-removebg-preview.png" class="card-img" alt="Medium Tote Bag">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Medium Tote Bag</small>
+                  <small class="card-text text-muted">Perfect size minimalist essential</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 7 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="7" data-name="Saint Laurent Envelope" data-price="588000" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="Saint Laurent/saint_Laurent_7-removebg-preview.png" class="card-img" alt="Saint Laurent Item">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Saint Laurent Envelope</small>
+                  <small class="card-text text-muted">Iconic textured matelassé leather</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 8 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="8" data-name="Pebbled Tote Bag" data-price="86800" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="MICHEAL KORS/pebbled_tote_bag-removebg-preview.png" class="card-img" alt="Pebbled Tote Bag">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Pebbled Tote Bag</small>
+                  <small class="card-text text-muted">Soft grain scratch-resistant leather</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 9 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="9" data-name="Saint Laurent Handbag" data-price="546000" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="Saint Laurent/saint_Laurent_4-removebg-preview.png" class="card-img" alt="Saint Laurent Handbag">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Saint Laurent Handbag</small>
+                  <small class="card-text text-muted">Elegant evening shoulder statement</small>
                 </div>
               </div>
             </div>
 
-            <!-- Card 10 -->
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="10" data-name="Denim Crossbody Bag" data-price="61600" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
                 <img src="MICHEAL KORS/denim_crossbody-removebg-preview.png" class="card-img" alt="Denim Crossbody">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Denim Crossbody</small>
+                  <small class="card-text text-muted">Casual luxury streetwear edition</small>
                 </div>
               </div>
             </div>
 
             <div class="col">
               <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="11" data-name="Saffiano Leather Pochette" data-price="50400" onclick="toggleFavorite(this)">
                   <i class="fa-regular fa-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/32S6A50C6L-001-0001_1-tif-removebg-preview.png" class="card-img" alt="Denim Crossbody">
+                <img src="MICHEAL KORS/32S6A50C6L-001-0001_1-tif-removebg-preview.png" class="card-img" alt="Saffiano Leather Pochette">
                 <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites">
-                  <i class="fa-regular fa-heart"></i>
-                </button>
-                <img src="MICHEAL KORS/32F5U8QU1O-041-0021_1-tif-removebg-preview.png" class="card-img" alt="Denim Crossbody">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Card title</small>
-                  <small class="card-text text-muted">This is a wider card</small>
+                  <small class="card-title fw-bold">Saffiano Leather Pochette</small>
+                  <small class="card-text text-muted">Sleek compact zip-top silhouette</small>
                 </div>
               </div>
             </div>
 
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="12" data-name="Quilted Chain Crossbody" data-price="67200" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/32F5U8QU1O-041-0021_1-tif-removebg-preview.png" class="card-img" alt="Quilted Chain Crossbody">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Quilted Chain Crossbody</small>
+                  <small class="card-text text-muted">Polished metallic hardware accents</small>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>
-
-      
     </header>
-
 
     <section class="hero mb-5">
       <div id="carouselId" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-        <!-- <ol class="carousel-indicators">
-          <li
-            data-bs-target="#carouselId"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="First slide"
-          ></li>
-          <li
-            data-bs-target="#carouselId"
-            data-bs-slide-to="1"
-            aria-label="Second slide"
-          ></li>
-          <li
-            data-bs-target="#carouselId"
-            data-bs-slide-to="2"
-            aria-label="Third slide"
-          ></li>
-        </ol> -->
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
-            <img
-              src="Assets/banners/WOMEN_BC_PREFALL26_12_FEB26_DI3.jpg"
-              class="w-100 d-block"
-              alt="First slide"
-            />
+            <img src="Assets/banners/WOMEN_BC_PREFALL26_12_FEB26_DI3.jpg" class="w-100 d-block" alt="First slide" />
           </div>
           <div class="carousel-item">
-            <img
-              src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=1600&q=80"
-              class="w-100 d-block"
-              alt="Second slide"
-            />
+            <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=1600&q=80" class="w-100 d-block" alt="Second slide" />
           </div>
           <div class="carousel-item">
-            <img
-              src="Assets/banners/james-ree-ZmeFtu11Hpc-unsplash (1).jpg"
-              class="w-100 d-block"
-              alt="Third slide"
-            />
+            <img src="Assets/banners/james-ree-ZmeFtu11Hpc-unsplash (1).jpg" class="w-100 d-block" alt="Third slide" />
           </div>
           <div class="carousel-item">
-            <img
-              src="Assets/banners/MEN_SPEEDY_P9_26_STILL_LIFE_113_NO_LOGO.jpg"
-              class="w-100 d-block"
-              alt="Third slide"
-            />
+            <img src="Assets/banners/MEN_SPEEDY_P9_26_STILL_LIFE_113_NO_LOGO.jpg" class="w-100 d-block" alt="Third slide" />
           </div>
           <div class="carousel-item">
-            <img
-              src="Assets/banners/MEN_BC_LG_MONOGRAM_SHADOW_2_MARS2026_DI3.webp"
-              class="w-100 d-block"
-              alt="Third slide"
-            />
+            <img src="Assets/banners/MEN_BC_LG_MONOGRAM_SHADOW_2_MARS2026_DI3.webp" class="w-100 d-block" alt="Third slide" />
           </div>
         </div>
 
@@ -367,69 +321,27 @@
             <a href="#" class="cta-btn">Shop Collection</a>
           </div>
         </div>
-
-        <!-- <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselId"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselId"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button> -->
       </div>
     </section>
       
     <section class="featured-prod container-fluid position-relative py-5 px-5 mt-5">
-      
       <div class=" text-uppercase d-flex flex-column align-items-center mb-4">
         <h6 class="" style="letter-spacing: 0.2rem;">Featured collection</h6>
         <h4 class="" style="letter-spacing: 0.2rem;">Divisive</h4>
       </div>
       
       <div id="scrollCards" class="d-flex flex-row flex-nowrap scroll-hide">
-
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 1</div>
-        </div>
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 2</div>
-        </div>
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 3</div>
-        </div>
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 3</div>
-        </div>
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 3</div>
-        </div>
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 3</div>
-        </div>
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 3</div>
-        </div>
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 3</div>
-        </div>
-        <div class="card mx-3" style="min-width: 420px;">
-          <div class="card-body">Product 3</div>
-        </div>
-        <!-- Add more cards -->
-      
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 1</div></div>
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 2</div></div>
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
       </div>
 
-      <!-- Overlay arrows -->
       <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y ms-3" onclick="slideLeft()">
         <i class="bi bi-chevron-compact-left "></i>
       </button>
@@ -445,29 +357,27 @@
     <div class="container-fluid me-5 px-5">
       <img src="Assets/banners/mohammad-javad-asgharikolah.jpg" class="w-100 mb-5" alt="">
     </div>
+
+    <div class="product-card">
+      <h3>Women Ethnic Kurta</h3>
+      <p class="price">Rs. 14,000</p>
+      <button class="add-to-cart-btn" onclick="addToCart(1, 'Women Ethnic Kurta', 14000)">
+        Add to Cart
+      </button>
+    </div>
   
-    <footer>
-      <!-- place footer here -->
-    </footer>
+    <footer></footer>
 
-    <!-- Bootstrap JavaScript Bundle (includes Popper) -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- Typed.js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
-    <!-- Scripts -->
     <script src="Scripts/Search.Js"></script>
     <script src="Scripts/Nav.js"></script>
     <script src="Scripts/sidenav.js"></script>
     <script src="Scripts/Carousel.js"></script>
+    <script src="Scripts/addToCart.js"></script>
     <script src="Scripts/feature-cards.js"></script>
-    
-    
+    <script src="Scripts/favorites.js"></script>
   </body>
 </html>
