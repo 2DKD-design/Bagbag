@@ -1,7 +1,6 @@
 // ==========================================
 // 1. GLOBAL STATE ARRAYS & PERSISTENCE
 // ==========================================
-// LOAD: Check localStorage on refresh, fallback to empty array if nothing saved
 let favoriteItems = JSON.parse(localStorage.getItem("favoriteItems")) || [];
 
 const FAV_SIDEBAR_WIDTH = "350px";
@@ -13,13 +12,12 @@ function saveToLocalStorage() {
 
 // Helper function to turn the navbar heart red when items are favorited
 function updateNavbarHeartColor() {
-  // Looks for any link/button triggering openFavoritesNav() and finds the heart icon inside it
   const navbarHeartIcon = document.querySelector("a[onclick='openFavoritesNav()'] i, .fav-nav-btn i");
   if (navbarHeartIcon) {
     if (favoriteItems.length > 0) {
-      navbarHeartIcon.style.color = "#ff0000"; // Makes navbar heart red
+      navbarHeartIcon.style.color = "#ff0000"; 
     } else {
-      navbarHeartIcon.style.color = ""; // Resets back to default theme color
+      navbarHeartIcon.style.color = ""; 
     }
   }
 }
@@ -65,8 +63,8 @@ function toggleFavorite(buttonElement) {
     buttonElement.classList.add('active');
   }
 
-  saveToLocalStorage();      // Save on addition/removal
-  updateNavbarHeartColor();  // Check navbar state
+  saveToLocalStorage();      
+  updateNavbarHeartColor();  
   renderFavorites();
 }
 
@@ -81,9 +79,9 @@ function syncAndRemoveFav(id) {
     targetBtn.classList.remove('active');
   }
   
-  saveToLocalStorage();      // Save on removal
-  updateNavbarHeartColor();  // Check navbar state
+  saveToLocalStorage();      
   renderFavorites();
+  updateNavbarHeartColor();  
 }
 
 // Render out wishlist favorites list rows
@@ -103,12 +101,25 @@ function renderFavorites() {
   if (footerArea) footerArea.style.display = "block";
   
   favoriteItems.forEach(item => {
+    // Escaping item name strings safely for inline click handlers
+    const safeName = item.name.replace(/'/g, "\\'");
+    
     const itemHTML = `
-      <div class="fav-item-row">
-        <div class="fav-details">
-          <h4>${item.name}</h4>
-          <p class="fav-item-price">$${item.price.toFixed(2)}</p>
+      <div class="fav-item-row" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; border-bottom: 1px solid #eee;">
+        <div class="fav-details" style="flex-grow: 1;">
+          <h4 style="margin: 0; font-size: 16px;">${item.name}</h4>
+          <p class="fav-item-price" style="margin: 5px 0 0 0; color: #666;">Rs. ${item.price.toLocaleString()}</p>
         </div>
+        
+        <button class="fav-cart-btn" 
+                onclick="addToCart(${item.id}, '${safeName}', ${item.price})" 
+                style="background: none; border: none; color: #2ec4b6; font-size: 18px; cursor: pointer; padding: 5px; margin-right: 10px; transition: transform 0.2s;"
+                onmouseover="this.style.transform='scale(1.1)'"
+                onmouseout="this.style.transform='scale(1)'"
+                title="Add to Cart">
+          <i class="bi bi-bag-plus-fill"></i>
+        </button>
+
         <button class="remove-fav-btn" onclick="syncAndRemoveFav(${item.id})">&times;</button>
       </div>
     `;
@@ -136,8 +147,8 @@ function addAllFavoritesToCart() {
   });
   
   favoriteItems = [];
-  saveToLocalStorage();      // Reset localStorage storage track
-  updateNavbarHeartColor();  // Clear navbar color back to standard
+  saveToLocalStorage();      
+  updateNavbarHeartColor();  
   renderFavorites();
   
   if (typeof renderCartItems === "function") {
@@ -170,9 +181,8 @@ function closeFavoritesNav() {
   }
 }
 
-// Initial structural setup when the webpage reloads
 document.addEventListener("DOMContentLoaded", () => {
   renderFavorites();
   updateNavbarHeartColor();
-  syncProductCardButtons(); // Makes sure card icons match the loaded data array
+  syncProductCardButtons(); 
 });

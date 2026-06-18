@@ -3,47 +3,66 @@ function closeNav() {
   closeSecondaryNav(); // Yeh secondary nav ko bhi saath me band kar dega
 }
 
-// Dummy Cart Data converted to Rs. values (USD * 280)
-let cartItems = [
-  { id: 1, name: "Women Ethnic Kurta", price: 14000, quantity: 1 },
-  { id: 2, name: "Men Slim Fit Jeans", price: 16800, quantity: 2 },
-  { id: 3, name: "Running Shoes", price: 25200, quantity: 1 }
-];
+// 1. GLOBAL STATE & LOCALSTORAGE INITIALIZATION
+let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
 const CART_WIDTH = "350px"; // Cart side nav ki width
 
-// 1. Cart Nav Open karne ka function
+// Helper function to save current cart state to the browser memory
+function saveCartToLocalStorage() {
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
+
+// NEW: Helper function to turn the navbar bag icon green when items are in the cart
+function updateNavbarBagColor() {
+  // Targets the bag icon based on the classes you used in index.html
+  const navbarBagIcon = document.querySelector(".cart-btn");
+  if (navbarBagIcon) {
+    if (cartItems.length > 0) {
+      navbarBagIcon.style.color = "#2ec4b6"; // Elegant, clean retail premium green
+    } else {
+      navbarBagIcon.style.color = ""; // Reverts back to your default layout CSS colors
+    }
+  }
+}
+
+// 2. Cart Nav Open karne ka function
 function openCartNav() {
   document.getElementById("myCartNav").style.width = CART_WIDTH;
   renderCartItems(); // Har baar open hone par naye items load honge
 }
 
-// 2. Cart Nav Close karne ka function
+// 3. Cart Nav Close karne ka function
 function closeCartNav() {
   document.getElementById("myCartNav").style.width = "0";
 }
 
-// 3. Items ko Side Nav ke andar display karne ka function
+// 4. Items ko Side Nav ke andar display karne ka function
 function renderCartItems() {
   const container = document.getElementById("cartItemsContainer");
   const totalAmountSpan = document.getElementById("cartTotalAmount");
+  
+  // Checking if cart-count element exists in your header before updating it
   const cartCountSpan = document.getElementById("cart-count");
   
-  container.innerHTML = "";
+  if (!container) return; // Exit if element doesn't exist yet
   
+  container.innerHTML = ""; // Pehle purana content clear karein
+  
+  // Empty State Check
   if (cartItems.length === 0) {
     container.innerHTML = '<p class="empty-cart-msg">Your cart is empty!</p>';
-    totalAmountSpan.innerText = "Rs. 0";
+    if (totalAmountSpan) totalAmountSpan.innerText = "Rs. 0";
     if (cartCountSpan) cartCountSpan.innerText = "0";
     return;
   }
   
   let total = 0;
-  let totalQuantity = 0;
+  let totalQuantity = 0; // Total quantity calculation variables setup
   
   cartItems.forEach(item => {
     total += item.price * item.quantity;
-    totalQuantity += item.quantity;
+    totalQuantity += item.quantity; // Step tracking total quantities context loops
     
     const itemHTML = `
       <div class="cart-item">
@@ -69,8 +88,9 @@ function renderCartItems() {
     container.innerHTML += itemHTML;
   });
   
-  totalAmountSpan.innerText = `Rs. ${total.toLocaleString()}`;
-  if (cartCountSpan) cartCountSpan.innerText = totalQuantity;
+  // Display updates using premium .toLocaleString() comma separations
+  if (totalAmountSpan) totalAmountSpan.innerText = `Rs. ${total.toLocaleString()}`;
+  if (cartCountSpan) cartCountSpan.innerText = totalQuantity; // Updating global shopping count dynamically
 }
 
 // Function to change item quantities (+1 or -1)
@@ -82,9 +102,11 @@ function updateQuantity(id, change) {
     // Agar quantity 0 ho jaye, toh item ko array se filter out (remove) kar edin
     if (item.quantity <= 0) {
       removeItem(id);
-      return; 
+      return; // Execution yahin rok dein kyunki removeItem khud render karega
     }
     
+    saveCartToLocalStorage(); // Save quantity changes
+    updateNavbarBagColor();   // Sync navbar bag color
     renderCartItems();
   }
 }
@@ -92,32 +114,34 @@ function updateQuantity(id, change) {
 // Function to instantly wipe an item from the cart array
 function removeItem(id) {
   cartItems = cartItems.filter(item => item.id !== id);
+  saveCartToLocalStorage(); // Save removal modifications
+  updateNavbarBagColor();   // Sync navbar bag color
   renderCartItems();
 }
 
-// 4. Checkout Button Action
+// 5. Checkout Button Action
 function goToCheckout() {
   if(cartItems.length === 0) {
     alert("Aapka cart khali hai. Kripya items add karein!");
   } else {
     alert("Redirecting to checkout page...");
+    // window.location.href = "/checkout"; // Real website link yahan aayega
   }
 }
 
-// Shuru me cart count set karne ke liye call karein
-renderCartItems();
-
-// 5. Function to add an item to the cart
+// 6. Function to add an item to the cart
 function addToCart(id, name, price) {
-  // Ensure we are working with numeric data formats
   const productId = parseInt(id);
   const productPrice = parseFloat(price);
 
+  // Check if the item already exists in the cart
   const existingItem = cartItems.find(item => item.id === productId);
 
   if (existingItem) {
+    // If it exists, just increase the quantity
     existingItem.quantity += 1;
   } else {
+    // If it's a new item, push it to the cartItems array
     cartItems.push({
       id: productId,
       name: name,
@@ -126,6 +150,14 @@ function addToCart(id, name, price) {
     });
   }
 
+  saveCartToLocalStorage(); // Save addition details instantly
+  updateNavbarBagColor();   // Turn the navbar bag green on item add
   renderCartItems();
-  openCartNav();
+  openCartNav(); 
 }
+
+// Safe execution listener to ensure code syncs perfectly on webpage loads/refreshes
+document.addEventListener("DOMContentLoaded", () => {
+  renderCartItems();
+  updateNavbarBagColor(); // Sets the initial bag color state on refresh based on localStorage
+});
