@@ -3,22 +3,39 @@
 // 1. Pehle hum define karenge ki kis category me kya links dikhane hain
 const categoryData = {
   "Women": [
-    { text: "Ethnic Wear", url: "#" },
-    { text: "Western Wear", url: "#" },
-    { text: "Footwear", url: "#" },
-    { text: "Jewellery", url: "#" }
+    { text: "Shoulder Bags", url: "#" },
+    { text: "Frame Bags", url: "#" },
+    { text: "Crossbody Bags", url: "#" },
+    { text: "Handbags", url: "#" },
+    { text: "Satchels", url: "#" },
+    { text: "Pouch", url: "#" },
+    { text: "Wallets", url: "#" },
+    { text: "Tote Bags", url: "#" },
+    { text: "Pochette", url: "#" },
+    { text: "Pochette", url: "#" },
   ],
   "Men": [
-    { text: "Shirts & T-shirts", url: "#" },
-    { text: "Jeans & Trousers", url: "#" },
-    { text: "Activewear", url: "#" },
-    { text: "Shoes", url: "#" }
+    { text: "Backpacks", url: "#" },
+    { text: "Crossbody Bags", url: "#" },
+    { text: "Messenger Bags", url: "#" },
+    { text: "Sling Bags", url: "#" },
+    { text: "Briefcase", url: "#" },
+    { text: "Laptop Bags", url: "#" },
+    { text: "Duffel Bags", url: "#" },
+    { text: "Document case", url: "#" },
+    { text: "pouch/wallets", url: "#" },
   ],
   "Brands": [
-    { text: "Nike", url: "#" },
+    { text: "Montblanc", url: "#" },
     { text: "Adidas", url: "#" },
-    { text: "Zara", url: "#" },
-    { text: "Puma", url: "#" }
+    { text: "Coach", url: "#" },
+    { text: "YvesSaintLaurent", url: "#" },
+    { text: "Michael Kors", url: "#" },
+    { text: "Aodour", url: "#" },
+    { text: "Jafferjees", url: "#" },
+    { text: "Ralph Lauren", url: "#" },
+    { text: "AK Galleria", url: "#" },
+    { text: "Hub", url: "#" },
   ],
   "Services": [
     { text: "Personal Styling", url: "#" },
@@ -33,8 +50,8 @@ const categoryData = {
 };
 
 // Variable definitions (jo aapne use kiye hain)
-const PRIMARY_WIDTH = "250px"; 
-const SECONDARY_WIDTH = "250px";
+const PRIMARY_WIDTH = "500px"; 
+const SECONDARY_WIDTH = "500px";
 
 // 2. Updated Function jo dynamic links add karega
 function openSecondaryNav(categoryName) {
