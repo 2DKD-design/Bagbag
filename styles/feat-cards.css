@@ -73,7 +73,7 @@ span{
 .scroll-hide {
   display: flex !important;
   flex-direction: row !important;
-  flex-nowrap: nowrap !important;
+  flex-wrap: nowrap !important;
   overflow-x: auto;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
