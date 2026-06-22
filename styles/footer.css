@@ -25,7 +25,7 @@
 }
 
 .gl-footer-col h3 {
-    color: #ffffff;
+    color: #646464;
     font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
@@ -63,7 +63,7 @@
     display: inline-block;
     margin-top: 15px;
     background-color: #decfcf;
-    color: #ffffff;
+    color: #646464;
     padding: 8px 12px;
     font-size: 12px;
     text-transform: uppercase;
@@ -87,6 +87,9 @@
     font-size: 13px;
     outline: none;
 }
+.gl-newsletter-form input::placeholder {
+    color: #646464;
+}
 
 .gl-newsletter-form button {
     background-color: #ffffff;
@@ -100,7 +103,7 @@
 }
 
 .gl-newsletter-form button:hover {
-    background-color: #cccccc;
+    background-color: #646464;
 }
 
 /* Footer Bottom Bar */
