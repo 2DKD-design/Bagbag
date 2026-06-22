@@ -1,0 +1,148 @@
+/* Footer Styles */
+.gl-footer {
+    background-color: #decfcf; /* Minimal Black */
+    color: #cccccc;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    padding: 60px 0 20px 0;
+    letter-spacing: 0.5px;
+}
+
+.gl-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.gl-footer-col {
+    flex: 1;
+    min-width: 220px;
+    margin-bottom: 40px;
+    padding-right: 20px;
+}
+
+.gl-footer-col h3 {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.gl-footer-col p {
+    line-height: 1.6;
+    color: #999999;
+}
+
+.gl-footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gl-footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.gl-footer-col ul li a {
+    color: #999999;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.gl-footer-col ul li a:hover {
+    color: #ffffff;
+}
+
+/* COD Badge Style */
+.gl-cod-badge {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #decfcf;
+    color: #ffffff;
+    padding: 8px 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+    letter-spacing: 1px;
+}
+
+/* Newsletter Form */
+.gl-newsletter-form {
+    display: flex;
+    margin-top: 15px;
+}
+
+.gl-newsletter-form input {
+    flex: 1;
+    background-color: #e0d5d5;
+    border: 1px solid #333;
+    color: #ffffff;
+    padding: 10px 12px;
+    font-size: 13px;
+    outline: none;
+}
+
+.gl-newsletter-form button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.gl-newsletter-form button:hover {
+    background-color: #cccccc;
+}
+
+/* Footer Bottom Bar */
+.gl-footer-bottom {
+    border-top: 1px solid #9f9797;
+    margin-top: 40px;
+    padding-top: 20px;
+}
+
+.gl-footer-bottom-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #666666;
+    font-size: 12px;
+}
+
+.gl-payment-icons span {
+    margin-left: 15px;
+    color: #999999;
+    font-weight: 500;
+}
+
+/* Responsive design for Mobile Screen */
+@media (max-width: 768px) {
+    .gl-footer-container {
+        flex-direction: column;
+    }
+    .gl-footer-col {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .gl-footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    .gl-payment-icons span {
+        margin: 0 8px;
+    }
+}
