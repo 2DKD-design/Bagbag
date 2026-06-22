@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styles/addToCart.css">
     <link rel="stylesheet" href="styles/favorites.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/cards-summer.css">
     
   </head>
 
@@ -34,19 +35,19 @@
           <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
               <li class="nav-item">
-              <a class="nav-link" href="#" aria-current="page"><span onclick="openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2 "></i><p class="ps-2 pe-1 pt-2 d-none d-md-block "> Menu</p></span></a>
+              <a class="nav-link" href="#" aria-current="page"><span onclick=" event.preventDefault(); openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2 "></i><p class="ps-2 pe-1 pt-2 d-none d-md-block "> Menu</p></span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" aria-current="page"><span onclick="openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2"><i class="bi bi-search p-1 fs-6 "></i><p class=" d-none d-md-block ">Search</p></span></a>
+              <a class="nav-link" href="#" aria-current="page"><span onclick="event.preventDefault(); openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2"><i class="bi bi-search p-1 fs-6 "></i><p class=" d-none d-md-block ">Search</p></span></a>
             </li>
             </ul>
             <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-1 mb-1 fs-5">
-              <a class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill my-0 pe-md-4 me-md-5" href="#"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
+              <a onclick="event.preventDefault();" class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill my-0 pe-md-4 me-md-5" href="#"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
             </ul>
             
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
 
-              <a href="javascript:void(0)" class="nav-link d-flex flex-row flex-sm-col flex-md-row" onclick="openFavoritesNav()">
+              <a href="javascript:void(0)" class="nav-link d-flex flex-row flex-sm-col flex-md-row" onclick="event.preventDefault(); openFavoritesNav()">
                 <i class="bi bi-heart px-md-5 fs-4 visual-fav-btn" style="cursor: pointer;"></i>
               </a>
 
@@ -68,7 +69,7 @@
           
 
               <a href="#" class="nav-link d-flex flex-row flex-sm-col">
-                <i onclick="openCartNav()" class="bi bi-bag fs-4 cart-btn"></i>
+                <i onclick="event.preventDefault(); openCartNav()" class="bi bi-bag fs-4 cart-btn"></i>
               </a>
               <div id="myCartNav" class="cart-sidenav">
               <a href="javascript:void(0)" class="closebtn" onclick="closeCartNav()">&times;</a>
@@ -95,11 +96,11 @@
 
          <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="#" onclick="openSecondaryNav('Women')">Women</a>
-          <a href="#" onclick="openSecondaryNav('Men')">Men</a>
-          <a href="#" onclick="openSecondaryNav('Brands')">Brands</a>
-          <a href="#" onclick="openSecondaryNav('Services')">Services</a>
-          <a href="#" onclick="openSecondaryNav('Contact us')">Contact us</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Women')">Women</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Men')">Men</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Brands')">Brands</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Services')">Services</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Contact us')">Contact us</a>
         </div>
 
         <div id="mySecondaryNav" class="secondary-sidenav">
@@ -114,7 +115,7 @@
         </div>
         
       <div id="myNav" class="overlay">
-        <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#">
+        <a onclick="event.preventDefault();" class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#">
           <img style="height: 60px;" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
           <img src="Assets/logo/logo3.png" alt="Logo Sub" style="height: 40px;" onclick="closeSearch()">
         </a>
@@ -327,105 +328,28 @@
       
 
     <section class="featured-prod container-fluid position-relative py-5 px-5 mt-5">
-      <div class="text-uppercase d-flex flex-column align-items-center mb-4">
-        <h6 style="letter-spacing: 0.2rem;">Featured collection</h6>
+      <div class="text-uppercase d-flex flex-column align-items-center px-3 mb-4">
+        
+        <h6 style="letter-spacing: 0.2rem;">Featured Collection</h6> 
         <h4 style="letter-spacing: 0.2rem;">Summer</h4> 
       </div>
       
       <div class="d-flex flex-row flex-nowrap scroll-hide">
-        <div class="featured-prod">
-  <div class="d-flex flex-row flex-nowrap scroll-hide py-3">
-    
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="Assets/louis-vuitton-nil-gm--M27852_PM2_Front_view-removebg-preview.png" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h3 class="card-title">louis-vuitton-nil</h3>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="bagss.jpg" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h5 class="card-title">Card title 2</h5>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="bagss.jpg" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h5 class="card-title">Card title 3</h5>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    </div>
-</div>
-<div class="featured-prod">
-  <div class="d-flex flex-row flex-nowrap scroll-hide py-3">
-    
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="bagss.jpg" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h5 class="card-title">Card title 4</h5>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="bagss.jpg" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h5 class="card-title">Card title 5</h5>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="bagss.jpg" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h5 class="card-title">Card title 6</h5>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    </div>
-</div>
-<div class="featured-prod">
-  <div class="d-flex flex-row flex-nowrap scroll-hide py-3">
-    
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="bagss.jpg" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h5 class="card-title">Card title 7</h5>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="bagss.jpg" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h5 class="card-title">Card title 8</h5>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    <div class="card mx-3 hover-card responsive-card">
-      <img src="bagss.jpg" class="card-img-top" alt="Bag Image">
-      <div class="card-body">
-        <h5 class="card-title">Card title 9</h5>
-        <p class="card-text">Some quick example text to build on the card title.</p>
-        <h5><span>Rs</span>150,000</h5>
-      </div>
-    </div>
-    </div>
-</div>
-        <!-- <div class="card mx-3" style="min-width: 420px;"></div>
+        <div class="card-summer mx-3" style="min-width: 420px;">
+          <div class="summer">
+            <img class="card-img-top-summer" src="" alt="Card image">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">John Doe</h4>
+            <p class="card-text">Some example text.</p>
+            <a href="#" class="btn btn-primary">See Profile</a>
+          </div>
+        </div>
         <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 2</div></div>
         <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
         <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
         <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
-        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div> -->
+        <div class="card mx-3" style="min-width: 420px;"><div class="card-body">Product 3</div></div>
         </div>
 
       <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y ms-3" onclick="slideLeft(this)">

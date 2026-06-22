@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Product Details</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <div class="container my-5 pt-5">
+      <div class="row g-5">
+        
+        <div class="col-md-6">
+          <div class="product-image-container border p-3 bg-light text-center rounded">
+            <img id="productMainImage" src="" alt="Product Image" class="img-fluid" style="max-height: 500px; object-fit: contain;">
+          </div>
+        </div>
+
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+          <h1 id="productTitle" class="fw-bold mb-2">Loading Product...</h1>
+          <p id="productBrand" class="text-muted fs-5 mb-3"></p>
+          <h3 id="productPrice" class="text-danger fw-semibold mb-4">Rs. 0</h3>
+          
+          <hr>
+          
+          <p id="productDescription" class="text-secondary my-4">
+            </p>
+
+          <div class="d-grid gap-2 col-lg-8 ps-0">
+            <button id="detailAddToCartBtn" class="btn btn-dark btn-lg rounded-pill py-3 text-uppercase fs-6">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="Scripts/product-detail.js"></script>
+  </body>
+</html>
