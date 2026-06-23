@@ -1,6 +1,7 @@
 .card-summer {
   cursor: pointer;
   min-width: 420px;
+  height: 550px;
 }
 .summer {
   overflow: hidden;
@@ -8,7 +9,7 @@
 }
 .card-img-top-summer {
   width: 100%;
-  transition: transform 0.4s ease;
+  transition: transform 0.9s ease;
 }
 .card-summer:hover .summer img {
   transform: scale(1.12);

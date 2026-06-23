@@ -38,9 +38,9 @@ const categoryData = {
     { text: "Hub", url: "#" },
   ],
   "Services": [
-    { text: "Personal Styling", url: "#" },
     { text: "Fast Delivery", url: "#" },
-    { text: "Easy Returns", url: "#" }
+    { text: "Easy Returns", url: "#" },
+    { text: "Catalog", url: "#" }
   ],
   "Contact us": [
     { text: "Customer Care", url: "#" },
