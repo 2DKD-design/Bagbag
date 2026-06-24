@@ -88,5 +88,37 @@
         right: 25px;
         font-size: 36px;
       }
+      /* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  /* Make primary nav wider/full screen on mobile */
+  .sidenav {
+    width: 0;
+    max-width: 100%;
+  }
+
+  /* Make secondary nav stack directly over the primary one */
+  .secondary-sidenav {
+    width: 0;
+    max-width: 100%;
+    left: 0 !important; /* Forces it to start from the left edge, replacing primary view */
+    z-index: 9999; /* Sit on top of the primary nav */
+  }
+
+  /* Styling for the back button */
+  .secondary-sidenav .backbtn {
+    display: inline-block;
+    padding: 15px 8px 0px 32px;
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+  }
+}
+
+/* Desktop setting for back button */
+@media screen and (min-width: 769px) {
+  .secondary-sidenav .backbtn {
+    display: none; /* Hide back button on desktop since they sit side-by-side */
+  }
+}
 
      

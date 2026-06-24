@@ -53,7 +53,7 @@ const categoryData = {
 const PRIMARY_WIDTH = "500px"; 
 const SECONDARY_WIDTH = "500px";
 
-// 2. Updated Function jo dynamic links add karega
+// 2. Updated Function jo dynamic links add karega aur responsively position karega
 function openSecondaryNav(categoryName) {
   const secondaryNav = document.getElementById("mySecondaryNav");
   const secondaryLinksContainer = document.getElementById("secondaryLinks");
@@ -77,15 +77,28 @@ function openSecondaryNav(categoryName) {
     });
   }
 
-  // 1. Position the inner nav right at the edge of the open primary nav
-  secondaryNav.style.left = PRIMARY_WIDTH;
-  
-  // 2. Open its width
-  secondaryNav.style.width = SECONDARY_WIDTH;
+  // RESPONSIVE CHECK: Agar screen width 768px ya usse kam h toh left 0 hoga, nahi to deskop behavior
+  if (window.innerWidth <= 768) {
+    secondaryNav.style.left = "0";
+    secondaryNav.style.width = "100%"; // Take full screen on mobile
+  } else {
+    secondaryNav.style.left = PRIMARY_WIDTH;
+    secondaryNav.style.width = SECONDARY_WIDTH;
+  }
 }
 
-// Close function (as it is)
+// Close only secondary nav (acts as "Back" on mobile)
 function closeSecondaryNav() {
   const secondaryNav = document.getElementById("mySecondaryNav");
   secondaryNav.style.width = "0";  
 }
+
+// Complete close helper for the direct "X" close buttons
+function closeAllNavs() {
+  closeSecondaryNav();
+  if (typeof closeNav === "function") {
+    closeNav(); // Assuming closeNav() closes your primary #mySidenav
+  }
+}
+
+  
