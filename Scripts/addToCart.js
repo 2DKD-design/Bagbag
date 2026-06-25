@@ -153,7 +153,6 @@ function addToCart(id, name, price) {
   saveCartToLocalStorage(); // Save addition details instantly
   updateNavbarBagColor();   // Turn the navbar bag green on item add
   renderCartItems();
-  openCartNav(); 
 }
 
 // Safe execution listener to ensure code syncs perfectly on webpage loads/refreshes

@@ -32,6 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+function escapeAttribute(value = "") {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function executeOverlaySearch(keyword) {
   const resultsContainer = document.getElementById("search-results-grid");
   if (!resultsContainer) return;
@@ -79,16 +88,18 @@ function executeOverlaySearch(keyword) {
       <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
         <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5 ${activeClass}" 
                 data-id="${product.id}" 
-                onclick="event.stopPropagation(); if(typeof toggleFavorite === 'function') { toggleFavorite({ id: ${product.id}, name: '${product.name.replace(/'/g, "\\'")}', price: ${safeNumPrice}, image: '${product.image}' }, this) }">
-          <i class="${heartIconClass}"></i>
+                data-name="${escapeAttribute(product.name)}"
+                data-price="${safeNumPrice}"
+                data-image="${escapeAttribute(product.image || "")}">
+          <i class="${isFavorited ? "bi bi-heart-fill text-danger" : "bi bi-heart"}"></i>
         </button>
         
-        <img src="${product.image}" class="card-img-top p-3 product-image" alt="${product.name}" style="object-fit: contain; height: 180px;">
+        <img src="${product.image}" class="card-img-top p-3 product-image" alt="${escapeAttribute(product.name)}" style="object-fit: contain; height: 180px;">
         
         <div class="card-body d-flex flex-column p-3">
-          <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;" title="${product.name}">${product.name}</h6>
+          <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;" title="${escapeAttribute(product.name)}">${escapeAttribute(product.name)}</h6>
           <p class="price mb-2" style="font-size: 1.1rem; font-weight: 700; color: #2c3e50; margin-top: 2px;">${displayPrice}</p>
-          <span class="text-uppercase tracking-wider text-muted mb-3" style="font-size: 0.72rem; letter-spacing: 0.5px;">${product.brand}</span>
+          <span class="text-uppercase tracking-wider text-muted mb-3" style="font-size: 0.72rem; letter-spacing: 0.5px;">${escapeAttribute(product.brand)}</span>
           
           <button class="btn btn-dark w-100 py-2 mt-auto text-uppercase fw-bold border-0 tracking-wider" 
                   style="font-size: 0.78rem; border-radius: 4px;"
@@ -98,6 +109,20 @@ function executeOverlaySearch(keyword) {
         </div>
       </div>
     `;
+
+    const favoriteButton = colCard.querySelector(".fav-btn");
+    if (favoriteButton && typeof toggleFavorite === "function") {
+      favoriteButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggleFavorite({
+          id: product.id,
+          name: product.name,
+          price: safeNumPrice,
+          image: product.image || ""
+        }, favoriteButton);
+      });
+    }
+
     resultsContainer.appendChild(colCard);
   });
 }

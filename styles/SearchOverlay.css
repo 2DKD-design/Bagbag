@@ -69,39 +69,35 @@
   text-align: left; /* Aligns title and description beautifully */
 }
 
-/* Heart Button ki styling */
+/* Heart Button styling */
 .fav-btn {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: transparent;
+  background: transparent !important;
   border: none;
-  /* border-radius: 50%; */
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  /* box-shadow: 0 2px 5px rgba(0,0,0,0.2); */
+  z-index: 10;
   transition: transform 0.2s ease;
-  z-index: 95; /* Ensures button stays clickable over images */
 }
 
 .fav-btn:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .fav-btn i {
-  font-size: 20px;
-  color: #888; 
-  transition: color 0.2s;
+  color: #333;
+  font-size: 1.3rem;
+  transition: color 0.2s ease;
 }
 
-/* Jab JavaScript se 'active' class add hogi */
 .fav-btn.active i {
-  color: #ff385c; 
-  font-weight: 900; 
+  color: #ff0000 !important;
 }
 
 /* Screen height fixes */
