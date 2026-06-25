@@ -12,20 +12,26 @@ function saveToLocalStorage() {
 
 // Helper function to turn the navbar heart red when items are favorited
 function updateNavbarHeartColor() {
+  // Target your exact layout class target name
   const navbarHeartIcon = document.querySelector(".visual-fav-btn");
   if (navbarHeartIcon) {
     if (favoriteItems.length > 0) {
-      navbarHeartIcon.style.color = "#ff0000"; 
+      navbarHeartIcon.style.setProperty("color", "#ff0000", "important"); // Force active luxury red accent
+      // Swaps the Bootstrap Icon outline framework into a solid filled heart
+      navbarHeartIcon.className = "bi bi-heart-fill px-md-5 fs-4 visual-fav-btn";
     } else {
-      navbarHeartIcon.style.color = ""; 
+      navbarHeartIcon.style.color = ""; // Reverts style defaults
+      // Swaps back to your clean baseline regular outline wireframe heart
+      navbarHeartIcon.className = "bi bi-heart px-md-5 fs-4 visual-fav-btn";
     }
   }
 }
 
 // Helper function to keep heart buttons on product cards active across pagination and filtration renders
 function syncProductCardButtons() {
-  // Reset all hearts on the page to regular wireframe outline status first
-  document.querySelectorAll('.fav-btn').forEach(btn => {
+  // Reset all hearts on product cards back to default regular outline wireframe status first
+  // Added :not(.visual-fav-btn) so it never strips styles off your header navigation link!
+  document.querySelectorAll('.fav-btn:not(.visual-fav-btn)').forEach(btn => {
     btn.classList.remove('active');
     const icon = btn.querySelector('i');
     if (icon) {
@@ -33,11 +39,11 @@ function syncProductCardButtons() {
     }
   });
 
-  // Highlight and fill saved favorite matches
+  // Highlight and fill saved favorite items on your card grids
   favoriteItems.forEach(item => {
-    document.querySelectorAll(`.fav-btn[data-id="${item.id}"]`).forEach(targetBtn => {
-      targetBtn.classList.add('active');
-      const icon = targetBtn.querySelector('i');
+    document.querySelectorAll(`.fav-btn[data-id="${item.id}"]:not(.visual-fav-btn)`).forEach(btn => {
+      btn.classList.add('active');
+      const icon = btn.querySelector('i');
       if (icon) {
         icon.className = 'fa-solid fa-heart';
       }
