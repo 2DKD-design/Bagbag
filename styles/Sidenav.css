@@ -5,7 +5,7 @@
         width: 0; /* 0 width - change this with JavaScript */
         position: fixed; /* Stay in place */
         pointer-events: auto; /* Mouse ignores the overlay */
-        z-index: 9998; /* Sit on top */
+        z-index: 9997; /* Sit on top */
         left: 0;
         top: 0; /* Stay on top */
         top: 0; /* Stay at the top */
@@ -57,7 +57,7 @@
         height: 100%;
         width: 0; /* Starts hidden */
         position: fixed;
-        z-index: 9997; /* Just below main sidenav so it slides out from underneath */
+        z-index: 9996; /* Just below main sidenav so it slides out from underneath */
         left: 0; /* Starts at 0, JavaScript will push it or reveal it */
         top: 0;
         background-color: #f1f1f1; /* Off-white to distinguish from primary */
@@ -101,7 +101,7 @@
     width: 0;
     max-width: 100%;
     left: 0 !important; /* Forces it to start from the left edge, replacing primary view */
-    z-index: 9999; /* Sit on top of the primary nav */
+    z-index: 9998; /* Sit on top of the primary nav */
   }
 
   /* Styling for the back button */

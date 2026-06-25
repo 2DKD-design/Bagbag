@@ -68,14 +68,26 @@ function openSecondaryNav(categoryName) {
   const linksToDisplay = categoryData[categoryName];
   
   if (linksToDisplay) {
-    // Loop chalakar har link ko HTML me generate karenge
-    linksToDisplay.forEach(link => {
-      const aTag = document.createElement("a");
+  linksToDisplay.forEach(link => {
+    const aTag = document.createElement("a");
+    
+    // If filtering under Women or Men, attach gender and type filters to URL query string
+    if (categoryName === "Women" || categoryName === "Men") {
+      aTag.href = `products.html?gender=${categoryName}&type=${encodeURIComponent(link.text)}`;
+    } 
+    // If filtering under Brands, attach brand filter to URL query string
+    else if (categoryName === "Brands") {
+      aTag.href = `products.html?brand=${encodeURIComponent(link.text)}`;
+    } 
+    // Fallback for other items
+    else {
       aTag.href = link.url;
-      aTag.innerText = link.text;
-      secondaryLinksContainer.appendChild(aTag);
-    });
-  }
+    }
+    
+    aTag.innerText = link.text;
+    secondaryLinksContainer.appendChild(aTag);
+  });
+}
 
   // RESPONSIVE CHECK: Agar screen width 768px ya usse kam h toh left 0 hoga, nahi to deskop behavior
   if (window.innerWidth <= 768) {
@@ -99,6 +111,7 @@ function closeAllNavs() {
   if (typeof closeNav === "function") {
     closeNav(); // Assuming closeNav() closes your primary #mySidenav
   }
+  document.body.style.backgroundColor = "";
 }
 
   

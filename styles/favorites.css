@@ -5,7 +5,7 @@
   height: 100%;
   width: 0; 
   position: fixed;
-  z-index: 2000;
+  z-index: 95;
   top: 0;
   right: 0;
   background-color: #ffffff;
@@ -141,5 +141,5 @@
 }
 
 .fav-btn.active i {
-  color: #ff4500 !important; 
+  color: #ff0000 !important; 
 }

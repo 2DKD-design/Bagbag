@@ -1,6 +1,6 @@
-// ==========================================
+// =========================================================================
 // 1. GLOBAL STATE ARRAYS & PERSISTENCE
-// ==========================================
+// =========================================================================
 let favoriteItems = JSON.parse(localStorage.getItem("favoriteItems")) || [];
 
 const FAV_SIDEBAR_WIDTH = "350px";
@@ -12,7 +12,7 @@ function saveToLocalStorage() {
 
 // Helper function to turn the navbar heart red when items are favorited
 function updateNavbarHeartColor() {
-  const navbarHeartIcon = document.querySelector("a[onclick='openFavoritesNav()'] i, .fav-nav-btn i");
+  const navbarHeartIcon = document.querySelector(".visual-fav-btn");
   if (navbarHeartIcon) {
     if (favoriteItems.length > 0) {
       navbarHeartIcon.style.color = "#ff0000"; 
@@ -22,112 +22,128 @@ function updateNavbarHeartColor() {
   }
 }
 
-// Helper function to keep heart buttons on product cards active on refresh
+// Helper function to keep heart buttons on product cards active across pagination and filtration renders
 function syncProductCardButtons() {
-  favoriteItems.forEach(item => {
-    const targetBtn = document.querySelector(`.fav-btn[data-id="${item.id}"]`);
-    if (targetBtn) {
-      targetBtn.classList.add('active');
-      const icon = targetBtn.querySelector('i');
-      if (icon) icon.className = 'fa-solid fa-heart';
-    }
-  });
-}
-
-// ==========================================
-// 2. FAVORITES SYSTEM LOGIC
-// ==========================================
-
-function toggleFavorite(buttonElement) {
-  const icon = buttonElement.querySelector('i');
-  
-  const id = parseInt(buttonElement.getAttribute('data-id'));
-  const name = buttonElement.getAttribute('data-name');
-  const price = parseFloat(buttonElement.getAttribute('data-price'));
-
-  if (isNaN(id)) return;
-
-  const existingIndex = favoriteItems.findIndex(item => item.id === id);
-
-  if (existingIndex !== -1) {
-    favoriteItems.splice(existingIndex, 1);
+  // Reset all hearts on the page to regular wireframe outline status first
+  document.querySelectorAll('.fav-btn').forEach(btn => {
+    btn.classList.remove('active');
+    const icon = btn.querySelector('i');
     if (icon) {
       icon.className = 'fa-regular fa-heart';
     }
-    buttonElement.classList.remove('active');
-  } else {
-    favoriteItems.push({ id, name, price });
-    if (icon) {
-      icon.className = 'fa-solid fa-heart';
-    }
-    buttonElement.classList.add('active');
-  }
+  });
 
-  saveToLocalStorage();      
-  updateNavbarHeartColor();  
-  renderFavorites();
-}
-
-// Sidebar cross click sync helper
-function syncAndRemoveFav(id) {
-  favoriteItems = favoriteItems.filter(item => item.id !== id);
-  
-  const targetBtn = document.querySelector(`.fav-btn[data-id="${id}"]`);
-  if (targetBtn) {
-    const icon = targetBtn.querySelector('i');
-    if (icon) icon.className = 'fa-regular fa-heart';
-    targetBtn.classList.remove('active');
-  }
-  
-  saveToLocalStorage();      
-  renderFavorites();
-  updateNavbarHeartColor();  
-}
-
-// Render out wishlist favorites list rows
-function renderFavorites() {
-  const container = document.getElementById("favItemsContainer");
-  const footerArea = document.getElementById("favFooterArea");
-  
-  if (!container) return;
-  container.innerHTML = "";
-  
-  if (favoriteItems.length === 0) {
-    container.innerHTML = '<p class="empty-cart-msg">Your favorites list is empty!</p>';
-    if (footerArea) footerArea.style.display = "none";
-    return;
-  }
-  
-  if (footerArea) footerArea.style.display = "block";
-  
+  // Highlight and fill saved favorite matches
   favoriteItems.forEach(item => {
-    // Escaping item name strings safely for inline click handlers
-    const safeName = item.name.replace(/'/g, "\\'");
-    
-    const itemHTML = `
-      <div class="fav-item-row" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; border-bottom: 1px solid #eee;">
-        <div class="fav-details" style="flex-grow: 1;">
-          <h4 style="margin: 0; font-size: 16px;">${item.name}</h4>
-          <p class="fav-item-price" style="margin: 5px 0 0 0; color: #666;">Rs. ${item.price.toLocaleString()}</p>
-        </div>
-        
-        <button class="fav-cart-btn" 
-                onclick="addToCart(${item.id}, '${safeName}', ${item.price})" 
-                style="background: none; border: none; color: #2ec4b6; font-size: 18px; cursor: pointer; padding: 5px; margin-right: 10px; transition: transform 0.2s;"
-                onmouseover="this.style.transform='scale(1.1)'"
-                onmouseout="this.style.transform='scale(1)'"
-                title="Add to Cart">
-          <i class="bi bi-bag-plus-fill"></i>
-        </button>
-
-        <button class="remove-fav-btn" onclick="syncAndRemoveFav(${item.id})">&times;</button>
-      </div>
-    `;
-    container.innerHTML += itemHTML;
+    document.querySelectorAll(`.fav-btn[data-id="${item.id}"]`).forEach(targetBtn => {
+      targetBtn.classList.add('active');
+      const icon = targetBtn.querySelector('i');
+      if (icon) {
+        icon.className = 'fa-solid fa-heart';
+      }
+    });
   });
 }
 
-// Transfer wishlist items array straight into cart matrix safely
+// =========================================================================
+// 2. FAVORITES SYSTEM LOGIC (DYNAMIC SYNC PIPELINE)
+// =========================================================================
+
+function toggleFavorite(productData, buttonElement) {
+  // Validate if item already exists inside your active array storage block
+  const existingIndex = favoriteItems.findIndex(item => item.id === productData.id);
+
+  if (existingIndex > -1) {
+    // A. Remove item if already favorited
+    favoriteItems.splice(existingIndex, 1);
+    
+    // Set all matching instances across the grid back to wireframe outline
+    document.querySelectorAll(`.fav-btn[data-id="${productData.id}"]`).forEach(btn => {
+      btn.classList.remove('active');
+      const icon = btn.querySelector('i');
+      if (icon) icon.className = 'fa-regular fa-heart';
+    });
+  } else {
+    // B. Add product object configurations to state array
+    favoriteItems.push({
+      id: productData.id,
+      name: productData.name,
+      price: productData.price,
+      image: productData.image || productData.img
+    });
+
+    // Toggle matching grid elements instantly to filled red state
+    document.querySelectorAll(`.fav-btn[data-id="${productData.id}"]`).forEach(btn => {
+      btn.classList.add('active');
+      const icon = btn.querySelector('i');
+      if (icon) icon.className = 'fa-solid fa-heart';
+    });
+  }
+
+  // Update layout storage states and refresh the panel views instantly
+  saveToLocalStorage();
+  updateNavbarHeartColor();
+  renderFavorites();
+}
+
+function removeFavoriteItem(id) {
+  favoriteItems = favoriteItems.filter(item => item.id !== id);
+  
+  // Re-synchronize wireframe layout indicators inside grid columns
+  document.querySelectorAll(`.fav-btn[data-id="${id}"]`).forEach(btn => {
+    btn.classList.remove('active');
+    const icon = btn.querySelector('i');
+    if (icon) icon.className = 'fa-regular fa-heart';
+  });
+
+  saveToLocalStorage();
+  updateNavbarHeartColor();
+  renderFavorites();
+}
+
+// =========================================================================
+// 3. UI RENDERER & CONTAINER PANEL ASSEMBLER
+// =========================================================================
+function renderFavorites() {
+  const container = document.getElementById("fav-items-container");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (favoriteItems.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-5 text-muted">
+        <i class="fa-regular fa-heart fs-1 mb-3 d-block text-secondary opacity-50"></i>
+        <p class="mb-0" style="font-size: 0.95rem;">Your favorites list is currently empty.</p>
+      </div>
+    `;
+    return;
+  }
+
+  favoriteItems.forEach(item => {
+    const formattedPrice = typeof item.price === "number" 
+      ? `Rs. ${item.price.toLocaleString()}` 
+      : `Rs. ${item.price}`;
+
+    const favRow = document.createElement("div");
+    favRow.className = "fav-item d-flex align-items-center justify-content-between p-3 border-bottom";
+    favRow.innerHTML = `
+      <div class="d-flex align-items-center gap-3">
+        <img src="${item.image}" alt="${item.name}" class="img-fluid rounded" style="width: 55px; height: 55px; object-fit: contain; background: #f8f9fa;">
+        <div>
+          <h6 class="fav-item-name text-dark fw-semibold mb-0 text-truncate" style="max-width: 180px; font-size: 0.9rem;" title="${item.name}">${item.name}</h6>
+          <p class="fav-item-price text-muted mb-0" style="font-size: 0.85rem;">${formattedPrice}</p>
+        </div>
+      </div>
+      <button class="remove-fav-btn text-danger bg-transparent border-0 fs-4 p-1" onclick="removeFavoriteItem(${item.id})" title="Remove item">
+        &times;
+      </button>
+    `;
+    container.appendChild(favRow);
+  });
+}
+
+// Move all favorite catalog items right into your checkout cart array
 function addAllFavoritesToCart() {
   if (favoriteItems.length === 0) return;
   
@@ -137,28 +153,23 @@ function addAllFavoritesToCart() {
     }
   });
   
-  favoriteItems.forEach(item => {
-    const targetBtn = document.querySelector(`.fav-btn[data-id="${item.id}"]`);
-    if (targetBtn) {
-      const icon = targetBtn.querySelector('i');
-      if (icon) icon.className = 'fa-regular fa-heart';
-      targetBtn.classList.remove('active');
-    }
-  });
-  
+  // Clear layout parameters and reset active arrays back to baseline state
   favoriteItems = [];
   saveToLocalStorage();      
   updateNavbarHeartColor();  
   renderFavorites();
+  syncProductCardButtons();
   
   if (typeof renderCartItems === "function") {
     renderCartItems();
   }
   
-  alert("All favorite items transferred to your cart!");
+  alert("All favorite items have been moved to your shopping cart!");
 }
 
-// Sidebar panel UI triggers
+// =========================================================================
+// 4. FAVORITES SIDEBAR TOGGLES INITIALIZATION
+// =========================================================================
 function openFavoritesNav() {
   const sidebar = document.getElementById("myFavoritesNav");
   if (sidebar) {
@@ -177,12 +188,12 @@ function closeFavoritesNav() {
       if (sidebar.style.width === "0px" || sidebar.style.width === "0") {
         sidebar.style.visibility = "hidden";
       }
-    }, 400); 
+    }, 400);
   }
 }
 
+// Automatically trigger persistent checks on fresh page document loads
 document.addEventListener("DOMContentLoaded", () => {
-  renderFavorites();
   updateNavbarHeartColor();
-  syncProductCardButtons(); 
+  renderFavorites();
 });

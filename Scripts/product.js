@@ -38,3 +38,4 @@ if (product) {
   document.getElementById('productTitle').innerText = "Product Not Found";
   document.getElementById('productDescription').innerText = "The item you are looking for does not exist or has been removed.";
 }
+

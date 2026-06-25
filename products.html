@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <title>All Products</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS v5.3.8 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles/Sidenav.css">
+    <link rel="stylesheet" href="styles/SearchOverlay.css">
+    <link rel="stylesheet" href="styles/Carousel.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <link rel="stylesheet" href="styles/feat-cards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/addToCart.css">
+    <link rel="stylesheet" href="styles/favorites.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/cards-summer.css">
+    <link rel="stylesheet" href="styles/products.css">
+  </head>
+
+  <body>
+    <header>
+      <nav
+        class="navbar hover-bg-custom navbar-expand navbar-dark bg-transparent p-1  fixed-top"
+       >
+        <div class="container-fluid px-4">
+          
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mb-0 fs-5 align-items-center flex-row">
+              <li class="nav-item">
+              <a class="nav-link px-2" href="#" aria-current="page"><span onclick=" event.preventDefault(); openNav()" class="d-flex align-items-center gap-2"><i class="bi bi-list fs-4"></i><span class="d-none d-md-inline"> Menu</span></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-2" href="#" aria-current="page"><span onclick="event.preventDefault(); openSearch()" class="d-flex align-items-center gap-2"><i class="bi bi-search fs-6 "></i><p class="d-none pt-3 d-md-inline">Search</p></span></a>
+            </li>
+            </ul>
+            <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-1 mb-1 fs-5">
+              <a onclick="event.preventDefault();" class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill my-0 pe-md-4 me-md-5" href="#"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
+            </ul>
+            
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+
+              <a href="javascript:void(0)" class="nav-link d-flex flex-row flex-sm-col flex-md-row" onclick="event.preventDefault(); openFavoritesNav()">
+                <i class="bi bi-heart px-md-5 fs-4 visual-fav-btn" style="cursor: pointer;"></i>
+              </a>
+
+              <div id="myFavoritesNav" class="cart-sidenav">
+                <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+                    <h4 class="mb-0 fw-bold">My Favorites</h4>
+                    <a href="javascript:void(0)" class="closebtn text-dark fs-1 text-decoration-none" onclick="closeFavoritesNav()">&times;</a>
+                </div>
+
+                <div id="fav-items-container" class="fav-body overflow-y-auto" style="height: calc(100% - 160px);">
+                    </div>
+
+                <div class="fav-footer p-3 border-top position-absolute bottom-0 start-0 w-100 bg-light">
+                    <button class="fav-add-all-btn btn btn-dark w-100 py-2 fw-bold text-uppercase" onclick="addAllFavoritesToCart()">
+                        Move All To Cart
+                    </button>
+                </div>
+              </div>
+          
+
+              <a href="#" class="nav-link d-flex flex-row flex-sm-col">
+                <i onclick="event.preventDefault(); openCartNav()" class="bi bi-bag fs-4 cart-btn"></i>
+              </a>
+              <div id="myCartNav" class="cart-sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeCartNav()">&times;</a>
+              
+              <h2>Your Cart</h2>
+              
+              <div id="cartItemsContainer">
+                <p class="empty-cart-msg">Your cart is empty!</p>
+              </div>
+              
+              <div class="cart-footer">
+                <div class="cart-total">
+                  <span>Total:</span>
+                  <span id="cartTotalAmount">Rs. 0</span>
+                </div>
+                <button class="checkout-btn" onclick="goToCheckout()">Continue to Checkout</button>
+              </div>
+            </div>
+            </ul>
+          
+          </div>
+        </div>
+       </nav>
+
+         <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Women')">Women</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Men')">Men</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Brands')">Brands</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Services')">Services</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Contact us')">Contact us</a>
+        </div>
+
+        <div id="mySecondaryNav" class="secondary-sidenav">
+          <a href="javascript:void(0)" class="backbtn" onclick="closeSecondaryNav()"><i class="bi bi-arrow-left"></i> Back</a>
+          <a href="javascript:void(0)" class="closebtn" onclick="closeAllNavs()">&times;</a>
+          <h2 id="secondaryTitle" style="padding-left: 32px; font-size: 25px;">Category</h2>
+          <div id="secondaryLinks">
+            <a href="#">New Arrivals</a>
+            <a href="#">Clothing</a>
+            <a href="#">Shoes</a>
+            <a href="#">Accessories</a>
+          </div>
+        </div>
+        
+      <div id="myNav" class="overlay">
+        <a onclick="event.preventDefault();" class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#">
+          <img style="height: 60px;" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
+          <img src="Assets/logo/logo3.png" alt="Logo Sub" style="height: 40px;" onclick="closeSearch()">
+        </a>
+        
+        <a href="javascript:void(0)" class="closebtn fs-3 m-0 p-0" onclick="closeSearch()">&times;</a>
+
+        <div class="overlay-content container-fluid mt-5">
+          <div class="form-outline pb-5 mt-0 d-flex justify-content-center" data-mdb-input-init>
+            <input type="search" id="form1" class="form-control p-3 rounded-pill border-secondary-subtle w-75" placeholder="Search for a product" aria-label="Search" />
+          </div>
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-0 mt-5 pt-5">
+            
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" 
+                        aria-label="Add to favorites" 
+                        data-id="1" 
+                        data-name="Convertible Pochette" 
+                        data-price="83720" 
+                        onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/convertible_pochette-removebg-preview.png" class="card-img" alt="Convertible Pochette">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Convertible Pochette</small>
+                  <small class="card-text text-muted">Michael Kors Classic</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="2" data-name="Crackled Leather Case" data-price="40600" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/crackled_leather_with_card_case-removebg-preview.png" class="card-img" alt="Crackled Leather Case">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Crackled Leather Case</small>
+                  <small class="card-text text-muted">Includes matching card holder</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="3" data-name="Saint Laurent Classic" data-price="518000" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="Saint Laurent/saint_Laurent_6-removebg-preview (1).png" class="card-img" alt="Saint Laurent Bag">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Saint Laurent Bag</small>
+                  <small class="card-text text-muted">Luxury French craftsmanship</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="4" data-name="Leather Satchel Bag" data-price="96600" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/leather_satchel-removebg-preview.png" class="card-img" alt="Leather Satchel">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Leather Satchel</small>
+                  <small class="card-text text-muted">Premium structural top handle</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="5" data-name="Leather Tote Bag" data-price="82600" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/leather_tote_bag-removebg-preview.png" class="card-img" alt="Leather Tote Bag">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Leather Tote Bag</small>
+                  <small class="card-text text-muted">Spacious everyday luxury carrier</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="6" data-name="Medium Tote Bag" data-price="74200" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/medium_tote_bagg-removebg-preview.png" class="card-img" alt="Medium Tote Bag">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Medium Tote Bag</small>
+                  <small class="card-text text-muted">Perfect size minimalist essential</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="7" data-name="Saint Laurent Envelope" data-price="588000" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="Saint Laurent/saint_Laurent_7-removebg-preview.png" class="card-img" alt="Saint Laurent Item">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Saint Laurent Envelope</small>
+                  <small class="card-text text-muted">Iconic textured matelassé leather</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="8" data-name="Pebbled Tote Bag" data-price="86800" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/pebbled_tote_bag-removebg-preview.png" class="card-img" alt="Pebbled Tote Bag">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Pebbled Tote Bag</small>
+                  <small class="card-text text-muted">Soft grain scratch-resistant leather</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="9" data-name="Saint Laurent Handbag" data-price="546000" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="Saint Laurent/saint_Laurent_4-removebg-preview.png" class="card-img" alt="Saint Laurent Handbag">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Saint Laurent Handbag</small>
+                  <small class="card-text text-muted">Elegant evening shoulder statement</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="10" data-name="Denim Crossbody Bag" data-price="61600" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/denim_crossbody-removebg-preview.png" class="card-img" alt="Denim Crossbody">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Denim Crossbody</small>
+                  <small class="card-text text-muted">Casual luxury streetwear edition</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="11" data-name="Saffiano Leather Pochette" data-price="50400" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/32S6A50C6L-001-0001_1-tif-removebg-preview.png" class="card-img" alt="Saffiano Leather Pochette">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Saffiano Leather Pochette</small>
+                  <small class="card-text text-muted">Sleek compact zip-top silhouette</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <button class="fav-btn" aria-label="Add to favorites" data-id="12" data-name="Quilted Chain Crossbody" data-price="67200" onclick="toggleFavorite(this)">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <img src="MICHEAL KORS/32F5U8QU1O-041-0021_1-tif-removebg-preview.png" class="card-img" alt="Quilted Chain Crossbody">
+                <div class="card-content d-flex flex-column align-items-start">
+                  <small class="card-title fw-bold">Quilted Chain Crossbody</small>
+                  <small class="card-text text-muted">Polished metallic hardware accents</small>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+    <main>
+      <div class="container-fluid py-5" style="margin-top: 80px;">
+        <div class="row px-xl-4">
+          <!-- <aside class="col-lg-2 col-md-3 mb-4">
+            <div class="card border-0 shadow-sm p-3 gl-sticky-sidebar-desktop" style="z-index: 10; font-size: 0.9rem;">
+              <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-sliders2-vertical me-2"></i>Filters</h6>
+              </div>
+              
+              <div class="mb-3">
+                <h6 class="fw-bold text-uppercase text-muted tracking-wider fs-7 mb-2" style="font-size: 0.75rem;">Gender</h6>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Women" id="filter-women" data-filter-type="gender">
+                  <label class="form-check-label text-secondary" for="filter-women">Women</label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Men" id="filter-men" data-filter-type="gender">
+                  <label class="form-check-label text-secondary" for="filter-men">Men</label>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <h6 class="fw-bold text-uppercase text-muted tracking-wider fs-7 mb-2" style="font-size: 0.75rem;">Bag Type</h6>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Shoulder Bag" id="type-shoulder" data-filter-type="type">
+                  <label class="form-check-label text-secondary" for="type-shoulder">Shoulder Bag</label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Crossbody Bag" id="type-crossbody" data-filter-type="type">
+                  <label class="form-check-label text-secondary" for="type-crossbody">Crossbody Bag</label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Backpack" id="type-backpacks" data-filter-type="type">
+                  <label class="form-check-label text-secondary" for="type-backpacks">Backpack</label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Handbag" id="type-handbags" data-filter-type="type">
+                  <label class="form-check-label text-secondary" for="type-handbags">Handbag</label>
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <h6 class="fw-bold text-uppercase text-muted tracking-wider fs-7 mb-2" style="font-size: 0.75rem;">Brands</h6>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Montblanc" id="brand-montblanc" data-filter-type="brand">
+                  <label class="form-check-label text-secondary" for="brand-montblanc">Montblanc</label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Coach" id="brand-coach" data-filter-type="brand">
+                  <label class="form-check-label text-secondary" for="brand-coach">Coach</label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Saint Laurent (YSL)" id="brand-ysl" data-filter-type="brand">
+                  <label class="form-check-label text-secondary" for="brand-ysl">YSL</label>
+                </div>
+                <div class="form-check mb-1">
+                  <input class="form-check-input filter-checkbox" type="checkbox" value="Michael Kors" id="brand-mk" data-filter-type="brand">
+                  <label class="form-check-label text-secondary" for="brand-mk">Michael Kors</label>
+                </div>
+              </div>
+            </div>
+          </aside> -->
+          <aside class="col-lg-2 col-md-3 mb-4">
+  <div class="card border-0 shadow-sm p-3 gl-sticky-sidebar-desktop" style="z-index: 10; font-size: 0.9rem;">
+    
+    <div class="mb-4">
+      <p class="fw-bold mb-2">GENDER</p>
+      <div class="d-flex flex-column gap-1">
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="gender" value="Women" id="g-women">
+          <label class="form-check-label text-secondary" for="g-women">Women</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="gender" value="Men" id="g-men">
+          <label class="form-check-label text-secondary" for="g-men">Men</label>
+        </div>
+      </div>
+    </div>
+
+    <hr class="text-muted my-3">
+
+    <div class="mb-4">
+      <p class="fw-bold mb-2">BAG TYPES</p>
+      <div class="d-flex flex-column gap-1" style="max-height: 280px; overflow-y: auto;">
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Backpack" id="t-backpack">
+          <label class="form-check-label text-secondary" for="t-backpack">Backpacks</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Briefcase" id="t-briefcase">
+          <label class="form-check-label text-secondary" for="t-briefcase">Briefcases</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Crossbody" id="t-crossbody">
+          <label class="form-check-label text-secondary" for="t-crossbody">Crossbody Bags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Document" id="t-document">
+          <label class="form-check-label text-secondary" for="t-document">Document Cases</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Duffel" id="t-duffel">
+          <label class="form-check-label text-secondary" for="t-duffel">Duffel Bags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Frame" id="t-frame">
+          <label class="form-check-label text-secondary" for="t-frame">Frame Bags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Handbag" id="t-handbag">
+          <label class="form-check-label text-secondary" for="t-handbag">Handbags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Laptop" id="t-laptop">
+          <label class="form-check-label text-secondary" for="t-laptop">Laptop Bags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Messenger" id="t-messenger">
+          <label class="form-check-label text-secondary" for="t-messenger">Messenger Bags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Pochette" id="t-pochette">
+          <label class="form-check-label text-secondary" for="t-pochette">Pochettes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Pouch" id="t-pouch">
+          <label class="form-check-label text-secondary" for="t-pouch">Pouches & Clutches</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Satchel" id="t-satchel">
+          <label class="form-check-label text-secondary" for="t-satchel">Satchels & Carryalls</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Shoulder" id="t-shoulder">
+          <label class="form-check-label text-secondary" for="t-shoulder">Shoulder Bags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Sling" id="t-sling">
+          <label class="form-check-label text-secondary" for="t-sling">Sling & Chest Bags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Tote" id="t-tote">
+          <label class="form-check-label text-secondary" for="t-tote">Tote Bags</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Wallet" id="t-wallet">
+          <label class="form-check-label text-secondary" for="t-wallet">Wallets & Card Cases</label>
+        </div>
+      </div>
+    </div>
+
+    <hr class="text-muted my-3">
+
+    <div class="mb-3">
+      <p class="fw-bold mb-2">BRANDS</p>
+      <div class="d-flex flex-column gap-1" style="max-height: 240px; overflow-y: auto;">
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Adidas" id="b-adidas">
+          <label class="form-check-label text-secondary" for="b-adidas">Adidas</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="AK Galleria" id="b-akg">
+          <label class="form-check-label text-secondary" for="b-akg">AK Galleria</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Aodour" id="b-aodour">
+          <label class="form-check-label text-secondary" for="b-aodour">Aodour</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Coach" id="b-coach">
+          <label class="form-check-label text-secondary" for="b-coach">Coach</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Hub" id="b-hub">
+          <label class="form-check-label text-secondary" for="b-hub">Hub Leather</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Jafferjees" id="b-jafferjees">
+          <label class="form-check-label text-secondary" for="b-jafferjees">Jafferjees</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Michael Kors" id="b-mk">
+          <label class="form-check-label text-secondary" for="b-mk">Michael Kors</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Montblanc" id="b-montblanc">
+          <label class="form-check-label text-secondary" for="b-montblanc">Montblanc</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Ralph Lauren" id="b-rl">
+          <label class="form-check-label text-secondary" for="b-rl">Ralph Lauren</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Saint Laurent (YSL)" id="b-ysl">
+          <label class="form-check-label text-secondary" for="b-ysl">Saint Laurent (YSL)</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</aside>
+          <main class="col-lg-10 col-md-9">
+            <div class="d-flex align-items-center justify-content-between mb-4 bg-white p-3 rounded shadow-sm">
+              <div class="text-muted fs-6">
+                Showing <span id="product-count" class="fw-semibold text-dark">0</span> items
+              </div>
+              <div class="d-flex align-items-center">
+                <label for="product-sort" class="me-2 text-secondary text-nowrap"><i class="bi bi-sort-down-alt text-dark me-1"></i> Sort By:</label>
+                <select id="product-sort" class="form-select form-select-sm border-0 bg-light fw-medium px-3 py-2" style="min-width: 160px; cursor: pointer;">
+                  <option value="default">Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="name-asc">Name: A to Z</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="products-grid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+              </div>
+            
+            <div id="no-products-msg" class="text-center py-5 d-none bg-white rounded shadow-sm mt-3">
+              <i class="bi bi-bag-x-fill fs-1 text-muted"></i>
+              <h5 class="mt-3 text-dark fw-semibold">No results match your choices.</h5>
+              <p class="text-muted mb-0 px-3">Try adjusting your active navigation filter checkboxes.</p>
+            </div>
+          </main>
+        </div>
+      </div>
+    </main>
+
+
+    <footer>
+      <footer class="gl-footer">
+          <div class="gl-footer-container">
+              
+              <!-- Column 1: About -->
+              <div class="gl-footer-col">
+                  <h3>Global Luxury</h3>
+                  <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
+                  <div class="gl-cod-badge">
+                      🚚 Cash on Delivery Nationwide
+                  </div>
+              </div>
+
+              <!-- Column 2: Info -->
+              <div class="gl-footer-col">
+                  <h3>Information</h3>
+                  <ul>
+                      <li><a href="#">About Us</a></li>
+                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="#">Store Locations</a></li>
+                      <li><a href="#">Track Your Order</a></li>
+                      <li><a href="#">FAQs</a></li>
+                  </ul>
+              </div>
+
+              <!-- Column 3: Customer Care -->
+              <div class="gl-footer-col">
+                  <h3>Customer Care</h3>
+                  <ul>
+                      <li><a href="#">Shipping & Delivery</a></li>
+                      <li><a href="#">Return & Exchange</a></li>
+                      <li><a href="#">Privacy Policy</a></li>
+                      <li><a href="#">Care Instructions</a></li>
+                  </ul>
+              </div>
+
+              <!-- Column 4: Newsletter -->
+              <div class="gl-footer-col">
+                  <h3>Join The Luxury Circle</h3>
+                  <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
+                  <form class="gl-newsletter-form">
+                      <input type="email" placeholder="Your Email Address" required>
+                      <button type="submit">SUBSCRIBE</button>
+                  </form>
+              </div>
+
+          </div>
+
+          <!-- Bottom Bar -->
+          <div class="gl-footer-bottom">
+              <div class="gl-footer-bottom-content">
+                  <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>
+                  <div class="gl-payment-icons">
+                      <span>💸 COD</span>
+                      <span>💳 Visa</span>
+                      <span>💳 Mastercard</span>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </footer>
+    <!-- Bootstrap JavaScript Bundle (includes Popper) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="Scripts/Search.Js"></script>
+    <script src="Scripts/Nav.js"></script>
+    <script src="Scripts/sidenav.js"></script>
+    <script src="Scripts/Carousel.js"></script>
+    <script src="Scripts/addToCart.js"></script>
+    <script src="Scripts/favorites.js"></script>
+    <script src="Scripts/products-filter.js"></script>
+    <script src="Scripts/feature-cards.js"></script>
+    
+    
+  </body>
+</html>

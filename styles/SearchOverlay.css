@@ -85,7 +85,7 @@
   cursor: pointer;
   /* box-shadow: 0 2px 5px rgba(0,0,0,0.2); */
   transition: transform 0.2s ease;
-  z-index: 999; /* Ensures button stays clickable over images */
+  z-index: 95; /* Ensures button stays clickable over images */
 }
 
 .fav-btn:hover {

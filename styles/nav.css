@@ -1,13 +1,21 @@
 nav {
-  z-index: 2;
+  z-index: 9995;
 }
 .hover-bg-custom {
         transition: background-color 0.3s ease;
       }
+
+/* 1. Define a global CSS variable for the hover background and text color */
+:root {
+  --hover-bg: white;
+  --hover-color: #000000;
+}
+
+/* 2. Apply the hover effect using these variables */
 .hover-bg-custom:hover {
-  background-color: white !important; /* Replaces background with Bootstrap primary white */
-  color: #000000 !important;                /* Changes text color for readability */
-  } 
+  background-color: var(--hover-bg) !important; 
+  color: var(--hover-color) !important;
+}
 .custom-navbar .navbar-nav .nav-link:hover {
   color: #ffc107;
 }
