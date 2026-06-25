@@ -31,17 +31,17 @@
   <body>
     <header>
       <nav
-        class="navbar navbar-expand navbar-dark bg-transparent p-1 hover-bg-custom fixed-top"
+        class="navbar hover-bg-custom navbar-expand navbar-dark bg-transparent p-1  fixed-top"
        >
         <div class="container-fluid px-4">
           
           <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+            <ul class="navbar-nav me-auto mb-0 fs-5 align-items-center flex-row">
               <li class="nav-item">
-              <a class="nav-link px-2" href="#" aria-current="page"><span onclick=" event.preventDefault(); openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2 "></i><p class="ps-2 pe-1 pt-2 d-none d-md-block "> Menu</p></span></a>
+              <a class="nav-link px-2" href="#" aria-current="page"><span onclick=" event.preventDefault(); openNav()" class="d-flex align-items-center gap-2"><i class="bi bi-list fs-4"></i><span class="d-none d-md-inline"> Menu</span></span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" aria-current="page"><span onclick="event.preventDefault(); openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2"><i class="bi bi-search p-1 fs-6 "></i><p class=" d-none d-md-block ">Search</p></span></a>
+              <a class="nav-link px-2" href="#" aria-current="page"><span onclick="event.preventDefault(); openSearch()" class="d-flex align-items-center gap-2"><i class="bi bi-search fs-6 "></i><p class="d-none pt-3 d-md-inline">Search</p></span></a>
             </li>
             </ul>
             <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-1 mb-1 fs-5">
@@ -55,18 +55,18 @@
               </a>
 
               <div id="myFavoritesNav" class="cart-sidenav">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeFavoritesNav()">&times;</a>
-                
-                <h2>My Favorites</h2>
-                
-                <div id="favItemsContainer">
-                  <p class="empty-cart-msg">Your favorites list is empty!</p>
+                <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+                    <h4 class="mb-0 fw-bold">My Favorites</h4>
+                    <a href="javascript:void(0)" class="closebtn text-dark fs-1 text-decoration-none" onclick="closeFavoritesNav()">&times;</a>
                 </div>
-                
-                <div class="fav-footer" id="favFooterArea" style="display: none;">
-                  <button class="fav-add-all-btn" onclick="addAllFavoritesToCart()">
-                    Add All Items to Cart
-                  </button>
+
+                <div id="fav-items-container" class="fav-body overflow-y-auto" style="height: calc(100% - 160px);">
+                    </div>
+
+                <div class="fav-footer p-3 border-top position-absolute bottom-0 start-0 w-100 bg-light">
+                    <button class="fav-add-all-btn btn btn-dark w-100 py-2 fw-bold text-uppercase" onclick="addAllFavoritesToCart()">
+                        Move All To Cart
+                    </button>
                 </div>
               </div>
           
@@ -126,12 +126,12 @@
         
         <a href="javascript:void(0)" class="closebtn fs-3 m-0 p-0" onclick="closeSearch()">&times;</a>
 
-        <div class="overlay-content container mt-5">
-          <div class="form-outline pb-5 mt-0 d-flex justify-content-center position-relative" data-mdb-input-init>
-            <input type="text" id="overlay-search-input" class="form-control p-3 rounded-pill border-secondary-subtle w-75" placeholder="Search for a product" aria-label="Search" />
+        <div class="overlay-content container-fluid mt-5">
+          <div class="form-outline pb-5 mt-0 d-flex justify-content-center" data-mdb-input-init>
+            <input type="search" id="form1" class="form-control p-3 rounded-pill border-secondary-subtle w-75" placeholder="Search for a product" aria-label="Search" />
           </div>
 
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-0 mt-5 pt-5" id="search-results-grid">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-0 mt-5 pt-5">
             
             <div class="col">
               <div class="card h-100">
