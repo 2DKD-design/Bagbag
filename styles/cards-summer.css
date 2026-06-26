@@ -1,6 +1,6 @@
 .card-summer {
   cursor: pointer;
-  min-width: 420px;
+  min-width: 250px;
   max-height: 550px;
 }
 .summer {
@@ -9,15 +9,60 @@
 }
 .card-img-top-summer {
   width: 100%;
-  height: 400px;
+  height: 250px;
   background-image: linear-gradient(150deg, rgb(199, 200, 195), rgb(233, 228, 224), rgb(233, 228, 224));
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   transition: transform 0.9s ease;
 }
+@media (min-width: 576px) { 
+  .card-img-top-summer {
+    width: 100%;
+    height: 400px;
+  }
+  .card-summer {
+  cursor: pointer;
+  min-width: 420px;
+  max-height: 550px;
+}
+  .card-summer .card-body {
+    min-width: none;
+  }
+}
+@media (min-width: 768px) {
+  .card-img-top-summer {
+    width: 100%;
+    height: 400px;
+}
+  .card-summer {
+    cursor: pointer;
+    min-width: 420px;
+    max-height: 550px;
+  }
+  .card-summer .card-body {
+    min-width: none;
+  }
+}
+@media (min-width: 1200px) {
+  .card-img-top-summer {
+    width: 100%;
+    height: 400px;
+}
+  .card-summer {
+  cursor: pointer;
+  min-width: 420px;
+  max-height: 550px;
+}
+  .card-summer .card-body {
+    min-width: none;
+  }
+}
 .card-summer:hover .summer img {
   transform: scale(1.12);
 }
-
+.card-summer .card-body {
+  min-width: 250px;
+  max-height: fit-content;
+}
 .card-text {
   opacity: 0;
   max-height: 0;

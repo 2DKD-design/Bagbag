@@ -28,7 +28,7 @@
   <body>
     <header>
       <nav
-        class="navbar navbar-expand navbar-dark bg-transparent p-1 hover-bg-custom fixed-top"
+        class="navbar navbar-expand navbar-dark bg-transparent hover-bg-custom fixed-top"
        >
         <div class="container-fluid">
           
@@ -42,7 +42,7 @@
             </li>
             </ul>
             <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-1 mb-1 fs-5">
-              <a class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill my-0 pe-md-4 me-md-5" href="index.html"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
+              <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill my-0 pe-md-4 me-md-5" href="index.html"><img class="logo" src="Assets/logo/logoo.png" alt=""> <img class="logo2" src="Assets/logo/logo3.png" alt=""></a>
             </ul>
             
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
@@ -69,7 +69,7 @@
           
 
               <a href="#" class="nav-link d-flex flex-row flex-sm-col">
-                <i onclick="event.preventDefault(); openCartNav()" class="bi bi-bag fs-4 cart-btn px-1"></i>
+                <i onclick="event.preventDefault(); openCartNav()" class="bi bi-bag fs-4 cart-btn"></i>
               </a>
               <div id="myCartNav" class="cart-sidenav">
               <a href="javascript:void(0)" class="closebtn" onclick="closeCartNav()">&times;</a>
@@ -117,8 +117,8 @@
         
       <div id="myNav" class="overlay">
         <a onclick="event.preventDefault();" class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#">
-          <img style="height: 60px;" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
-          <img src="Assets/logo/logo3.png" alt="Logo Sub" style="height: 40px;" onclick="closeSearch()">
+          <img class="logo" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
+          <img class="logo2" src="Assets/logo/logo3.png" alt="Logo Sub" onclick="closeSearch()">
         </a>
         
         <a href="javascript:void(0)" class="closebtn fs-3 m-0 p-0" onclick="closeSearch()">&times;</a>
@@ -329,7 +329,10 @@
       </div>
       
       <div class="d-flex flex-row flex-nowrap scroll-hide">
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="1" data-name="Ultra Light Nylon Cross Body bottle bag" data-price="6955" data-image="Assets/Products/product-1.png" onclick="event.stopPropagation(); toggleFavorite({ id: 1, name: 'Ultra Light Nylon Cross Body bottle bag', price: 6955, image: 'Assets/Products/product-1.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="1" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-1.png" alt="Card image">
           </div>
@@ -339,7 +342,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 6955</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="24" data-name="Kisslock frame bag 16" data-price="126000" data-image="Assets/Products/product-24.png" onclick="event.stopPropagation(); toggleFavorite({ id: 24, name: 'Kisslock frame bag 16', price: 126000, image: 'Assets/Products/product-24.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="24" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-24.png" alt="Card image">
           </div>
@@ -348,7 +354,10 @@
             <p class="card-text">Some example text.</p>
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 126000</h6>
           </div></div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="3" data-name="Men's compact textured everyday crossbody bag" data-price="3018" data-image="Assets/Products/product-3.png" onclick="event.stopPropagation(); toggleFavorite({ id: 3, name: 'Men\'s compact textured everyday crossbody bag', price: 3018, image: 'Assets/Products/product-3.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="3" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-3.png" alt="Card image">
           </div>
@@ -358,7 +367,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 3018</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="47" data-name="Henly large leather in suede tote bag" data-price="82780" data-image="Assets/Products/product-47.png" onclick="event.stopPropagation(); toggleFavorite({ id: 47, name: 'Henly large leather in suede tote bag', price: 82780, image: 'Assets/Products/product-47.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="47" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-47.png" alt="Card image">
           </div>
@@ -368,7 +380,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 82780</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="44" data-name="Cassandre pouch on chain in lambskin" data-price="542100" data-image="Assets/Products/product-44.png" onclick="event.stopPropagation(); toggleFavorite({ id: 44, name: 'Cassandre pouch on chain in lambskin', price: 542100, image: 'Assets/Products/product-44.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="44" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-44.png" alt="Card image">
           </div>
@@ -377,7 +392,10 @@
             <p class="card-text">Some example text.</p>
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 542,100</h6>
           </div></div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="7" data-name="Vintage PU leather travel backpack" data-price="10108" data-image="Assets/Products/product-7.png" onclick="event.stopPropagation(); toggleFavorite({ id: 7, name: 'Vintage PU leather travel backpack', price: 10108, image: 'Assets/Products/product-7.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="7" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-7.png" alt="Card image">
           </div>
@@ -414,7 +432,10 @@
       </div>
       
       <div class="d-flex flex-row flex-nowrap scroll-hide">
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="28" data-name="Plaza Bag" data-price="55825" data-image="Assets/Products/product-28.png" onclick="event.stopPropagation(); toggleFavorite({ id: 28, name: 'Plaza Bag', price: 55825, image: 'Assets/Products/product-28.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="28" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-28.png" alt="Card image">
           </div>
@@ -424,7 +445,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 55825</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="38" data-name="Icare medium in quilted suede" data-price="1306600" data-image="Assets/Products/product-38.png" onclick="event.stopPropagation(); toggleFavorite({ id: 38, name: 'Icare medium in quilted suede', price: 1306600, image: 'Assets/Products/product-38.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="38" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-38.png" alt="Card image">
           </div>
@@ -433,7 +457,10 @@
             <p class="card-text">Some example text.</p>
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 1,306,600</h6>
           </div></div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="60" data-name="Trendy Oxford School Backpack for Teens and Students" data-price="5850" data-image="Assets/Products/product-60.png" onclick="event.stopPropagation(); toggleFavorite({ id: 60, name: 'Trendy Oxford School Backpack for Teens and Students', price: 5850, image: 'Assets/Products/product-60.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="60" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-60.png" alt="Card image">
           </div>
@@ -443,7 +470,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 5,850</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="25" data-name="Elora top handle crossbody bag" data-price="71775" data-image="Assets/Products/product-25.png" onclick="event.stopPropagation(); toggleFavorite({ id: 25, name: 'Elora top handle crossbody bag', price: 71775, image: 'Assets/Products/product-25.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="25" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-25.png" alt="Card image">
           </div>
@@ -453,7 +483,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 71775</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="56" data-name="Michael Kors Marilyn Medium Saffiano Leather Tote Bag" data-price="82844" data-image="Assets/Products/product-56.png" onclick="event.stopPropagation(); toggleFavorite({ id: 56, name: 'Michael Kors Marilyn Medium Saffiano Leather Tote Bag', price: 82844, image: 'Assets/Products/product-56.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="56" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-56.png" alt="Card image">
           </div>
@@ -462,7 +495,10 @@
             <p class="card-text">Some example text.</p>
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 82,844</h6>
           </div></div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="96" data-name="A tailor's son GG stripe cross bag" data-price="2200" data-image="Assets/Products/product-96.png" onclick="event.stopPropagation(); toggleFavorite({ id: 96, name: 'A tailor\'s son GG stripe cross bag', price: 2200, image: 'Assets/Products/product-96.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="96" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-96.png" alt="Card image">
           </div>
@@ -494,7 +530,10 @@
       </div>
       
       <div class="d-flex flex-row flex-nowrap scroll-hide">
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="89" data-name="Essentials 3 Slingbag" data-price="13352" data-image="Assets/Products/product-89.png" onclick="event.stopPropagation(); toggleFavorite({ id: 89, name: 'Essentials 3 Slingbag', price: 13352, image: 'Assets/Products/product-89.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="89" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-89.png" alt="Card image">
           </div>
@@ -504,7 +543,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 13352</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="30" data-name="Essential Card holder wallet" data-price="43065" data-image="Assets/Products/product-30.png" onclick="event.stopPropagation(); toggleFavorite({ id: 30, name: 'Essential Card holder wallet', price: 43065, image: 'Assets/Products/product-30.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="30" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-30.png" alt="Card image">
           </div>
@@ -513,7 +555,10 @@
             <p class="card-text">Some example text.</p>
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 43065</h6>
           </div></div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="29" data-name="Empire Carryall bag 34" data-price="157905" data-image="Assets/Products/product-29.png" onclick="event.stopPropagation(); toggleFavorite({ id: 29, name: 'Empire Carryall bag 34', price: 157905, image: 'Assets/Products/product-29.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="29" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-29.png" alt="Card image">
           </div>
@@ -523,7 +568,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 157905</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="14" data-name="Montblanc envelope clutch document holder" data-price="443410" data-image="Assets/Products/product-14.png" onclick="event.stopPropagation(); toggleFavorite({ id: 14, name: 'Montblanc envelope clutch document holder', price: 443410, image: 'Assets/Products/product-14.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="14" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-14.png" alt="Card image">
           </div>
@@ -533,7 +581,10 @@
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 443410</h6>
           </div>
         </div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="22" data-name="Large Kisslock frame bag in crystal signature jacquard" data-price="303050" data-image="Assets/Products/product-22.png" onclick="event.stopPropagation(); toggleFavorite({ id: 22, name: 'Large Kisslock frame bag in crystal signature jacquard', price: 303050, image: 'Assets/Products/product-22.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="22" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-22.png" alt="Card image">
           </div>
@@ -542,7 +593,10 @@
             <p class="card-text">Some example text.</p>
             <h6 class="card-price" style="letter-spacing: 0.1rem;">RS. 303050</h6>
           </div></div>
-        <div class="card-summer mx-3" style="min-width: 420px;">
+        <div class="card-summer mx-3">
+          <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="84" data-name="Beacon Backpack" data-price="20863" data-image="Assets/Products/product-84.png" onclick="event.stopPropagation(); toggleFavorite({ id: 84, name: 'Beacon Backpack', price: 20863, image: 'Assets/Products/product-84.png' }, this)">
+            <i class="bi bi-heart"></i>
+          </button>
           <div data-id="84" class="summer">
             <img class="card-img-top-summer" src="Assets/Products/product-84.png" alt="Card image">
           </div>

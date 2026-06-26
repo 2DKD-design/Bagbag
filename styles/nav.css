@@ -19,3 +19,20 @@ nav {
 .custom-navbar .navbar-nav .nav-link:hover {
   color: #ffc107;
 }
+.logo {
+  height: 40px;
+
+}
+.logo2 {
+  display: none;
+}
+
+@media (min-width: 576px) {
+    .logo {
+       height: 60px;
+    }
+    .logo2 {
+      display: block;
+      height: 40px;
+    }
+}

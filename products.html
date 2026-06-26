@@ -31,9 +31,9 @@
   <body>
     <header>
       <nav
-        class="navbar navbar-expand navbar-dark bg-transparent p-1 hover-bg-custom fixed-top"
+        class="navbar navbar-expand navbar-dark bg-transparent hover-bg-custom fixed-top"
        >
-        <div class="container-fluid px-4">
+        <div class="container-fluid">
           
           <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
@@ -45,7 +45,7 @@
             </li>
             </ul>
             <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-1 mb-1 fs-5">
-              <a class="navbar-brand d-flex align-items-center justify-content-md-center justify-content-sm-start flex-fill my-0 pe-md-4 me-md-5" href="index.html"><img style="height: 60px;" class="" src="Assets/logo/logoo.png" alt=""> <img class="" src="Assets/logo/logo3.png" alt="" style="height: 40px;"></a>
+              <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill my-0 pe-md-4 me-md-5" href="index.html"><img class="logo" src="Assets/logo/logoo.png" alt=""> <img class="logo2" src="Assets/logo/logo3.png" alt=""></a>
             </ul>
             
             <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
@@ -64,7 +64,7 @@
                 </div>
                 
                 <div class="fav-footer" id="favFooterArea" style="display: none;">
-                  <button class="fav-add-all-btn " onclick="addAllFavoritesToCart()">
+                  <button class="fav-add-all-btn" onclick="addAllFavoritesToCart()">
                     Add All to Cart
                   </button>
                 </div>
@@ -120,8 +120,8 @@
         
       <div id="myNav" class="overlay">
         <a onclick="event.preventDefault();" class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#">
-          <img style="height: 60px;" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
-          <img src="Assets/logo/logo3.png" alt="Logo Sub" style="height: 40px;" onclick="closeSearch()">
+          <img class="logo" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
+          <img class="logo2" src="Assets/logo/logo3.png" alt="Logo Sub" onclick="closeSearch()">
         </a>
         
         <a href="javascript:void(0)" class="closebtn fs-3 m-0 p-0" onclick="closeSearch()">&times;</a>
@@ -132,168 +132,161 @@
           </div>
 
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-0 mt-5 pt-5" id="search-results-grid">
-            
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" 
-                        aria-label="Add to favorites" 
-                        data-id="1" 
-                        data-name="Convertible Pochette" 
-                        data-price="83720" 
-                        onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="15" data-name="Convertible Pochette" data-price="83720" data-image="Assets/Products/product-15.png" onclick="event.stopPropagation(); toggleFavorite({ id: 15, name: 'Convertible Pochette', price: 83720, image: 'Assets/Products/product-15.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/convertible_pochette-removebg-preview.png" class="card-img" alt="Convertible Pochette">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Convertible Pochette</small>
-                  <small class="card-text text-muted">Michael Kors Classic</small>
+                <img src="Assets/Products/product-15.png" class="card-img-top p-3" alt="Convertible Pochette" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Convertible Pochette</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Michael Kors Classic</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="2" data-name="Crackled Leather Case" data-price="40600" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="20" data-name="Crackled Leather Case" data-price="83720" data-image="Assets/Products/product-20.png" onclick="event.stopPropagation(); toggleFavorite({ id: 20, name: 'Crackled Leather Case', price: 83720, image: 'Assets/Products/product-20.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/crackled_leather_with_card_case-removebg-preview.png" class="card-img" alt="Crackled Leather Case">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Crackled Leather Case</small>
-                  <small class="card-text text-muted">Includes matching card holder</small>
+                <img src="Assets/Products/product-20.png" class="card-img-top p-3" alt="Crackled Leather Case" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Crackled Leather Case</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Includes matching card holder</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="3" data-name="Saint Laurent Classic" data-price="518000" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="23" data-name="Saint Laurent Bag" data-price="83720" data-image="Assets/Products/product-23.png" onclick="event.stopPropagation(); toggleFavorite({ id: 23, name: 'Saint Laurent Bag', price: 83720, image: 'Assets/Products/product-23.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="Saint Laurent/saint_Laurent_6-removebg-preview (1).png" class="card-img" alt="Saint Laurent Bag">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Saint Laurent Bag</small>
-                  <small class="card-text text-muted">Luxury French craftsmanship</small>
+                <img src="Assets/Products/product-23.png" class="card-img-top p-3" alt="Saint Laurent Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Luxury French craftsmanship</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="4" data-name="Leather Satchel Bag" data-price="96600" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="36" data-name="Leather Satchel" data-price="83720" data-image="Assets/Products/product-36.png" onclick="event.stopPropagation(); toggleFavorite({ id: 36, name: 'Leather Satchel', price: 83720, image: 'Assets/Products/product-36.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/leather_satchel-removebg-preview.png" class="card-img" alt="Leather Satchel">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Leather Satchel</small>
-                  <small class="card-text text-muted">Premium structural top handle</small>
+                <img src="Assets/Products/product-36.png" class="card-img-top p-3" alt="Leather Satchel" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Leather Satchel</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Premium structural top handle</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="5" data-name="Leather Tote Bag" data-price="82600" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="10" data-name="Leather Tote Bag" data-price="83720" data-image="Assets/Products/product-10.png" onclick="event.stopPropagation(); toggleFavorite({ id: 10, name: 'Leather Tote Bag', price: 83720, image: 'Assets/Products/product-10.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/leather_tote_bag-removebg-preview.png" class="card-img" alt="Leather Tote Bag">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Leather Tote Bag</small>
-                  <small class="card-text text-muted">Spacious everyday luxury carrier</small>
+                <img src="Assets/Products/product-10.png" class="card-img-top p-3" alt="Leather Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Leather Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Spacious everyday luxury carrier</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="6" data-name="Medium Tote Bag" data-price="74200" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="71" data-name="Medium Tote Bag" data-price="83720" data-image="Assets/Products/product-71.png" onclick="event.stopPropagation(); toggleFavorite({ id: 71, name: 'Medium Tote Bag', price: 83720, image: 'Assets/Products/product-71.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/medium_tote_bagg-removebg-preview.png" class="card-img" alt="Medium Tote Bag">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Medium Tote Bag</small>
-                  <small class="card-text text-muted">Perfect size minimalist essential</small>
+                <img src="Assets/Products/product-71.png" class="card-img-top p-3" alt="Medium Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Medium Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Perfect size minimalist essential</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="7" data-name="Saint Laurent Envelope" data-price="588000" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="62" data-name="Saint Laurent Envelope" data-price="83720" data-image="Assets/Products/product-62.png" onclick="event.stopPropagation(); toggleFavorite({ id: 62, name: 'Saint Laurent Envelope', price: 83720, image: 'Assets/Products/product-62.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="Saint Laurent/saint_Laurent_7-removebg-preview.png" class="card-img" alt="Saint Laurent Item">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Saint Laurent Envelope</small>
-                  <small class="card-text text-muted">Iconic textured matelassé leather</small>
+                <img src="Assets/Products/product-62.png" class="card-img-top p-3" alt="Saint Laurent Envelope" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Envelope</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Iconic textured matelassé leather</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="8" data-name="Pebbled Tote Bag" data-price="86800" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="83" data-name="Pebbled Tote Bag" data-price="83720" data-image="Assets/Products/product-83.png" onclick="event.stopPropagation(); toggleFavorite({ id: 83, name: 'Pebbled Tote Bag', price: 83720, image: 'Assets/Products/product-83.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/pebbled_tote_bag-removebg-preview.png" class="card-img" alt="Pebbled Tote Bag">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Pebbled Tote Bag</small>
-                  <small class="card-text text-muted">Soft grain scratch-resistant leather</small>
+                <img src="Assets/Products/product-83.png" class="card-img-top p-3" alt="Pebbled Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Pebbled Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Soft grain scratch-resistant leather</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="9" data-name="Saint Laurent Handbag" data-price="546000" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="14" data-name="Saint Laurent Handbag" data-price="83720" data-image="Assets/Products/product-14.png" onclick="event.stopPropagation(); toggleFavorite({ id: 14, name: 'Saint Laurent Handbag', price: 83720, image: 'Assets/Products/product-14.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="Saint Laurent/saint_Laurent_4-removebg-preview.png" class="card-img" alt="Saint Laurent Handbag">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Saint Laurent Handbag</small>
-                  <small class="card-text text-muted">Elegant evening shoulder statement</small>
+                <img src="Assets/Products/product-14.png" class="card-img-top p-3" alt="Saint Laurent Handbag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Handbag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Elegant evening shoulder statement</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="10" data-name="Denim Crossbody Bag" data-price="61600" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="2" data-name="Denim Crossbody" data-price="83720" data-image="Assets/Products/product-2.png" onclick="event.stopPropagation(); toggleFavorite({ id: 2, name: 'Denim Crossbody', price: 83720, image: 'Assets/Products/product-2.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/denim_crossbody-removebg-preview.png" class="card-img" alt="Denim Crossbody">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Denim Crossbody</small>
-                  <small class="card-text text-muted">Casual luxury streetwear edition</small>
+                <img src="Assets/Products/product-2.png" class="card-img-top p-3" alt="Denim Crossbody" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Denim Crossbody</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Casual luxury streetwear edition</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="11" data-name="Saffiano Leather Pochette" data-price="50400" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="12" data-name="Saffiano Leather Pochette" data-price="83720" data-image="Assets/Products/product-12.png" onclick="event.stopPropagation(); toggleFavorite({ id: 12, name: 'Saffiano Leather Pochette', price: 83720, image: 'Assets/Products/product-12.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/32S6A50C6L-001-0001_1-tif-removebg-preview.png" class="card-img" alt="Saffiano Leather Pochette">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Saffiano Leather Pochette</small>
-                  <small class="card-text text-muted">Sleek compact zip-top silhouette</small>
+                <img src="Assets/Products/product-12.png" class="card-img-top p-3" alt="Saffiano Leather Pochette" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saffiano Leather Pochette</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Sleek compact zip-top silhouette</p>
                 </div>
               </div>
             </div>
 
             <div class="col">
-              <div class="card h-100">
-                <button class="fav-btn" aria-label="Add to favorites" data-id="12" data-name="Quilted Chain Crossbody" data-price="67200" onclick="toggleFavorite(this)">
-                  <i class="fa-regular fa-heart"></i>
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="27" data-name="Quilted Chain Crossbody" data-price="83720" data-image="Assets/Products/product-27.png" onclick="event.stopPropagation(); toggleFavorite({ id: 27, name: 'Quilted Chain Crossbody', price: 83720, image: 'Assets/Products/product-27.png' }, this)">
+                  <i class="bi bi-heart"></i>
                 </button>
-                <img src="MICHEAL KORS/32F5U8QU1O-041-0021_1-tif-removebg-preview.png" class="card-img" alt="Quilted Chain Crossbody">
-                <div class="card-content d-flex flex-column align-items-start">
-                  <small class="card-title fw-bold">Quilted Chain Crossbody</small>
-                  <small class="card-text text-muted">Polished metallic hardware accents</small>
+                <img src="Assets/Products/product-27.png" class="card-img-top p-3" alt="Quilted Chain Crossbody" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Quilted Chain Crossbody</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Polished metallic hardware accents</p>
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>

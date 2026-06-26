@@ -113,7 +113,8 @@
 /* ==========================================
    PRODUCT GRID CARDS OVERRIDES (Heart Icons)
    ========================================== */
-.card {
+.card,
+.card-summer {
   position: relative; 
 }
 
@@ -133,7 +134,9 @@
   transition: transform 0.2s ease;
 }
 
-
+.fav-btn:hover {
+  transform: scale(1.08);
+}
 
 .fav-btn i {
   color: #333;
