@@ -46,7 +46,7 @@
 /* FIXED CARD STYLING (Removed fixed widths and heights) */
 .card {
   width: 100%; /* Let Bootstrap grid handle the width */
-  min-height: 400px; /* Keeps cards uniform in the same row */
+  min-height: 320px; /* Keeps cards uniform in the same row */
   border: none;
   border-radius: 0;
   overflow: hidden;

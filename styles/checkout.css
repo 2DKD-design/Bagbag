@@ -1,0 +1,973 @@
+    /* =========================================
+       GLOBAL LUXURY — CHECKOUT PAGE STYLES
+       ========================================= */
+    :root {
+      --gl-sage:       #8C907E;
+      --gl-sage-dark:  #767a6a;
+      --gl-sage-deep:  #5e624e;
+      --gl-blush:      #decfcf;
+      --gl-blush-light:#f5efef;
+      --gl-gold:       #f5db8b;
+      --gl-teal:       #2ec4b6;
+      --gl-text:       #2c3e50;
+      --gl-muted:      #777;
+      --gl-bg:         #faf8f6;
+      --gl-white:      #ffffff;
+      --gl-border:     #e8e0e0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: var(--gl-bg);
+      color: var(--gl-text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ──────────────────────────────── */
+    .gl-checkout-header {
+      background: var(--gl-white);
+      border-bottom: 1px solid var(--gl-border);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .gl-checkout-header .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .gl-checkout-header .logo-area img {
+      height: 42px;
+    }
+
+    .gl-checkout-header .back-link {
+      font-size: 0.82rem;
+      color: var(--gl-sage);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .gl-checkout-header .back-link:hover { color: var(--gl-sage-dark); }
+
+    /* ── BREADCRUMB STEPS ────────────────────── */
+    .gl-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 18px 20px 10px;
+    }
+
+    .gl-step {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bbb;
+    }
+
+    .gl-step.active { color: var(--gl-sage); font-weight: 600; }
+    .gl-step.done   { color: var(--gl-teal); }
+
+    .gl-step-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .gl-step.done .gl-step-num { background: var(--gl-teal); border-color: var(--gl-teal); color: white; }
+    .gl-step.active .gl-step-num { background: var(--gl-sage); border-color: var(--gl-sage); color: white; }
+
+    .gl-step-divider {
+      width: 36px; height: 1px;
+      background: var(--gl-border);
+      margin: 0 8px;
+    }
+
+    /* ── MAIN LAYOUT ─────────────────────────── */
+    .gl-checkout-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── SECTION CARDS ───────────────────────── */
+    .gl-card {
+      background: var(--gl-white);
+      border: 1px solid var(--gl-border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+    }
+
+    .gl-card-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--gl-sage);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--gl-blush);
+    }
+
+    /* ── FORM FIELDS ─────────────────────────── */
+    .gl-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .gl-form-group {
+      margin-bottom: 16px;
+    }
+
+    .gl-form-group label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--gl-muted);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .gl-form-group input,
+    .gl-form-group select,
+    .gl-form-group textarea {
+      width: 100%;
+      border: 1px solid var(--gl-border);
+      border-radius: 4px;
+      padding: 11px 14px;
+      font-size: 0.9rem;
+      color: var(--gl-text);
+      background: var(--gl-white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .gl-form-group input:focus,
+    .gl-form-group select:focus,
+    .gl-form-group textarea:focus {
+      border-color: var(--gl-sage);
+      box-shadow: 0 0 0 3px rgba(140, 144, 126, 0.12);
+    }
+
+    .gl-form-group input.error { border-color: #c0392b; }
+    .gl-form-group .error-msg {
+      font-size: 0.72rem; color: #c0392b;
+      margin-top: 4px; display: none;
+    }
+    .gl-form-group input.error + .error-msg { display: block; }
+
+    /* ── DELIVERY OPTIONS ─────────────────────── */
+    .gl-delivery-option {
+      border: 1px solid var(--gl-border);
+      border-radius: 5px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .gl-delivery-option:hover { border-color: var(--gl-sage); }
+    .gl-delivery-option.selected {
+      border-color: var(--gl-sage);
+      background: var(--gl-blush-light);
+    }
+
+    .gl-delivery-option input[type="radio"] { display: none; }
+
+    .gl-delivery-label {
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .gl-delivery-dot {
+      width: 16px; height: 16px;
+      border: 2px solid var(--gl-border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+
+    .gl-delivery-option.selected .gl-delivery-dot {
+      border-color: var(--gl-sage);
+    }
+
+    .gl-delivery-option.selected .gl-delivery-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gl-sage);
+    }
+
+    .gl-delivery-info { line-height: 1.3; }
+    .gl-delivery-name { font-size: 0.88rem; font-weight: 600; color: var(--gl-text); }
+    .gl-delivery-sub  { font-size: 0.74rem; color: var(--gl-muted); }
+    .gl-delivery-price { font-size: 0.88rem; font-weight: 700; color: var(--gl-text); }
+
+    /* ── PAYMENT METHODS ─────────────────────── */
+    .gl-pay-option {
+      border: 1px solid var(--gl-border);
+      border-radius: 5px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .gl-pay-option:hover { border-color: var(--gl-sage); }
+    .gl-pay-option.selected {
+      border-color: var(--gl-sage);
+      background: var(--gl-blush-light);
+    }
+
+    .gl-pay-radio {
+      width: 16px; height: 16px;
+      border: 2px solid var(--gl-border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+
+    .gl-pay-option.selected .gl-pay-radio {
+      border-color: var(--gl-sage);
+    }
+
+    .gl-pay-option.selected .gl-pay-radio::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gl-sage);
+    }
+
+    .gl-pay-icon {
+      width: 42px; height: 28px;
+      object-fit: contain;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 2px 4px;
+      background: white;
+    }
+
+    .gl-pay-icon-placeholder {
+      width: 42px; height: 28px;
+      background: var(--gl-blush);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 700;
+      color: var(--gl-sage-dark);
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .gl-pay-label { font-size: 0.88rem; font-weight: 500; color: var(--gl-text); }
+    .gl-pay-sub   { font-size: 0.74rem; color: var(--gl-muted); margin-top: 1px; }
+
+    .gl-pay-online-fields {
+      display: none;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--gl-border);
+    }
+
+    /* ── ORDER SUMMARY (Right) ───────────────── */
+    .gl-summary-sticky {
+      position: sticky;
+      top: 90px;
+    }
+
+    .gl-summary-card {
+      background: var(--gl-white);
+      border: 1px solid var(--gl-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .gl-summary-header {
+      background: var(--gl-blush-light);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--gl-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .gl-summary-header h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--gl-sage);
+      margin: 0;
+    }
+
+    .gl-summary-toggle {
+      font-size: 0.78rem;
+      color: var(--gl-sage);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: none;
+      background: none;
+      padding: 0;
+    }
+
+    .gl-items-list {
+      padding: 16px 24px;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .gl-item-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f5f0f0;
+    }
+
+    .gl-item-row:last-child { border-bottom: none; }
+
+    .gl-item-img-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .gl-item-img {
+      width: 58px; height: 58px;
+      object-fit: contain;
+      border-radius: 5px;
+      border: 1px solid var(--gl-border);
+      background: var(--gl-blush-light);
+      padding: 4px;
+      display: block;
+    }
+
+    /* Middle: name + qty controls */
+    .gl-item-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .gl-item-name {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--gl-text);
+      line-height: 1.3;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Inline qty controls */
+    .gl-qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--gl-border);
+      border-radius: 4px;
+      width: fit-content;
+      overflow: hidden;
+    }
+
+    .gl-qty-btn {
+      width: 28px; height: 28px;
+      background: var(--gl-blush-light);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gl-sage-dark);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s;
+      flex-shrink: 0;
+      line-height: 1;
+      padding: 0;
+    }
+
+    .gl-qty-btn:hover { background: var(--gl-blush); color: var(--gl-sage-deep); }
+    .gl-qty-btn:active { background: #cdc0c0; }
+
+    .gl-qty-val {
+      width: 32px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gl-text);
+      border-left: 1px solid var(--gl-border);
+      border-right: 1px solid var(--gl-border);
+      user-select: none;
+    }
+
+    /* Right: price + remove */
+    .gl-item-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .gl-item-price {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gl-text);
+      white-space: nowrap;
+    }
+
+    .gl-item-remove {
+      background: none;
+      border: none;
+      color: #bbb;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.2s, transform 0.15s;
+    }
+
+    .gl-item-remove:hover { color: #c0392b; transform: scale(1.15); }
+
+    /* Promo code */
+    .gl-promo-area {
+      padding: 14px 24px;
+      border-top: 1px solid var(--gl-border);
+      display: flex;
+      gap: 8px;
+    }
+
+    .gl-promo-area input {
+      flex: 1;
+      border: 1px solid var(--gl-border);
+      border-radius: 4px;
+      padding: 9px 12px;
+      font-size: 0.84rem;
+      outline: none;
+      color: var(--gl-text);
+      transition: border-color 0.2s;
+    }
+
+    .gl-promo-area input:focus { border-color: var(--gl-sage); }
+
+    .gl-promo-apply {
+      background: var(--gl-blush);
+      color: var(--gl-sage-dark);
+      border: 1px solid var(--gl-border);
+      border-radius: 4px;
+      padding: 9px 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .gl-promo-apply:hover { background: #d4c0c0; }
+    .gl-promo-msg { font-size: 0.74rem; padding: 0 24px 10px; }
+    .gl-promo-msg.success { color: var(--gl-teal); }
+    .gl-promo-msg.error   { color: #c0392b; }
+
+    /* Totals */
+    .gl-totals {
+      padding: 16px 24px;
+      border-top: 1px solid var(--gl-border);
+    }
+
+    .gl-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--gl-muted);
+    }
+
+    .gl-total-row.grand {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gl-text);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--gl-border);
+      margin-bottom: 0;
+    }
+
+    .gl-shipping-free { color: var(--gl-teal); font-weight: 600; }
+
+    /* Place Order CTA */
+    .gl-place-order-btn {
+      display: block;
+      width: 100%;
+      background: var(--gl-sage);
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      border-radius: 0 0 5px 5px;
+      transition: background 0.2s;
+    }
+
+    .gl-place-order-btn:hover { background: var(--gl-sage-dark); }
+    .gl-place-order-btn:active { background: var(--gl-sage-deep); }
+
+    .gl-place-order-btn:disabled {
+      background: #bbb;
+      cursor: not-allowed;
+    }
+
+    /* ── TRUST BADGES ─────────────────────────── */
+    .gl-trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .gl-trust-badge {
+      background: white;
+      border: 1px solid var(--gl-border);
+      border-radius: 5px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .gl-trust-badge i {
+      font-size: 1.3rem;
+      color: var(--gl-sage);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .gl-trust-badge .tb-title { font-size: 0.74rem; font-weight: 700; color: var(--gl-text); letter-spacing: 0.4px; }
+    .gl-trust-badge .tb-sub   { font-size: 0.68rem; color: var(--gl-muted); margin-top: 2px; }
+
+    /* ── EMPTY CART STATE ────────────────────── */
+    .gl-empty-checkout {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .gl-empty-checkout i { font-size: 3rem; color: var(--gl-blush); margin-bottom: 16px; display: block; }
+    .gl-empty-checkout h3 { font-size: 1.1rem; color: var(--gl-text); margin-bottom: 8px; }
+    .gl-empty-checkout p  { font-size: 0.88rem; color: var(--gl-muted); margin-bottom: 24px; }
+
+    .gl-back-shop-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--gl-sage);
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .gl-back-shop-btn:hover { background: var(--gl-sage-dark); color: white; }
+
+    /* ── SUCCESS OVERLAY ─────────────────────── */
+    .gl-success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(250, 248, 246, 0.97);
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .gl-success-overlay.show { display: flex; }
+
+    .gl-success-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--gl-teal);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      animation: scaleIn 0.5s ease;
+    }
+
+    .gl-success-icon i { font-size: 2rem; color: white; }
+
+    @keyframes scaleIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .gl-success-overlay h2 { font-size: 1.6rem; color: var(--gl-text); margin-bottom: 8px; }
+    .gl-success-overlay p  { font-size: 0.92rem; color: var(--gl-muted); margin-bottom: 6px; }
+    .gl-order-id { font-size: 0.78rem; color: var(--gl-sage); font-weight: 600; letter-spacing: 1px; margin-bottom: 28px; }
+
+    .gl-whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25d366;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .gl-continue-btn {
+      display: inline-block;
+      padding: 11px 28px;
+      border: 1.5px solid var(--gl-sage);
+      color: var(--gl-sage);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-left: 12px;
+      transition: all 0.2s;
+    }
+
+    .gl-continue-btn:hover { background: var(--gl-sage); color: white; }
+
+    /* ── STICKY MOBILE BOTTOM BAR ───────────────
+       Hidden on desktop, shown on tablet/mobile   */
+    .gl-mobile-cta {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      /* ── Single-column layout ── */
+      .gl-checkout-wrap {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 16px 14px 100px; /* bottom padding reserves space for sticky bar */
+      }
+
+      /* Summary on top, form below */
+      .gl-summary-col { order: -1; }
+      .gl-summary-sticky { position: static; }
+
+      /* Hide the Place Order button inside the card on mobile —
+         the sticky bottom bar takes over */
+      .gl-place-order-btn { display: none; }
+
+      /* Reduce summary item list height so it doesn't eat the whole screen */
+      .gl-items-list { max-height: 220px; }
+
+      /* Trust badges: 3 across still fits on tablet */
+      .gl-trust-strip { grid-template-columns: repeat(3, 1fr); }
+
+      /* ── Sticky bottom CTA bar ── */
+      .gl-mobile-cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 200;
+        background: var(--gl-white);
+        border-top: 1px solid var(--gl-border);
+        padding: 12px 14px;
+        gap: 12px;
+        box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+      }
+
+      .gl-mobile-cta-total {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+
+      .gl-mobile-cta-label {
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--gl-muted);
+      }
+
+      .gl-mobile-cta-amount {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--gl-text);
+      }
+
+      .gl-mobile-cta-btn {
+        flex: 1;
+        background: var(--gl-sage);
+        color: white;
+        border: none;
+        padding: 14px 20px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.2s;
+        max-width: 220px;
+      }
+
+      .gl-mobile-cta-btn:hover  { background: var(--gl-sage-dark); }
+      .gl-mobile-cta-btn:active { background: var(--gl-sage-deep); }
+      .gl-mobile-cta-btn:disabled { background: #bbb; cursor: not-allowed; }
+    }
+
+    /* ── Common phone widths (iPhone / Samsung) ─────────────── */
+    @media (max-width: 430px) {
+      .gl-checkout-wrap {
+        padding: 12px 12px 108px;
+      }
+
+      .gl-card {
+        padding: 16px 12px;
+      }
+
+      .gl-checkout-header {
+        padding: 10px 12px;
+      }
+
+      .gl-steps {
+        padding: 12px 6px 6px;
+      }
+
+      .gl-step {
+        gap: 4px;
+        font-size: 0.66rem;
+      }
+
+      .gl-step-divider {
+        width: 14px;
+        margin: 0 3px;
+      }
+
+      .gl-item-row {
+        gap: 10px;
+      }
+
+      .gl-item-name {
+        font-size: 0.8rem;
+      }
+
+      .gl-mobile-cta {
+        padding: 10px 12px;
+        gap: 8px;
+      }
+
+      .gl-mobile-cta-btn {
+        padding: 12px 14px;
+        font-size: 0.78rem;
+        letter-spacing: 1px;
+      }
+    }
+
+    /* ── Samsung-style phone viewport (≈ 360px wide) ─────────────── */
+    @media (max-width: 390px) {
+      .gl-checkout-wrap {
+        padding: 8px 8px 112px;
+      }
+
+      .gl-card {
+        padding: 14px 10px;
+      }
+
+      .gl-form-group input,
+      .gl-form-group select,
+      .gl-form-group textarea {
+        padding: 11px 10px;
+        font-size: 15px;
+      }
+
+      .gl-delivery-option,
+      .gl-pay-option {
+        padding: 11px 10px;
+      }
+
+      .gl-item-row {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .gl-item-meta {
+        flex: 1 1 100%;
+        margin-top: 2px;
+      }
+
+      .gl-item-right {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 4px;
+      }
+
+      .gl-promo-area {
+        flex-direction: column;
+      }
+
+      .gl-promo-apply {
+        width: 100%;
+      }
+
+      .gl-mobile-cta {
+        padding: 9px 10px;
+        gap: 7px;
+      }
+
+      .gl-mobile-cta-btn {
+        max-width: 180px;
+        padding: 11px 12px;
+        font-size: 0.74rem;
+      }
+    }
+
+    /* ── Small phones (≤ 600px) ─────────────── */
+    @media (max-width: 600px) {
+      /* Header */
+      .gl-checkout-header {
+        padding: 10px 14px;
+      }
+
+      .gl-checkout-header .logo-area img:first-child { height: 34px; }
+      .gl-checkout-header .logo-area img:last-child  { height: 26px; }
+
+      .gl-checkout-header .back-link span { display: none; } /* icon only */
+      .gl-checkout-header .back-link {
+        font-size: 1.1rem; /* bigger icon tap target */
+      }
+
+      /* Steps: show numbers only, no text */
+      .gl-steps { padding: 12px 10px 6px; }
+      .gl-step span:not(.gl-step-num) { display: none; }
+      .gl-step-divider { width: 20px; margin: 0 4px; }
+
+      /* Cards */
+      .gl-card {
+        padding: 18px 14px;
+        margin-bottom: 14px;
+      }
+
+      /* Form */
+      .gl-form-row { grid-template-columns: 1fr; gap: 0; }
+
+      .gl-form-group input,
+      .gl-form-group select,
+      .gl-form-group textarea {
+        font-size: 16px; /* prevents iOS zoom on focus */
+        padding: 12px 12px;
+      }
+
+      /* Qty buttons — bigger touch targets on mobile */
+      .gl-qty-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 1.1rem;
+      }
+
+      .gl-qty-val {
+        width: 36px;
+        height: 34px;
+        font-size: 0.88rem;
+      }
+
+      /* Item row: tighter on very small screens */
+      .gl-item-img { width: 50px; height: 50px; }
+
+      /* Summary card internals */
+      .gl-items-list   { padding: 12px 14px; max-height: 200px; }
+      .gl-promo-area   { padding: 12px 14px; }
+      .gl-totals       { padding: 14px 14px; }
+      .gl-summary-header { padding: 14px 14px; }
+
+      /* Trust badges: 3 small badges in a row */
+      .gl-trust-strip {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .gl-trust-badge { padding: 10px 6px; }
+      .gl-trust-badge i { font-size: 1.1rem; margin-bottom: 4px; }
+      .gl-trust-badge .tb-title { font-size: 0.65rem; }
+      .gl-trust-badge .tb-sub   { display: none; }
+
+      /* Delivery + payment option rows */
+      .gl-delivery-option,
+      .gl-pay-option { padding: 12px 12px; }
+
+      /* Success overlay buttons stack */
+      .gl-success-overlay { padding: 30px 20px; }
+      .gl-success-overlay h2 { font-size: 1.3rem; }
+
+      .gl-whatsapp-btn,
+      .gl-continue-btn {
+        display: block;
+        margin: 0 0 10px 0;
+        text-align: center;
+      }
+    }
+
+    /* ── Tiny phones (≤ 380px) ──────────────── */
+    @media (max-width: 380px) {
+      .gl-checkout-wrap { padding: 10px 10px 100px; }
+
+      .gl-card { padding: 14px 12px; }
+
+      .gl-trust-strip { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .gl-trust-strip .gl-trust-badge:last-child { grid-column: 1 / -1; }
+
+      .gl-mobile-cta { padding: 10px 12px; gap: 10px; }
+      .gl-mobile-cta-amount { font-size: 0.95rem; }
+      .gl-mobile-cta-btn { font-size: 0.8rem; padding: 13px 12px; letter-spacing: 1px; }
+    }
+  

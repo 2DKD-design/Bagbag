@@ -122,9 +122,9 @@ function removeItem(id) {
 // 5. Checkout Button Action
 function goToCheckout() {
   if(cartItems.length === 0) {
-    alert("Aapka cart khali hai. Kripya items add karein!");
+    alert("Your Cart is empty.");
   } else {
-    alert("Redirecting to checkout page...");
+    window.location.href = "checkout.html"
     // window.location.href = "/checkout"; // Real website link yahan aayega
   }
 }
