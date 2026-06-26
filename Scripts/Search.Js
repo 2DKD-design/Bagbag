@@ -85,7 +85,7 @@ function executeOverlaySearch(keyword) {
     const colCard = document.createElement("div");
     colCard.className = "col";
     colCard.innerHTML = `
-      <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+      <div class="card h-100 product-card border-0 shadow-sm position-relative text-start" data-id="${product.id}">
         <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5 ${activeClass}" 
                 data-id="${product.id}" 
                 data-name="${escapeAttribute(product.name)}"

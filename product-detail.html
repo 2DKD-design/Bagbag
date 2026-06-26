@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title id="pageTitle">Product | Global Luxury</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Your existing stylesheets -->
+  <link rel="stylesheet" href="styles/Sidenav.css">
+  <link rel="stylesheet" href="styles/SearchOverlay.css">
+  <link rel="stylesheet" href="styles/Carousel.css">
+  <link rel="stylesheet" href="styles/nav.css">
+  <link rel="stylesheet" href="styles/feat-cards.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles/addToCart.css">
+  <link rel="stylesheet" href="styles/favorites.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/cards-summer.css">
+
+
+  <style>
+    /* ══════════ TOKENS ══════════ */
+    :root {
+      --gl-gold:       #b89a5e;
+      --gl-gold-light: #d4b87a;
+      --gl-dark:       #1a1a18;
+      --gl-mid:        #2e2e2c;
+      --gl-ink:        #3a3830;
+      --gl-muted:      #7a7670;
+      --gl-border:     #e0dbd2;
+      --gl-bg:         #faf8f5;
+      --gl-white:      #ffffff;
+      --gl-teal:       #2ec4b6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    nav {
+      position: relative !important;
+      z-index: 9995;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--gl-bg);
+      color: var(--gl-ink);
+    }
+
+    /* ── Breadcrumb ── */
+    .gl-breadcrumb {
+      padding: 14px 40px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gl-muted);
+      border-bottom: 1px solid var(--gl-border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gl-breadcrumb a {
+      color: var(--gl-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .gl-breadcrumb a:hover { color: var(--gl-gold); }
+    .gl-breadcrumb .sep { opacity: 0.4; }
+    .gl-breadcrumb .current { color: var(--gl-ink); font-weight: 600; }
+
+    /* ── Main layout ── */
+    .gl-product-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 50px);
+    }
+
+    /* ══════════ LEFT: GALLERY ══════════ */
+    .gl-gallery {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      gap: 0;
+      background: var(--gl-white);
+      border-right: 1px solid var(--gl-border);
+    }
+
+    /* Thumbnail strip */
+    .gl-thumbs {
+      width: 80px;
+      min-width: 80px;
+      padding: 24px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      border-right: 1px solid var(--gl-border);
+      scrollbar-width: none;
+    }
+    .gl-thumbs::-webkit-scrollbar { display: none; }
+
+    .gl-thumb {
+      width: 56px;
+      height: 56px;
+      border: 1.5px solid transparent;
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, opacity 0.2s;
+      opacity: 0.55;
+      flex-shrink: 0;
+    }
+    .gl-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+    .gl-thumb.active,
+    .gl-thumb:hover {
+      border-color: var(--gl-gold);
+      opacity: 1;
+    }
+
+    /* Main image */
+    .gl-main-img-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .gl-main-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+
+    /* Zoom hint */
+    .gl-zoom-hint {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gl-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      opacity: 0.7;
+    }
+
+    /* ══════════ RIGHT: INFO PANEL ══════════ */
+    .gl-info-panel {
+      padding: 48px 52px 60px 52px;
+      overflow-y: auto;
+      max-height: 100vh;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gl-border) transparent;
+    }
+
+    /* Brand & name */
+    .gl-brand {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gl-muted);
+      margin-bottom: 10px;
+    }
+    .gl-product-name {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--gl-dark);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .gl-product-price {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--gl-ink);
+      letter-spacing: 0.03em;
+      margin-bottom: 32px;
+    }
+
+    /* Gold rule divider */
+    .gl-rule {
+      width: 40px;
+      height: 1.5px;
+      background: var(--gl-gold);
+      margin-bottom: 28px;
+    }
+
+    /* Description */
+    .gl-description {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: var(--gl-ink);
+      margin-bottom: 32px;
+    }
+
+    /* ── CTA Buttons ── */
+    .gl-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .gl-btn-primary {
+      flex: 1;
+      min-width: 0;
+      padding: 15px 20px;
+      background: var(--gl-dark);
+      color: var(--gl-white);
+      border: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .gl-btn-primary:hover { background: var(--gl-mid); }
+    .gl-btn-primary:active { transform: scale(0.99); }
+
+    .gl-btn-secondary {
+      flex: 1;
+      min-width: 0;
+      padding: 15px 20px;
+      background: transparent;
+      color: var(--gl-dark);
+      border: 1.5px solid var(--gl-dark);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .gl-btn-secondary:hover {
+      background: var(--gl-dark);
+      color: var(--gl-white);
+    }
+
+    .gl-btn-wishlist {
+      position: static;
+      top: auto;
+      right: auto;
+      z-index: auto;
+      width: 52px;
+      min-width: 52px;
+      height: auto;
+      padding: 15px;
+      background: transparent;
+      border: 1.5px solid var(--gl-border);
+      color: var(--gl-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .gl-btn-wishlist:hover,
+    .gl-btn-wishlist.active { border-color: #c00; color: #c00; }
+    .gl-btn-wishlist.active i { font-weight: 900; }
+
+    /* Cart add confirmation */
+    .gl-cart-confirm {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.72rem;
+      color: var(--gl-teal);
+      letter-spacing: 0.05em;
+      margin-bottom: 28px;
+      min-height: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gl-cart-confirm.show { opacity: 1; }
+
+    /* ── Details accordion ── */
+    .gl-accordion {
+      border-top: 1px solid var(--gl-border);
+      margin-bottom: 0;
+    }
+
+    .gl-acc-item {
+      border-bottom: 1px solid var(--gl-border);
+    }
+
+    .gl-acc-header {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gl-ink);
+      font-weight: 600;
+    }
+    .gl-acc-header:hover { color: var(--gl-gold); }
+
+    .gl-acc-icon {
+      font-size: 0.6rem;
+      transition: transform 0.25s;
+      color: var(--gl-muted);
+    }
+    .gl-acc-item.open .gl-acc-icon { transform: rotate(45deg); }
+
+    .gl-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .gl-acc-item.open .gl-acc-body { max-height: 800px; }
+
+    .gl-acc-content {
+      padding: 0 0 20px 0;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--gl-muted);
+    }
+
+    .gl-acc-content ul {
+      list-style: none;
+      padding: 0;
+    }
+    .gl-acc-content ul li {
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+    .gl-acc-content ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--gl-gold);
+    }
+
+    /* ── Trust row ── */
+    .gl-trust-row {
+      display: flex;
+      gap: 0;
+      margin-top: 36px;
+      border: 1px solid var(--gl-border);
+    }
+    .gl-trust-item {
+      flex: 1;
+      padding: 16px 12px;
+      text-align: center;
+      border-right: 1px solid var(--gl-border);
+    }
+    .gl-trust-item:last-child { border-right: none; }
+    .gl-trust-item i {
+      font-size: 1.1rem;
+      color: var(--gl-gold);
+      display: block;
+      margin-bottom: 5px;
+    }
+    .gl-trust-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gl-ink);
+      font-weight: 600;
+    }
+    .gl-trust-sub {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.6rem;
+      color: var(--gl-muted);
+      margin-top: 2px;
+    }
+
+    /* ══════════ RESPONSIVE ══════════ */
+    @media (max-width: 900px) {
+      .gl-product-wrap { grid-template-columns: 1fr; }
+
+      .gl-gallery {
+        position: relative;
+        height: auto;
+        min-height: 380px;
+        max-height: 480px;
+      }
+
+      .gl-info-panel {
+        max-height: none;
+        padding: 32px 24px 48px;
+      }
+
+      .gl-product-name { font-size: 1.55rem; }
+
+      .gl-breadcrumb { padding: 12px 24px; }
+    }
+
+    @media (max-width: 520px) {
+      .gl-thumbs { width: 60px; min-width: 60px; padding: 16px 8px; }
+      .gl-thumb { width: 44px; height: 44px; }
+      .gl-info-panel { padding: 24px 16px 60px; }
+      .gl-cta-group { flex-wrap: nowrap; }
+      .gl-btn-wishlist { width: 52px; min-width: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ YOUR EXISTING NAV GOES HERE ══════════ -->
+  <!-- Include your nav partial / sidenav HTML here, same as index.html -->
+   <header>
+      <nav
+        class="navbar navbar-expand navbar-dark bg-transparent hover-bg-custom"
+       >
+        <div class="container-fluid">
+          
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+              <li class="nav-item">
+              <a class="nav-link px-2" href="#" aria-current="page"><span onclick=" event.preventDefault(); openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2 "></i><p class="ps-2 pe-1 pt-2 d-none d-md-block "> Menu</p></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" aria-current="page"><span onclick="event.preventDefault(); openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2"><i class="bi bi-search p-1 fs-6 "></i><p class=" d-none d-md-block ">Search</p></span></a>
+            </li>
+            </ul>
+            <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-1 mb-1 fs-5">
+              <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill my-0 pe-md-4 me-md-5" href="index.html"><img class="logo" src="Assets/logo/logoo.png" alt=""> <img class="logo2" src="Assets/logo/logo3.png" alt=""></a>
+            </ul>
+            
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+
+              <a href="javascript:void(0)" class="nav-link d-flex flex-row flex-sm-col flex-md-row" onclick="event.preventDefault(); openFavoritesNav()">
+                <i class="bi bi-heart px-md-5 fs-4 visual-fav-btn" style="cursor: pointer;"></i>
+              </a>
+
+              <div id="myFavoritesNav" class="cart-sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeFavoritesNav()">&times;</a>
+                
+                <h2>My Favorites</h2>
+                
+                <div id="favItemsContainer">
+                  <p class="empty-cart-msg">Your favorites list is empty!</p>
+                </div>
+                
+                <div class="fav-footer" id="favFooterArea" style="display: none;">
+                  <button class="fav-add-all-btn" onclick="addAllFavoritesToCart()">
+                    Add All to Cart
+                  </button>
+                </div>
+              </div>
+          
+
+              <a href="#" class="nav-link d-flex flex-row flex-sm-col">
+                <i onclick="event.preventDefault(); openCartNav()" class="bi bi-bag fs-4 cart-btn"></i>
+              </a>
+              <div id="myCartNav" class="cart-sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeCartNav()">&times;</a>
+              
+              <h2>Your Cart</h2>
+              
+              <div id="cartItemsContainer">
+                <p class="empty-cart-msg">Your cart is empty!</p>
+              </div>
+              
+              <div class="cart-footer">
+                <div class="cart-total">
+                  <span>Total:</span>
+                  <span id="cartTotalAmount">Rs. 0</span>
+                </div>
+                <button class="checkout-btn" onclick="goToCheckout()">Continue to Checkout</button>
+              </div>
+            </div>
+            </ul>
+          
+          </div>
+        </div>
+       </nav>
+
+         <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Women')">Women</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Men')">Men</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Brands')">Brands</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Services')">Services</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Contact us')">Contact us</a>
+        </div>
+
+        <div id="mySecondaryNav" class="secondary-sidenav">
+          <a href="javascript:void(0)" class="backbtn" onclick="closeSecondaryNav()"><i class="bi bi-arrow-left"></i> Back</a>
+          <a href="javascript:void(0)" class="closebtn" onclick="closeAllNavs()">&times;</a>
+          <h2 id="secondaryTitle" style="padding-left: 32px; font-size: 25px;">Category</h2>
+          <div id="secondaryLinks">
+            <a href="#">New Arrivals</a>
+            <a href="#">Clothing</a>
+            <a href="#">Shoes</a>
+            <a href="#">Accessories</a>
+          </div>
+        </div>
+        
+      <div id="myNav" class="overlay">
+        <a onclick="event.preventDefault();" class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#">
+          <img class="logo" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
+          <img class="logo2" src="Assets/logo/logo3.png" alt="Logo Sub" onclick="closeSearch()">
+        </a>
+        
+        <a href="javascript:void(0)" class="closebtn fs-3 m-0 p-0" onclick="closeSearch()">&times;</a>
+
+        <div class="overlay-content container mt-5">
+          <div class="form-outline pb-5 mt-0 d-flex justify-content-center position-relative" data-mdb-input-init>
+            <input type="text" id="overlay-search-input" class="form-control p-3 rounded-pill border-secondary-subtle w-75" placeholder="Search for a product" aria-label="Search" />
+          </div>
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-0 mt-5 pt-5" id="search-results-grid">
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="15" data-name="Convertible Pochette" data-price="83720" data-image="Assets/Products/product-15.png" onclick="event.stopPropagation(); toggleFavorite({ id: 15, name: 'Convertible Pochette', price: 83720, image: 'Assets/Products/product-15.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-15.png" class="card-img-top p-3" alt="Convertible Pochette" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Convertible Pochette</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Michael Kors Classic</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="20" data-name="Crackled Leather Case" data-price="83720" data-image="Assets/Products/product-20.png" onclick="event.stopPropagation(); toggleFavorite({ id: 20, name: 'Crackled Leather Case', price: 83720, image: 'Assets/Products/product-20.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-20.png" class="card-img-top p-3" alt="Crackled Leather Case" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Crackled Leather Case</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Includes matching card holder</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="23" data-name="Saint Laurent Bag" data-price="83720" data-image="Assets/Products/product-23.png" onclick="event.stopPropagation(); toggleFavorite({ id: 23, name: 'Saint Laurent Bag', price: 83720, image: 'Assets/Products/product-23.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-23.png" class="card-img-top p-3" alt="Saint Laurent Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Luxury French craftsmanship</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="36" data-name="Leather Satchel" data-price="83720" data-image="Assets/Products/product-36.png" onclick="event.stopPropagation(); toggleFavorite({ id: 36, name: 'Leather Satchel', price: 83720, image: 'Assets/Products/product-36.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-36.png" class="card-img-top p-3" alt="Leather Satchel" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Leather Satchel</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Premium structural top handle</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="10" data-name="Leather Tote Bag" data-price="83720" data-image="Assets/Products/product-10.png" onclick="event.stopPropagation(); toggleFavorite({ id: 10, name: 'Leather Tote Bag', price: 83720, image: 'Assets/Products/product-10.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-10.png" class="card-img-top p-3" alt="Leather Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Leather Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Spacious everyday luxury carrier</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="71" data-name="Medium Tote Bag" data-price="83720" data-image="Assets/Products/product-71.png" onclick="event.stopPropagation(); toggleFavorite({ id: 71, name: 'Medium Tote Bag', price: 83720, image: 'Assets/Products/product-71.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-71.png" class="card-img-top p-3" alt="Medium Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Medium Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Perfect size minimalist essential</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="62" data-name="Saint Laurent Envelope" data-price="83720" data-image="Assets/Products/product-62.png" onclick="event.stopPropagation(); toggleFavorite({ id: 62, name: 'Saint Laurent Envelope', price: 83720, image: 'Assets/Products/product-62.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-62.png" class="card-img-top p-3" alt="Saint Laurent Envelope" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Envelope</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Iconic textured matelassé leather</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="83" data-name="Pebbled Tote Bag" data-price="83720" data-image="Assets/Products/product-83.png" onclick="event.stopPropagation(); toggleFavorite({ id: 83, name: 'Pebbled Tote Bag', price: 83720, image: 'Assets/Products/product-83.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-83.png" class="card-img-top p-3" alt="Pebbled Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Pebbled Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Soft grain scratch-resistant leather</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="14" data-name="Saint Laurent Handbag" data-price="83720" data-image="Assets/Products/product-14.png" onclick="event.stopPropagation(); toggleFavorite({ id: 14, name: 'Saint Laurent Handbag', price: 83720, image: 'Assets/Products/product-14.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-14.png" class="card-img-top p-3" alt="Saint Laurent Handbag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Handbag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Elegant evening shoulder statement</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="2" data-name="Denim Crossbody" data-price="83720" data-image="Assets/Products/product-2.png" onclick="event.stopPropagation(); toggleFavorite({ id: 2, name: 'Denim Crossbody', price: 83720, image: 'Assets/Products/product-2.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-2.png" class="card-img-top p-3" alt="Denim Crossbody" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Denim Crossbody</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Casual luxury streetwear edition</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="12" data-name="Saffiano Leather Pochette" data-price="83720" data-image="Assets/Products/product-12.png" onclick="event.stopPropagation(); toggleFavorite({ id: 12, name: 'Saffiano Leather Pochette', price: 83720, image: 'Assets/Products/product-12.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-12.png" class="card-img-top p-3" alt="Saffiano Leather Pochette" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saffiano Leather Pochette</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Sleek compact zip-top silhouette</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="27" data-name="Quilted Chain Crossbody" data-price="83720" data-image="Assets/Products/product-27.png" onclick="event.stopPropagation(); toggleFavorite({ id: 27, name: 'Quilted Chain Crossbody', price: 83720, image: 'Assets/Products/product-27.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-27.png" class="card-img-top p-3" alt="Quilted Chain Crossbody" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Quilted Chain Crossbody</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Polished metallic hardware accents</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <!-- ══════════ PRODUCT LAYOUT ══════════ -->
+  <div class="gl-product-wrap">
+
+    <!-- ── LEFT: IMAGE GALLERY ── -->
+    <div class="gl-gallery">
+      <!-- Thumbnail strip -->
+      <div class="gl-thumbs" id="thumbStrip">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Main image -->
+      <div class="gl-main-img-wrap">
+        <img id="mainProductImage"
+             class="gl-main-img"
+             src=""
+             alt=""
+             onerror="this.src='Assets/logo/logoo.png'">
+        <div class="gl-zoom-hint">
+          <i class="bi bi-zoom-in"></i> Tap to zoom
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RIGHT: PRODUCT INFO ── -->
+    <div class="gl-info-panel">
+
+      <div class="gl-brand" id="productBrand">Brand</div>
+      <h1 class="gl-product-name" id="productName">Product Name</h1>
+      <div class="gl-product-price" id="productPrice">Rs. 0</div>
+
+      <div class="gl-rule"></div>
+
+      <p class="gl-description" id="productDescription">
+        Loading product description…
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="gl-cta-group">
+        <button class="gl-btn-primary" id="addToCartBtn" onclick="handleAddToCart()">
+          Add to Cart
+        </button>
+        <a class="gl-btn-secondary" id="buyNowBtn" href="checkout.html" onclick="handleBuyNow()">
+          Buy Now
+        </a>
+        <button class="gl-btn-wishlist fav-btn" id="wishlistBtn" onclick="handleWishlist(this)">
+          <i class="bi bi-heart"></i>
+        </button>
+      </div>
+
+      <!-- Subtle add-to-cart confirmation -->
+      <div class="gl-cart-confirm" id="cartConfirm">
+        <i class="bi bi-check-circle"></i> Added to your cart
+      </div>
+
+      <!-- ── ACCORDION SECTIONS ── -->
+      <div class="gl-accordion">
+
+        <!-- Details & Specifications -->
+        <div class="gl-acc-item open" id="acc-details">
+          <button class="gl-acc-header" onclick="toggleAcc('acc-details')" aria-expanded="true">
+            Details &amp; Specifications
+            <i class="bi bi-plus gl-acc-icon"></i>
+          </button>
+          <div class="gl-acc-body">
+            <div class="gl-acc-content">
+              <ul id="productSpecs">
+                <!-- Populated by JS -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Delivery & Returns -->
+        <div class="gl-acc-item" id="acc-delivery">
+          <button class="gl-acc-header" onclick="toggleAcc('acc-delivery')" aria-expanded="false">
+            Delivery &amp; Returns
+            <i class="bi bi-plus gl-acc-icon"></i>
+          </button>
+          <div class="gl-acc-body">
+            <div class="gl-acc-content">
+              <ul>
+                <li>Standard Delivery: 3–7 business days — <strong>Free</strong></li>
+                <li>Express Delivery: 1–2 business days — Rs. 200</li>
+                <li>Cash on Delivery available nationwide</li>
+                <li>7-day hassle-free return policy on unused items</li>
+                <li>All items are 100% authentic and verified</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /accordion -->
+
+      <!-- Trust strip -->
+      <div class="gl-trust-row">
+        <div class="gl-trust-item">
+          <i class="bi bi-patch-check"></i>
+          <div class="gl-trust-label">100% Authentic</div>
+          <div class="gl-trust-sub">Guaranteed genuine</div>
+        </div>
+        <div class="gl-trust-item">
+          <i class="bi bi-truck"></i>
+          <div class="gl-trust-label">Free Shipping</div>
+          <div class="gl-trust-sub">Nationwide delivery</div>
+        </div>
+        <div class="gl-trust-item">
+          <i class="bi bi-arrow-counterclockwise"></i>
+          <div class="gl-trust-label">Easy Returns</div>
+          <div class="gl-trust-sub">7-day policy</div>
+        </div>
+        <div class="gl-trust-item">
+          <i class="bi bi-whatsapp"></i>
+          <div class="gl-trust-label">WhatsApp Support</div>
+          <div class="gl-trust-sub">Quick responses</div>
+        </div>
+      </div>
+
+    </div><!-- /info-panel -->
+  </div><!-- /product-wrap -->
+
+  <!-- ══════════ YOUR EXISTING CART SIDENAV ══════════ -->
+  <!-- Include your cart sidenav HTML from index.html here -->
+
+  <!-- ══════════ YOUR EXISTING FAVORITES SIDENAV ══════════ -->
+  <!-- Include your favorites sidenav HTML from index.html here -->
+
+  <!-- ══════════ YOUR EXISTING FOOTER ══════════ -->
+  <!-- Include your footer HTML here -->
+
+  <footer>
+      <footer class="gl-footer">
+    <div class="gl-footer-container">
+        
+        <!-- Column 1: About -->
+        <div class="gl-footer-col">
+            <h3>Global Luxury</h3>
+            <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
+            <div class="gl-cod-badge">
+                🚚 Cash on Delivery Nationwide
+            </div>
+        </div>
+
+        <!-- Column 2: Info -->
+        <div class="gl-footer-col">
+            <h3>Information</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Store Locations</a></li>
+                <li><a href="#">Track Your Order</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Customer Care -->
+        <div class="gl-footer-col">
+            <h3>Customer Care</h3>
+            <ul>
+                <li><a href="#">Shipping & Delivery</a></li>
+                <li><a href="#">Return & Exchange</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Care Instructions</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 4: Newsletter -->
+        <div class="gl-footer-col">
+            <h3>Join The Luxury Circle</h3>
+            <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
+            <form class="gl-newsletter-form">
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit">SUBSCRIBE</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="gl-footer-bottom">
+        <div class="gl-footer-bottom-content">
+            <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>
+            <div class="gl-payment-icons">
+                <span>💸 COD</span>
+                <span>💳 Visa</span>
+                <span>💳 Mastercard</span>
+            </div>
+        </div>
+    </div>
+</footer>
+  </footer>
+
+  <!-- ══════════ SCRIPTS ══════════ -->
+  <script src="Scripts/addToCart.js"></script>
+  <script src="Scripts/favorites.js"></script>
+
+  <script>
+    // ════════════════════════════════════════════
+    //  PRODUCT DATABASE
+    //  HOW TO ADD IMAGES:
+    //  Each product has an "images" array. The first image
+    //  is shown as the main image on page load.
+    //  Add your image paths like:
+    //    images: [
+    //      "Assets/Products/mk-pochette-front.png",
+    //      "Assets/Products/mk-pochette-side.png",
+    //      "Assets/Products/mk-pochette-interior.png"
+    //    ]
+    //  Use as many or as few images as you have.
+    //  If you only have 1 image, the thumbnail strip won't show.
+    // ════════════════════════════════════════════
+
+    const products = [
+  { id: 1, name: "Ultra Light Nylon Cross Body bottle bag", brand: "Aodour", price: 6955, images: ["Assets/Products/Aodour/bottle_bag.jpg"], description: "A lightweight, functional bottle bag designed for convenience and versatility. Perfect for hands-free carrying during outdoor activities.", specs: ["Type: Bottle Bag / Crossbody", "Material: Nylon", "Unisex design", "Lightweight construction"] },
+  { id: 2, name: "Men's retro leather large capacity backpack", brand: "Aodour", price: 7169, images: ["Assets/Products/Aodour/retro_leather_backpack.jpg"], description: "A rugged, stylish full-grain leather backpack. Features a large main compartment capable of fitting a 14-inch laptop and A4 documents.", specs: ["Material: Full Grain Leather", "Includes laptop sleeve", "Multi-compartment design", "Adjustable shoulder straps"] },
+  { id: 3, name: "Men's compact textured everyday crossbody bag", brand: "Aodour", price: 3018, images: ["Assets/Products/Aodour/textured_crossbody.jpg"], description: "This highly functional crossbody bag features a structured, vertical silhouette designed for maximum organization and a streamlined urban look.", specs: ["Dimensions: 25cm x 7cm", "Multiple front-facing zippered compartments", "Matte-finish technical fabric", "Ergonomic top handle"] },
+  { id: 4, name: "Men's oxford backpack with usb charger", brand: "Aodour", price: 14090, images: ["Assets/Products/Aodour/oxford_usb_backpack.jpg"], description: "A stylish and durable backpack perfect for office or university use. Features a built-in USB charging port for on-the-go power.", specs: ["Material: Durable Oxford Cloth", "Built-in USB charging port", "Multi-compartment design", "Lightweight construction"] },
+  { id: 5, name: "Urban tactical messenger crossbody bag", brand: "Aodour", price: 5673, images: ["Assets/Products/Aodour/tactical_messenger.jpg"], description: "Navigate the city with this exceptional commuter bag. Combines a clean, modern design with tactical organization for all your tech essentials.", specs: ["Material: Polyester fabric", "Gunmetal finish hardware", "Padded laptop sleeve", "Adjustable webbing shoulder strap"] },
+  { id: 6, name: "Vintage PU leather travel backpack", brand: "Aodour", price: 10108, images: ["Assets/Products/Aodour/vintage_pu_backpack.jpg"], description: "A classic vintage-inspired backpack made from high-quality PU leather, designed to offer both style and reliable durability for school or travel.", specs: ["Material: Premium PU Leather", "Vintage aesthetic", "Spacious interior", "Comfortable shoulder straps"] },
+  { id: 7, name: "Onyx prism crossbody bag", brand: "Aodour", price: 14301, images: ["Assets/Products/Aodour/onyx_prism.jpg"], description: "Navigate the city with the Onyx Prism, a crossbody bag designed for the modern commuter who demands both security and a cutting-edge aesthetic.", specs: ["Dimensions: 35cm x 18cm x 5cm", "Secure compact design", "Modern professional profile", "Wearable technology aesthetic"] },
+  { id: 8, name: "Men's slim dual-zip everyday crossbody bag", brand: "Aodour", price: 1672, images: ["Assets/Products/Aodour/slim_dual_zip.jpg"], description: "A slim, anti-theft classic design perfect for everyday dependability. Offers organized storage in a lightweight, ergonomic silhouette.", specs: ["Dimensions: 9\"W x 10.5\"H x 1\"D", "Dual locking zipper compartments", "RFID-blocking slots", "Adjustable strap"] },
+  { id: 9, name: "PU leather business messenger bag", brand: "Aodour", price: 6568, images: ["Assets/Products/Aodour/business_messenger.jpg"], description: "A sleek, triple-layer compartment messenger bag. Designed for the modern professional, it accommodates a laptop, documents, and other daily necessities.", specs: ["Material: PU Leather", "Three-layer compartment system", "Professional and stylish design", "Dimensions: 27cm x 21cm x 13cm"] },
+  { id: 10, name: "Trendy Oxford cloth men's outdoor messenger bag", brand: "Aodour", price: 6573, images: ["Assets/Products/Aodour/oxford_outdoor.jpg"], description: "Classic casual Oxford cloth messenger bag. Durable and comfortable, it's perfect for carrying wallet, cards, keys, and mobile devices.", specs: ["Material: Oxford / Canvas", "Size: 31cm x 17cm x 5cm", "Zipper closure", "Versatile carrying options"] },
+  { id: 11, name: "Men's large capacity polyester travel chest bag", brand: "Aodour", price: 4322, images: ["Assets/Products/Aodour/chest_bag.jpg"], description: "A compact yet spacious chest bag designed for hands-free utility, perfect for travel or daily commutes.", specs: ["Material: Polyester", "Adjustable chest strap", "Multiple secure pockets", "Weather-resistant fabric"] },
+  { id: 12, name: "Thin briefcase in sartorial leather", brand: "Montblanc", price: 622050, images: ["Assets/Products/Montblanc/thin_briefcase.jpg"], description: "Designed for the modern professional, this briefcase is crafted from timeless sartorial embossed leather. A 360° opening ensures effortless access to an organized interior.", specs: ["Material: Saffiano printed full-grain bovine leather", "Two main compartments", "Laptop bands", "Satellite system for trolley attachment", "Metal zip closure"] },
+  { id: 13, name: "Pouch in 4810 denim", brand: "Montblanc", price: 178640, images: ["Assets/Products/Montblanc/denim_pouch.jpg"], description: "A casual yet sophisticated pouch featuring the iconic 4810 denim motif. Perfect for holding documents, tech gadgets, or daily essentials.", specs: ["Material: High-quality denim", "Signature emblem detail", "Zip closure", "Slim profile"] },
+  { id: 14, name: "Montblanc envelope clutch document holder", brand: "Montblanc", price: 443410, images: ["Assets/Products/Montblanc/envelope_clutch.jpg"], description: "Elegant document holder with a signature envelope design, providing a refined aesthetic for business meetings or formal travel.", specs: ["Material: Refined leather", "Envelope-style closure", "Internal document sleeve", "Premium hardware"] },
+  { id: 15, name: "Laptop case in extreme leather", brand: "Montblanc", price: 347710, images: ["Assets/Products/Montblanc/laptop_case.jpg"], description: "Durable and sleek laptop case crafted from extreme leather, offering superior protection and a professional look for your device.", specs: ["Material: Extreme leather", "Padded interior", "Secure zip fastening", "Slim form factor"] },
+  { id: 16, name: "Montblanc Companion rectangular backpack", brand: "Montblanc", price: 698610, images: ["Assets/Products/Montblanc/rectangular_backpack.jpg"], description: "A modern, rectangular backpack designed for the discerning traveler, combining Montblanc's luxury heritage with functional storage.", specs: ["Material: Premium leather", "Spacious main compartment", "Adjustable ergonomic straps", "Front utility pocket"] },
+  { id: 17, name: "Medium on-body bag in extreme leather", brand: "Montblanc", price: 443410, images: ["Assets/Products/Montblanc/on_body_bag.jpg"], description: "Offers hands-free utility in high-end leather, perfect for keeping essentials secure and close while on the move.", specs: ["Material: Extreme leather", "Adjustable strap", "Multi-pocket organization", "Sleek compact design"] },
+  { id: 18, name: "Monteblanc envelope backpack", brand: "Montblanc", price: 1081410, images: ["Assets/Products/Montblanc/envelope_backpack.jpg"], description: "Signature envelope style translated into a premium, sophisticated backpack for high-level functionality.", specs: ["Material: Leather", "Envelope flap closure", "Large storage capacity", "Refined minimalist aesthetic"] },
+  { id: 19, name: "Vertical belt messenger bag in sartorial leather", brand: "Montblanc", price: 558250, images: ["Assets/Products/Montblanc/belt_messenger.jpg"], description: "Compact, vertical messenger design in sartorial leather, designed for effortless and organized daily carry.", specs: ["Material: Sartorial leather", "Vertical orientation", "Secure buckle/strap closure", "Internal organizational slots"] },
+  { id: 20, name: "Chelsea Shoulder bag 36", brand: "Coach", price: 151525, images: ["Assets/Products/Coach/chelsea_36.jpg"], description: "Timeless shoulder bag with modern capacity and classic Coach elegance.", specs: ["Type: Shoulder Bag", "Premium leather", "Spacious interior", "Adjustable shoulder strap"] },
+  { id: 21, name: "Lana Shoulder bag 23", brand: "Coach", price: 135575, images: ["Assets/Products/Coach/lana_23.jpg"], description: "Compact and stylish for every day, this bag offers effortless chic.", specs: ["Type: Shoulder Bag", "Signature canvas/leather", "Secure closure", "Compact size"] },
+  { id: 22, name: "Large Kisslock frame bag in crystal signature jacquard", brand: "Coach", price: 303050, images: ["Assets/Products/Coach/kisslock_frame.jpg"], description: "Vintage-inspired frame bag with elegant crystal embellishments, perfect for statement looks.", specs: ["Material: Signature jacquard", "Kisslock frame closure", "Crystal detailing", "Vintage silhouette"] },
+  { id: 23, name: "Chain tabby shoulder bag", brand: "Coach", price: 189805, images: ["Assets/Products/Coach/tabby_chain.jpg"], description: "Classic Tabby style with an elevated, modern chain strap for a versatile carry.", specs: ["Type: Shoulder Bag", "Feature: Chain strap", "Signature logo hardware", "Leather finish"] },
+  { id: 24, name: "Kisslock frame bag 16", brand: "Coach", price: 126005, images: ["Assets/Products/Coach/kisslock_16.jpg"], description: "Miniature vintage-style frame bag for a cute and sophisticated finish.", specs: ["Type: Frame Bag", "Size: Small", "Kisslock closure", "Compact silhouette"] },
+  { id: 25, name: "Elora top handle crossbody bag", brand: "Coach", price: 71775, images: ["Assets/Products/Coach/elora_top_handle.jpg"], description: "Versatile top-handle design with an optional crossbody strap, offering two distinct ways to wear.", specs: ["Type: Crossbody / Top handle", "Premium construction", "Secure zip/flap closure", "Adjustable strap"] },
+  { id: 26, name: "Juliet Shoulder bag 25 in signature canvas", brand: "Coach", price: 119625, images: ["Assets/Products/Coach/juliet_25.jpg"], description: "Sophisticated shoulder bag in iconic canvas, built for timeless style.", specs: ["Type: Shoulder Bag", "Material: Signature Canvas", "Internal pockets", "Secure strap"] },
+  { id: 27, name: "Plaza Bag", brand: "Coach", price: 55825, images: ["Assets/Products/Coach/plaza_bag.jpg"], description: "Structured everyday handbag, refined and ready for the office or city.", specs: ["Type: Handbag", "Structured design", "Interior organization", "Classic finish"] },
+  { id: 28, name: "Tabby shoulder bag 20 in crystal signature jacquard", brand: "Coach", price: 157905, images: ["Assets/Products/Coach/tabby_20.jpg"], description: "Mini version of the iconic Tabby bag with shimmering crystal accents.", specs: ["Type: Shoulder Bag", "Crystal embellishments", "Signature jacquard", "Compact storage"] },
+  { id: 29, name: "Empire Carryall bag 34", brand: "Coach", price: 157905, images: ["Assets/Products/Coach/empire_carryall.jpg"], description: "Spacious carryall for professional and casual needs, highly versatile and durable.", specs: ["Type: Carryall", "Size: Large", "Durable leather", "Multiple pockets"] },
+  { id: 30, name: "Essential Card holder wallet", brand: "Coach", price: 43065, images: ["Assets/Products/Coach/card_holder.jpg"], description: "Minimalist wallet designed for essential cards and small documents.", specs: ["Type: Wallet", "Slim profile", "Multiple card slots", "Premium finish"] },
+  { id: 31, name: "Twin turnlock waverly bag", brand: "Coach", price: 111650, images: ["Assets/Products/Coach/waverly_bag.jpg"], description: "Unique dual turnlock closure gives this bag a distinctive and secure look.", specs: ["Type: Handbag", "Twin turnlock detail", "Structured shape", "Leather material"] },
+  { id: 32, name: "Kisslock pouch 24", brand: "Coach", price: 94105, images: ["Assets/Products/Coach/kisslock_pouch.jpg"], description: "Spacious pouch with vintage frame styling, perfect for organized storage.", specs: ["Type: Pouch", "Size: Medium", "Kisslock frame", "Vintage aesthetic"] },
+  { id: 33, name: "Essential slim wallet in signature jacquard", brand: "Coach", price: 62205, images: ["Assets/Products/Coach/slim_wallet.jpg"], description: "Slim profile wallet in classic signature jacquard for everyday elegance.", specs: ["Type: Wallet", "Material: Signature Jacquard", "Slim design", "Card/bill storage"] },
+  { id: 34, name: "Essential small zip around card case with pillow quilting", brand: "Coach", price: 39875, images: ["Assets/Products/Coach/zip_card_case.jpg"], description: "Plush, quilted card case with zip closure, offering texture and security.", specs: ["Type: Card Case", "Feature: Pillow Quilting", "Zip closure", "Compact size"] },
+  { id: 35, name: "Icarino in quilted Nappa", brand: "Saint Laurent", price: 889600, images: ["Assets/Products/YSL/icarino.jpg"], description: "Luxury quilted Nappa leather handbag, a symbol of sophisticated craftsmanship.", specs: ["Type: Handbag", "Material: Nappa Leather", "Quilted design", "Sophisticated hardware"] },
+  { id: 36, name: "Mombasa medium in suede", brand: "Saint Laurent", price: 1195400, images: ["Assets/Products/YSL/mombasa.jpg"], description: "Classic YSL silhouette in premium suede, offering unmatched texture and elegance.", specs: ["Type: Hobo Bag", "Material: Suede", "Signature handle detail", "Spacious interior"] },
+  { id: 37, name: "Icare medium in raffia", brand: "Saint Laurent", price: 1195400, images: ["Assets/Products/YSL/icare_raffia.jpg"], description: "Summer-ready tote in woven raffia, perfect for chic coastal or urban styling.", specs: ["Type: Tote Bag", "Material: Raffia", "Spacious storage", "Iconic YSL emblem"] },
+  { id: 38, name: "Icare medium in quilted suede", brand: "Saint Laurent", price: 1306600, images: ["Assets/Products/YSL/icare_suede.jpg"], description: "Exquisite quilted suede tote that blends luxury with casual comfort.", specs: ["Type: Tote Bag", "Material: Quilted Suede", "Sophisticated hardware", "Large capacity"] },
+  { id: 39, name: "Jamie shoppin in raffia", brand: "Saint Laurent", price: 1084200, images: ["Assets/Products/YSL/jamie_shopping.jpg"], description: "Large shopping bag in chic raffia, ideal for elegant everyday errands.", specs: ["Type: Shopping Bag", "Material: Raffia", "Lightweight construction", "Durable leather straps"] },
+  { id: 40, name: "Manon in raffia", brand: "Saint Laurent", price: 695000, images: ["Assets/Products/YSL/manon.jpg"], description: "Elegant raffia shoulder bag that captures timeless European vacation vibes.", specs: ["Type: Shoulder Bag", "Material: Raffia", "Compact size", "Adjustable strap"] },
+  { id: 41, name: "Le 5A 7 Small BEA In suede", brand: "Saint Laurent", price: 1084200, images: ["Assets/Products/YSL/le5a7.jpg"], description: "Iconic YSL shoulder bag in rich suede, an essential for any collection.", specs: ["Type: Shoulder Bag", "Material: Suede", "Signature YSL logo", "Sleek profile"] },
+  { id: 42, name: "Jamie shopping in lambskin", brand: "Saint Laurent", price: 1195400, images: ["Assets/Products/YSL/jamie_lamb.jpg"], description: "High-end shopping bag in buttery lambskin, offering supreme softness and luxury.", specs: ["Type: Shopping Bag", "Material: Lambskin", "Large interior", "Professional hardware"] },
+  { id: 43, name: "Icare in smooth leather", brand: "Saint Laurent", price: 1362200, images: ["Assets/Products/YSL/icare_smooth.jpg"], description: "Signature Icare tote in smooth polished leather, polished to perfection.", specs: ["Type: Tote Bag", "Material: Smooth Leather", "Large capacity", "Timeless design"] },
+  { id: 44, name: "Cassandre pouch on chain in lambskin", brand: "Saint Laurent", price: 542100, images: ["Assets/Products/YSL/cassandre_pouch.jpg"], description: "Iconic pouch on chain, perfect for evening wear and special occasions.", specs: ["Type: Pouch on Chain", "Material: Lambskin", "Removable chain", "Signature logo"] },
+  { id: 45, name: "Cassandre pouch on chain in pony hair leather", brand: "Saint Laurent", price: 583800, images: ["Assets/Products/YSL/cassandre_pony.jpg"], description: "Unique texture meets classic design, offering a bold statement piece.", specs: ["Type: Pouch on Chain", "Material: Pony Hair Leather", "Luxury finish", "Versatile carry"] },
+  { id: 46, name: "Le 5A 7 in crocodile-embossed patent leather", brand: "Saint Laurent", price: 722800, images: ["Assets/Products/YSL/le5a7_croco.jpg"], description: "Luxurious crocodile-embossed patent finish that elevates any outfit instantly.", specs: ["Type: Shoulder Bag", "Material: Patent Leather", "Croco embossing", "Sleek hardware"] },
+  { id: 47, name: "Henly large leather in suede tote bag", brand: "Michael Kors", price: 82780, images: ["Assets/Products/MK/henly_tote.jpg"], description: "Spacious tote in leather and suede mix, combining texture and utility.", specs: ["Type: Tote Bag", "Material: Leather/Suede", "Large capacity", "Internal pockets"] },
+  { id: 48, name: "Jet Set travel medium pebbled leather totebag", brand: "Michael Kors", price: 73210, images: ["Assets/Products/MK/jetset_tote.jpg"], description: "The ultimate travel companion, designed to organize your flight essentials.", specs: ["Type: Tote Bag", "Material: Pebbled Leather", "Travel-ready", "Durable finish"] },
+  { id: 49, name: "Laila medium pebbled leather tote bag", brand: "Michael Kors", price: 82844, images: ["Assets/Products/MK/laila_tote.jpg"], description: "Elegant tote for daily essentials, soft yet durable pebbled leather construction.", specs: ["Type: Tote Bag", "Material: Pebbled Leather", "Spacious", "Everyday utility"] },
+  { id: 50, name: "Kyla Small Puffy Metallic Convertible Pochette", brand: "Michael Kors", price: 43924, images: ["Assets/Products/MK/kyla_pochette.jpg"], description: "Convertible bag with metallic finish, adding a spark to your look.", specs: ["Type: Pochette", "Feature: Metallic", "Convertible strap", "Compact design"] },
+  { id: 51, name: "Indie Medium Leather Pochette Shoulder Bag", brand: "Michael Kors", price: 100914, images: ["Assets/Products/MK/indie_pochette.jpg"], description: "Stylish everyday pochette with premium leather feel.", specs: ["Type: Pochette", "Material: Leather", "Shoulder carry", "Internal storage"] },
+  { id: 52, name: "Bryant Small pebbled Leather Convertible Pochette", brand: "Michael Kors", price: 54210, images: ["Assets/Products/MK/bryant_pochette.jpg"], description: "Convertible style for flexibility, perfect from day to night.", specs: ["Type: Pochette", "Material: Pebbled Leather", "Versatile strap", "Secure closure"] },
+  { id: 53, name: "Carmine Medium Metallic Pebbled Leather Pochette", brand: "Michael Kors", price: 62200, images: ["Assets/Products/MK/carmine_pochette.jpg"], description: "Compact metallic statement piece with pebble texture.", specs: ["Type: Pochette", "Feature: Metallic", "Textured leather", "Organized interior"] },
+  { id: 54, name: "Bryant Medium Logo Jacquard Denim Camera Crossbody Bag", brand: "Michael Kors", price: 62200, images: ["Assets/Products/MK/bryant_camera.jpg"], description: "Trendy denim camera bag, a street-style favorite.", specs: ["Type: Crossbody", "Material: Jacquard Denim", "Compact", "Secure zip"] },
+  { id: 55, name: "Laila Medium Leather Satchel Bag", brand: "Michael Kors", price: 99524, images: ["Assets/Products/MK/laila_satchel.jpg"], description: "Sophisticated satchel in premium leather, a timeless piece for work.", specs: ["Type: Satchel", "Material: Leather", "Professional", "Sturdy handle"] },
+  { id: 56, name: "Charlotte Large Saffiano Leather 3-in-1 Tote Bag", brand: "Michael Kors", price: 82844, images: ["Assets/Products/MK/charlotte_tote.jpg"], description: "Versatile 3-in-1 design tote for ultimate daily customization.", specs: ["Type: Tote Bag", "Material: Saffiano Leather", "3-in-1 utility", "Durable"] },
+  { id: 57, name: "Laila Medium Signature Logo Tote Bag", brand: "Michael Kors", price: 71724, images: ["Assets/Products/MK/laila_logo_tote.jpg"], description: "Classic logo tote, bold and recognizable MK style.", specs: ["Type: Tote Bag", "Material: Signature Canvas", "Logo print", "Spacious"] },
+  { id: 58, name: "Nolita Medium Nubuck Chain Pochette", brand: "Michael Kors", price: 68944, images: ["Assets/Products/MK/nolita_pochette.jpg"], description: "Chic pochette with chain detail, sleek and tactile nubuck leather.", specs: ["Type: Pochette", "Material: Nubuck", "Chain strap", "Modern aesthetic"] },
+  { id: 59, name: "Jet Set Medium Pebbled Leather Convertible Crossbody Bag", brand: "Michael Kors", price: 55044, images: ["Assets/Products/MK/jetset_crossbody.jpg"], description: "Travel-ready convertible crossbody with premium leather build.", specs: ["Type: Crossbody", "Material: Leather", "Versatile", "Travel essential"] },
+  { id: 60, name: "Trendy Oxford School Backpack", brand: "Aodour", price: 5850, images: ["Assets/Products/Aodour/school_backpack.jpg"], description: "Functional backpack for students with multiple pockets for books and tech.", specs: ["Type: Backpack", "Material: Oxford Cloth", "Durable", "Student-friendly"] },
+  { id: 61, name: "Men's Waterproof Trendy Nylon Commuting Backpack", brand: "Aodour", price: 7472, images: ["Assets/Products/Aodour/waterproof_backpack.jpg"], description: "Weather-resistant commuting bag, built to handle any environment.", specs: ["Type: Backpack", "Feature: Waterproof", "Commuter ready", "Durable nylon"] },
+  { id: 62, name: "Large Capacity Oxford Cloth Men's Travel Backpack", brand: "Aodour", price: 8900, images: ["Assets/Products/Aodour/travel_backpack.jpg"], description: "Massive capacity for travel, secure and sturdy design.", specs: ["Type: Backpack", "Material: Oxford Cloth", "Travel storage", "Multiple pockets"] },
+  { id: 63, name: "PU Leather Men's Retro Vertical Business Crossbody", brand: "Jafferjees", price: 6275, images: ["Assets/Products/Jafferjees/retro_crossbody.jpg"], description: "Vintage-style business bag with leather finish.", specs: ["Type: Crossbody", "Material: PU Leather", "Vertical design", "Professional"] },
+  { id: 64, name: "Regent Street Document Case", brand: "Jafferjees", price: 14200, images: ["Assets/Products/Jafferjees/regent_case.jpg"], description: "Professional document carry case.", specs: ["Type: Document Case", "Slim design", "Jafferjees craftsmanship", "Secure zip"] },
+  { id: 65, name: "Bowery Document Case", brand: "Jafferjees", price: 15500, images: ["Assets/Products/Jafferjees/bowery_case.jpg"], description: "Sleek document organizer for the modern office.", specs: ["Type: Document Case", "Refined leather", "Secure handle", "Organized interior"] },
+  { id: 66, name: "IST Backpack", brand: "Jafferjees", price: 12800, images: ["Assets/Products/Jafferjees/ist_backpack.jpg"], description: "Versatile urban backpack with clean lines and sturdy construction.", specs: ["Type: Backpack", "Brand: Jafferjees", "Urban style", "Multi-pocket"] },
+  { id: 67, name: "Urban Elite Lightweight Crossbody Bag", brand: "Aodour", price: 4200, images: ["Assets/Products/Aodour/urban_elite.jpg"], description: "Featherweight everyday bag for light errands.", specs: ["Type: Crossbody", "Lightweight", "Durable", "Versatile"] },
+  { id: 68, name: "Men's Streamlined Multi-Pocket Gear Sling Crossbody Bag", brand: "Aodour", price: 3563, images: ["Assets/Products/Aodour/gear_sling.jpg"], description: "Multi-pocket gear sling for organized on-the-go storage.", specs: ["Type: Sling", "Feature: Multi-pocket", "Organized", "Sling style"] },
+  { id: 69, name: "Men's Multi Compartment Backpack", brand: "Aodour", price: 7950, images: ["Assets/Products/Aodour/multi_comp_backpack.jpg"], description: "Maximum organization backpack for daily commutes.", specs: ["Type: Backpack", "Feature: Multi-comp", "Storage capacity", "Durable"] },
+  { id: 70, name: "Expandable Tech Travel Backpack", brand: "Aodour", price: 11500, images: ["Assets/Products/Aodour/expandable_backpack.jpg"], description: "Expandable storage for tech gadgets and travel gear.", specs: ["Type: Backpack", "Feature: Expandable", "Tech-ready", "Durable"] },
+  { id: 71, name: "Broadway Document Case", brand: "Jafferjees", price: 27000, images: ["Assets/Products/Jafferjees/broadway_case.jpg"], description: "Executive document holder with premium build.", specs: ["Type: Document Case", "Brand: Jafferjees", "High-quality leather", "Professional"] },
+  { id: 72, name: "Modern Urban Multi Compartment Laptop Backpack", brand: "Aodour", price: 9200, images: ["Assets/Products/Aodour/modern_urban_backpack.jpg"], description: "Tech-focused urban backpack for laptop carry.", specs: ["Type: Backpack", "Laptop-ready", "Modern urban style", "Storage capacity"] },
+  { id: 73, name: "STOW - LIGHT BROWN", brand: "Hub", price: 38990, images: ["Assets/Products/Hub/stow_light.jpg"], description: "Laptop bag in refined leather.", specs: ["Type: Laptop Bag", "Brand: Hub", "Light Brown leather", "Sleek"] },
+  { id: 74, name: "DOMINION - BLACK", brand: "Hub", price: 34000, images: ["Assets/Products/Hub/dominion_black.jpg"], description: "Professional briefcase in deep black leather.", specs: ["Type: Briefcase", "Brand: Hub", "Professional", "Leather"] },
+  { id: 75, name: "ENVOY - BROWN", brand: "Hub", price: 43990, images: ["Assets/Products/Hub/envoy_brown.jpg"], description: "Executive briefcase with spacious interior.", specs: ["Type: Briefcase", "Brand: Hub", "Executive", "Durable"] },
+  { id: 76, name: "TRIUMPH - TAN", brand: "Hub", price: 38500, images: ["Assets/Products/Hub/triumph_tan.jpg"], description: "Stylish tan leather briefcase for meetings.", specs: ["Type: Briefcase", "Brand: Hub", "Tan color", "Stylish"] },
+  { id: 77, name: "Pebbled Leather Duffel", brand: "Ralph Lauren", price: 243000, images: ["Assets/Products/RL/pebbled_duffel.jpg"], description: "Classic duffel in premium pebbled leather.", specs: ["Type: Duffel", "Brand: Ralph Lauren", "Durable", "Classic travel"] },
+  { id: 78, name: "Cooper Burnished Calfskin Duffel", brand: "Ralph Lauren", price: 1161850, images: ["Assets/Products/RL/cooper_duffel.jpg"], description: "High-end burnished leather bag with heritage style.", specs: ["Type: Duffel", "Brand: Ralph Lauren", "Premium Calfskin", "Luxury"] },
+  { id: 79, name: "Leather-Trim Indigo Denim Duffel", brand: "Ralph Lauren", price: 200100, images: ["Assets/Products/RL/denim_duffel.jpg"], description: "Rugged denim duffel with leather trim, versatile and timeless.", specs: ["Type: Duffel", "Material: Denim/Leather", "Rugged style", "Travel ready"] },
+  { id: 80, name: "Wimbledon Leather-Trim Canvas Tennis Bag", brand: "Ralph Lauren", price: 179100, images: ["Assets/Products/RL/tennis_bag.jpg"], description: "Heritage inspired tennis bag, stylish and functional.", specs: ["Type: Duffel", "Brand: Ralph Lauren", "Tennis-ready", "Canvas/Leather"] },
+  { id: 81, name: "Heritage Leather Backpack", brand: "Ralph Lauren", price: 201320, images: ["Assets/Products/RL/heritage_backpack.jpg"], description: "Timeless leather backpack with artisan construction.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Heritage", "Leather"] },
+  { id: 82, name: "Indigo Denim Rucksack", brand: "Ralph Lauren", price: 200100, images: ["Assets/Products/RL/denim_rucksack.jpg"], description: "Classic rucksack in indigo denim, durable and casual.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Denim finish", "Casual"] },
+  { id: 83, name: "Pebbled Leather Backpack", brand: "Ralph Lauren", price: 181800, images: ["Assets/Products/RL/pebbled_backpack.jpg"], description: "Durable pebbled leather backpack for daily use.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Pebbled leather", "Durable"] },
+  { id: 84, name: "Flap-Top Canvas Backpack", brand: "Ralph Lauren", price: 39270, images: ["Assets/Products/RL/canvas_backpack.jpg"], description: "Everyday canvas backpack for light travel.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Canvas finish", "Lightweight"] },
+  { id: 85, name: "LARGE DUFFLE", brand: "Adidas", price: 21419, images: ["Assets/Products/Adidas/large_duffle.jpg"], description: "Sporty large duffel bag for gym or travel.", specs: ["Type: Duffel", "Brand: Adidas", "Sporty", "Spacious"] },
+  { id: 86, name: "Prime 7 Backpack", brand: "Adidas", price: 14465, images: ["Assets/Products/Adidas/prime7_backpack.jpg"], description: "Athletic backpack designed for gear.", specs: ["Type: Backpack", "Brand: Adidas", "Athletic", "Durable"] },
+  { id: 87, name: "Utility 4 Sling bag", brand: "Adidas", price: 8067, images: ["Assets/Products/Adidas/utility4_sling.jpg"], description: "Sling bag for active use and quick gear.", specs: ["Type: Sling", "Brand: Adidas", "Active", "Quick-access"] },
+  { id: 88, name: "Beacon Backpack", brand: "Adidas", price: 20863, images: ["Assets/Products/Adidas/beacon_backpack.jpg"], description: "Technical backpack for professional sports gear.", specs: ["Type: Backpack", "Brand: Adidas", "Technical", "Sport-ready"] },
+  { id: 89, name: "Essentials 3 Slingbag", brand: "Adidas", price: 13352, images: ["Assets/Products/Adidas/essentials_sling.jpg"], description: "Simple sling for essentials, perfect for city walking.", specs: ["Type: Sling", "Brand: Adidas", "Essential", "Compact"] },
+  { id: 90, name: "Excel 7 backpack", brand: "Adidas", price: 10849, images: ["Assets/Products/Adidas/excel7_backpack.jpg"], description: "Reliable athletic backpack for school or gym.", specs: ["Type: Backpack", "Brand: Adidas", "Reliable", "School-ready"] },
+  { id: 91, name: "Mexico 26 Backpack", brand: "Adidas", price: 15299, images: ["Assets/Products/Adidas/mexico26_backpack.jpg"], description: "Special edition backpack, stylish and sporty.", specs: ["Type: Backpack", "Brand: Adidas", "Special Edition", "Unique"] },
+  { id: 92, name: "A tailor's son cairo backpack", brand: "AK Galleria", price: 4900, images: ["Assets/Products/AK/cairo_backpack.jpg"], description: "Stylish urban backpack from AK Galleria.", specs: ["Type: Backpack", "Brand: AK Galleria", "Urban", "Stylish"] },
+  { id: 93, name: "A tailor's son Denim Rucksack backpack", brand: "AK Galleria", price: 5600, images: ["Assets/Products/AK/denim_rucksack.jpg"], description: "Modern rucksack in durable denim fabric.", specs: ["Type: Backpack", "Brand: AK Galleria", "Denim", "Modern"] },
+  { id: 94, name: "A tailor's son Mid Black Backpack", brand: "AK Galleria", price: 4200, images: ["Assets/Products/AK/mid_black_backpack.jpg"], description: "Black minimalist backpack, versatile and clean.", specs: ["Type: Backpack", "Brand: AK Galleria", "Black", "Minimalist"] },
+  { id: 95, name: "A tailor's son Black monogram cross bag", brand: "AK Galleria", price: 2200, images: ["Assets/Products/AK/monogram_cross.jpg"], description: "Monogram cross body bag with elegant stripe.", specs: ["Type: Crossbody", "Brand: AK Galleria", "Monogram", "Chic"] },
+  { id: 96, name: "A tailor's son GG stripe cross bag", brand: "AK Galleria", price: 2200, images: ["Assets/Products/AK/gg_stripe.jpg"], description: "Stripe design crossbody bag for everyday wear.", specs: ["Type: Crossbody", "Brand: AK Galleria", "Stripe", "Casual"] }
+];
+
+    // ── Grab product ID from URL and match it against the catalog array ──
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get('id'), 10) || 1;
+    const product = products.find(p => p.id === productId) || null;
+
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.textContent = value;
+      }
+    }
+
+    function setHtml(id, value) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.innerHTML = value;
+      }
+    }
+
+    // ── Render product ──
+    if (product) {
+      document.title = `${product.name} | Global Luxury`;
+      setText('breadcrumbName', product.name);
+      setText('productBrand', (product.brand || 'GLOBAL LUXURY').toUpperCase());
+      setText('productName', product.name);
+      setText('productPrice', `Rs. ${(product.price || 0).toLocaleString()}`);
+      setText('productDescription', product.description || 'No description available for this product.');
+
+      const specsList = document.getElementById('productSpecs');
+      if (specsList) {
+        specsList.innerHTML = '';
+        const productSpecs = Array.isArray(product.specs) ? product.specs : [];
+        productSpecs.forEach(s => {
+          const li = document.createElement('li');
+          li.textContent = s;
+          specsList.appendChild(li);
+        });
+      }
+
+      setHtml('productCare', product.care || '');
+
+      const productImages = Array.isArray(product.images) && product.images.length
+        ? product.images
+        : ['Assets/logo/logoo.png'];
+      buildGallery(productImages, product.name);
+
+      const favBtn = document.getElementById('wishlistBtn');
+      if (favBtn) {
+        favBtn.setAttribute('data-id', product.id);
+        const favItems = JSON.parse(localStorage.getItem('favoriteItems')) || [];
+        if (favItems.some(f => f.id === product.id)) {
+          favBtn.classList.add('active');
+          favBtn.querySelector('i').className = 'bi bi-heart-fill';
+        }
+      }
+    }
+
+    // ── Gallery builder ──
+    function buildGallery(images, altText) {
+      const mainImg   = document.getElementById('mainProductImage');
+      const thumbStrip = document.getElementById('thumbStrip');
+
+      // Set main image
+      mainImg.src = images[0] || '';
+      mainImg.alt = altText;
+
+      // Only show thumbs if more than 1 image
+      if (images.length <= 1) {
+        thumbStrip.style.display = 'none';
+        return;
+      }
+
+      images.forEach((src, i) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'gl-thumb' + (i === 0 ? ' active' : '');
+        thumb.innerHTML = `<img src="${src}" alt="${altText} view ${i + 1}" onerror="this.src='Assets/logo/logoo.png'">`;
+        thumb.addEventListener('click', () => switchImage(src, i));
+        thumbStrip.appendChild(thumb);
+      });
+    }
+
+    function switchImage(src, index) {
+      const mainImg = document.getElementById('mainProductImage');
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = src;
+        mainImg.style.opacity = '1';
+      }, 200);
+
+      // Update active thumb
+      document.querySelectorAll('.gl-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === index);
+      });
+    }
+
+    // ── Accordion ──
+    function toggleAcc(id) {
+      const item    = document.getElementById(id);
+      const isOpen  = item.classList.contains('open');
+      item.classList.toggle('open', !isOpen);
+      item.querySelector('.gl-acc-header').setAttribute('aria-expanded', String(!isOpen));
+    }
+
+    // ── Add to Cart ──
+    function handleAddToCart() {
+      if (!product) return;
+      if (typeof addToCart === 'function') {
+        addToCart(product.id, product.name, product.price);
+      }
+      // Show brief confirmation
+      const msg = document.getElementById('cartConfirm');
+      msg.classList.add('show');
+      setTimeout(() => msg.classList.remove('show'), 2500);
+    }
+
+    // ── Buy Now (add to cart then go to checkout) ──
+    function handleBuyNow() {
+      if (!product) return;
+      if (typeof addToCart === 'function') {
+        addToCart(product.id, product.name, product.price);
+      }
+      // Navigation happens via the href on the <a> tag
+    }
+
+    // ── Wishlist toggle ──
+    function handleWishlist(btn) {
+      if (!product) return;
+      if (typeof toggleFavorite === 'function') {
+        toggleFavorite({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.images[0] || ''
+        }, btn);
+      }
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      icon.className = btn.classList.contains('active') ? 'bi bi-heart-fill' : 'bi bi-heart';
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  <script src="Scripts/Search.Js"></script>
+  <script src="Scripts/Nav.js"></script>
+  <script src="Scripts/sidenav.js"></script>
+  <script src="Scripts/Carousel.js"></script>
+  <script src="Scripts/addToCart.js"></script>
+  <script src="Scripts/favorites.js"></script>
+  <script src="Scripts/products-filter.js"></script>
+  <script src="Scripts/feature-cards.js"></script>
+  <script src="Scripts/products-filter.js"></script>
+  <script src="Scripts/product-card-links.js"></script>
+</body>
+</html>
