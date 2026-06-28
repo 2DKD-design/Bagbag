@@ -3,7 +3,7 @@
     
 
     
-    let cartItems     = JSON.parse(localStorage.getItem("cartItems")) || [];
+    cartItems     = JSON.parse(localStorage.getItem("cartItems")) || [];
     let shippingCost  = 0;
     let discountAmt   = 0;
     let selectedPay   = "cod";
