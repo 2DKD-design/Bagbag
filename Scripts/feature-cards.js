@@ -1,5 +1,5 @@
 function getScrollAmount() {
-  return window.innerWidth <= 480 ? 285 : 450;
+  return window.innerWidth <= 480 ? 280 : 450;
 }
 
 function slideLeft(button) {
