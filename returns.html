@@ -1,35 +1,87 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
-  <head>
-    <title>All Products</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+<head>
+  <title>Easy Returns & Exchanges | Global Luxury</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap CSS v5.3.8 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="styles/Sidenav.css">
-    <link rel="stylesheet" href="styles/SearchOverlay.css">
-    <link rel="stylesheet" href="styles/Carousel.css">
-    <link rel="stylesheet" href="styles/nav.css">
-    <link rel="stylesheet" href="styles/feat-cards.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/addToCart.css">
-    <link rel="stylesheet" href="styles/favorites.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/cards-summer.css">
-    <link rel="stylesheet" href="styles/products.css">
-  </head>
+  <link rel="stylesheet" href="styles/Sidenav.css">
+  <link rel="stylesheet" href="styles/SearchOverlay.css">
+  <link rel="stylesheet" href="styles/Carousel.css">
+  <link rel="stylesheet" href="styles/nav.css">
+  <link rel="stylesheet" href="styles/feat-cards.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles/addToCart.css">
+  <link rel="stylesheet" href="styles/favorites.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/cards-summer.css">
 
-  <body>
-    <header>
+  <style>
+    :root {
+      --gl-gold: #b89a5e;
+      --gl-dark: #1a1a18;
+      --gl-muted: #7a7670;
+      --gl-border: #e0dbd2;
+      --gl-bg: #faf8f5;
+    }
+
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--gl-bg); color: var(--gl-dark); }
+
+    .gl-hero { background: var(--gl-dark); padding: 70px 24px; text-align: center; color: white; }
+    .gl-hero-title { font-size: 2.4rem; font-weight: 400; margin-bottom: 12px; }
+    .gl-hero-subtitle { color: var(--gl-muted); font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+    .gl-care-container { max-width: 900px; margin: 50px auto; padding: 0 20px; }
+    .gl-section-title { font-size: 1.6rem; margin-bottom: 30px; border-bottom: 1px solid var(--gl-border); padding-bottom: 12px; color: var(--gl-dark); }
+
+    .gl-card { background: white; padding: 35px; border: 1px solid var(--gl-border); text-align: center; margin-bottom: 30px; }
+    .gl-card i { font-size: 2.8rem; color: var(--gl-gold); margin-bottom: 20px; display: block; }
+
+    .steps { counter-reset: step; }
+    .step-item {
+      position: relative;
+      padding-left: 50px;
+      margin-bottom: 40px;
+    }
+    .step-item:before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--gl-gold);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .gl-btn { 
+      background: var(--gl-dark); 
+      color: white; 
+      padding: 14px 40px; 
+      border: none; 
+      text-transform: uppercase; 
+      letter-spacing: 0.1em; 
+      font-size: 0.95rem;
+    }
+    .gl-btn:hover { background: var(--gl-gold); }
+
+    .gl-form-control { width: 100%; padding: 12px; border: 1px solid var(--gl-border); background: var(--gl-bg); }
+    .gl-form-group { margin-bottom: 20px; }
+    .gl-form-label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <header>
       <nav
         class="navbar navbar-expand navbar-dark bg-transparent hover-bg-custom fixed-top"
        >
@@ -294,315 +346,186 @@
     </header>
 
 
-    <main>
-      <div class="container-fluid py-5" style="margin-top: 80px;">
-        <div class="row px-xl-4">
-          <!-- <aside class="col-lg-2 col-md-3 mb-4">
-            <div class="card border-0 shadow-sm p-3 gl-sticky-sidebar-desktop" style="z-index: 10; font-size: 0.9rem;">
-              <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
-                <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-sliders2-vertical me-2"></i>Filters</h6>
-              </div>
-              
-              <div class="mb-3">
-                <h6 class="fw-bold text-uppercase text-muted tracking-wider fs-7 mb-2" style="font-size: 0.75rem;">Gender</h6>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Women" id="filter-women" data-filter-type="gender">
-                  <label class="form-check-label text-secondary" for="filter-women">Women</label>
-                </div>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Men" id="filter-men" data-filter-type="gender">
-                  <label class="form-check-label text-secondary" for="filter-men">Men</label>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <h6 class="fw-bold text-uppercase text-muted tracking-wider fs-7 mb-2" style="font-size: 0.75rem;">Bag Type</h6>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Shoulder Bag" id="type-shoulder" data-filter-type="type">
-                  <label class="form-check-label text-secondary" for="type-shoulder">Shoulder Bag</label>
-                </div>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Crossbody Bag" id="type-crossbody" data-filter-type="type">
-                  <label class="form-check-label text-secondary" for="type-crossbody">Crossbody Bag</label>
-                </div>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Backpack" id="type-backpacks" data-filter-type="type">
-                  <label class="form-check-label text-secondary" for="type-backpacks">Backpack</label>
-                </div>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Handbag" id="type-handbags" data-filter-type="type">
-                  <label class="form-check-label text-secondary" for="type-handbags">Handbag</label>
-                </div>
-              </div>
-
-              <div class="mb-2">
-                <h6 class="fw-bold text-uppercase text-muted tracking-wider fs-7 mb-2" style="font-size: 0.75rem;">Brands</h6>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Montblanc" id="brand-montblanc" data-filter-type="brand">
-                  <label class="form-check-label text-secondary" for="brand-montblanc">Montblanc</label>
-                </div>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Coach" id="brand-coach" data-filter-type="brand">
-                  <label class="form-check-label text-secondary" for="brand-coach">Coach</label>
-                </div>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Saint Laurent (YSL)" id="brand-ysl" data-filter-type="brand">
-                  <label class="form-check-label text-secondary" for="brand-ysl">YSL</label>
-                </div>
-                <div class="form-check mb-1">
-                  <input class="form-check-input filter-checkbox" type="checkbox" value="Michael Kors" id="brand-mk" data-filter-type="brand">
-                  <label class="form-check-label text-secondary" for="brand-mk">Michael Kors</label>
-                </div>
-              </div>
-            </div>
-          </aside> -->
-          <aside class="col-lg-2 col-md-3 mb-4">
-  <div class="card border-0 shadow-sm p-3 gl-sticky-sidebar-desktop" style="z-index: 10; font-size: 0.9rem;">
-    
-    <div class="mb-4">
-      <p class="fw-bold mb-2">GENDER</p>
-      <div class="d-flex flex-column gap-1">
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="gender" value="Women" id="g-women">
-          <label class="form-check-label text-secondary" for="g-women">Women</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="gender" value="Men" id="g-men">
-          <label class="form-check-label text-secondary" for="g-men">Men</label>
-        </div>
-      </div>
-    </div>
-
-    <hr class="text-muted my-3">
-
-    <div class="mb-4">
-      <p class="fw-bold mb-2">BAG TYPES</p>
-      <div class="d-flex flex-column gap-1" style="max-height: 280px; overflow-y: auto;">
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Backpack" id="t-backpack">
-          <label class="form-check-label text-secondary" for="t-backpack">Backpacks</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Briefcase" id="t-briefcase">
-          <label class="form-check-label text-secondary" for="t-briefcase">Briefcases</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Crossbody" id="t-crossbody">
-          <label class="form-check-label text-secondary" for="t-crossbody">Crossbody Bags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Document" id="t-document">
-          <label class="form-check-label text-secondary" for="t-document">Document Cases</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Duffel" id="t-duffel">
-          <label class="form-check-label text-secondary" for="t-duffel">Duffel Bags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Frame" id="t-frame">
-          <label class="form-check-label text-secondary" for="t-frame">Frame Bags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Handbag" id="t-handbag">
-          <label class="form-check-label text-secondary" for="t-handbag">Handbags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Laptop" id="t-laptop">
-          <label class="form-check-label text-secondary" for="t-laptop">Laptop Bags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Messenger" id="t-messenger">
-          <label class="form-check-label text-secondary" for="t-messenger">Messenger Bags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Pochette" id="t-pochette">
-          <label class="form-check-label text-secondary" for="t-pochette">Pochettes</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Pouch" id="t-pouch">
-          <label class="form-check-label text-secondary" for="t-pouch">Pouches & Clutches</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Satchel" id="t-satchel">
-          <label class="form-check-label text-secondary" for="t-satchel">Satchels & Carryalls</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Shoulder" id="t-shoulder">
-          <label class="form-check-label text-secondary" for="t-shoulder">Shoulder Bags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Sling" id="t-sling">
-          <label class="form-check-label text-secondary" for="t-sling">Sling & Chest Bags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Tote" id="t-tote">
-          <label class="form-check-label text-secondary" for="t-tote">Tote Bags</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="type" value="Wallet" id="t-wallet">
-          <label class="form-check-label text-secondary" for="t-wallet">Wallets & Card Cases</label>
-        </div>
-      </div>
-    </div>
-
-    <hr class="text-muted my-3">
-
-    <div class="mb-3">
-      <p class="fw-bold mb-2">BRANDS</p>
-      <div class="d-flex flex-column gap-1" style="max-height: 240px; overflow-y: auto;">
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Adidas" id="b-adidas">
-          <label class="form-check-label text-secondary" for="b-adidas">Adidas</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="AK Galleria" id="b-akg">
-          <label class="form-check-label text-secondary" for="b-akg">AK Galleria</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Aodour" id="b-aodour">
-          <label class="form-check-label text-secondary" for="b-aodour">Aodour</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Coach" id="b-coach">
-          <label class="form-check-label text-secondary" for="b-coach">Coach</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Hub" id="b-hub">
-          <label class="form-check-label text-secondary" for="b-hub">Hub Leather</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Jafferjees" id="b-jafferjees">
-          <label class="form-check-label text-secondary" for="b-jafferjees">Jafferjees</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Michael Kors" id="b-mk">
-          <label class="form-check-label text-secondary" for="b-mk">Michael Kors</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Montblanc" id="b-montblanc">
-          <label class="form-check-label text-secondary" for="b-montblanc">Montblanc</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Ralph Lauren" id="b-rl">
-          <label class="form-check-label text-secondary" for="b-rl">Ralph Lauren</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input filter-checkbox" type="checkbox" data-filter-type="brand" value="Saint Laurent (YSL)" id="b-ysl">
-          <label class="form-check-label text-secondary" for="b-ysl">Saint Laurent (YSL)</label>
-        </div>
-      </div>
-    </div>
-
+  <div class="gl-hero">
+    <h1 class="gl-hero-title mt-5">Easy Returns &amp; Exchanges</h1>
+    <p class="gl-hero-subtitle">Hassle-Free • 14 Days • Pakistan-Wide</p>
   </div>
-</aside>
-          <main class="col-lg-10 col-md-9">
-            <div class="d-flex align-items-center justify-content-between mb-4 bg-white p-3 rounded shadow-sm">
-              <div class="text-muted fs-6">
-                Showing <span id="product-count" class="fw-semibold text-dark">0</span> items
-              </div>
-              <div class="d-flex align-items-center">
-                <label for="product-sort" class="me-2 text-secondary text-nowrap"><i class="bi bi-sort-down-alt text-dark me-1"></i> Sort By:</label>
-                <select id="product-sort" class="form-select form-select-sm border-0 bg-light fw-medium px-3 py-2" style="min-width: 160px; cursor: pointer;">
-                  <option value="default">Featured</option>
-                  <option value="price-asc">Price: Low to High</option>
-                  <option value="price-desc">Price: High to Low</option>
-                  <option value="name-asc">Name: A to Z</option>
-                </select>
-              </div>
-            </div>
 
-            <div id="products-grid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-              </div>
-            
-            <div id="no-products-msg" class="text-center py-5 d-none bg-white rounded shadow-sm mt-3">
-              <i class="bi bi-bag-x-fill fs-1 text-muted"></i>
-              <h5 class="mt-3 text-dark fw-semibold">No results match your choices.</h5>
-              <p class="text-muted mb-0 px-3">Try adjusting your active navigation filter checkboxes.</p>
-            </div>
-          </main>
+  <div class="gl-care-container">
+    <div class="text-center mb-5">
+      <p style="font-size: 1.15rem; max-width: 700px; margin: 0 auto; color: var(--gl-muted);">
+        At Global Luxury, we want you to love every purchase. If you're not completely satisfied, we make returning or exchanging simple and convenient.
+      </p>
+    </div>
+
+    <!-- Policy Highlights -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="gl-card">
+          <i class="bi bi-calendar-check"></i>
+          <h5>14 Days Return Window</h5>
+          <p class="text-muted">Return or exchange within 14 days of delivery</p>
         </div>
       </div>
-    </main>
+      <div class="col-md-4">
+        <div class="gl-card">
+          <i class="bi bi-truck"></i>
+          <h5>Free Return Pickup</h5>
+          <p class="text-muted">We arrange free pickup across Pakistan</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="gl-card">
+          <i class="bi bi-shield-check"></i>
+          <h5>Original Condition</h5>
+          <p class="text-muted">Items must be unused with original packaging &amp; tags</p>
+        </div>
+      </div>
+    </div>
 
+    <h3 class="gl-section-title text-center">How to Return or Exchange</h3>
+    <div class="steps">
+      <div class="step-item">
+        <h5>1. Contact Us</h5>
+        <p>Fill out the form below or email us at <strong>support@globalluxury.com</strong> with your Order Number and reason for return/exchange.</p>
+      </div>
+      <div class="step-item">
+        <h5>2. Package Your Items</h5>
+        <p>Securely pack the item(s) in their original packaging with all tags, accessories, and invoices intact.</p>
+      </div>
+      <div class="step-item">
+        <h5>3. Schedule Free Pickup</h5>
+        <p>Our team will contact you to arrange a free pickup from your doorstep within 1-2 business days.</p>
+      </div>
+      <div class="step-item">
+        <h5>4. Receive Refund or Exchange</h5>
+        <p>After we inspect the item, we will process your refund (within 5-7 business days) or ship the replacement item.</p>
+      </div>
+    </div>
 
-    <footer>
+    <!-- Improved Return Form -->
+    <div class="gl-contact-form" style="margin: 60px auto; background: white; padding: 40px; border: 1px solid var(--gl-border);">
+      <h3 class="gl-section-title" style="margin-top: 0; text-align:center;">Start a Return / Exchange</h3>
+      <form action="#" method="POST">
+        <div class="row">
+          <div class="col-md-6 gl-form-group">
+            <label class="gl-form-label">Order Number (required)</label>
+            <input type="text" class="gl-form-control" required>
+          </div>
+          <div class="col-md-6 gl-form-group">
+            <label class="gl-form-label">Your Email (required)</label>
+            <input type="email" class="gl-form-control" required>
+          </div>
+        </div>
+        
+        <div class="gl-form-group">
+          <label class="gl-form-label">Phone Number</label>
+          <input type="tel" class="gl-form-control">
+        </div>
+
+        <div class="gl-form-group">
+          <label class="gl-form-label">Reason for Return / Exchange</label>
+          <select class="gl-form-control" required>
+            <option value="">Select reason</option>
+            <option value="wrong">Wrong item received</option>
+            <option value="damaged">Item arrived damaged</option>
+            <option value="size">Size or Fit issue</option>
+            <option value="quality">Quality not as expected</option>
+            <option value="change">Changed my mind</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="gl-form-group">
+          <label class="gl-form-label">Additional Details</label>
+          <textarea class="gl-form-control" rows="5" placeholder="Please describe the issue and mention if you want a refund or exchange..."></textarea>
+        </div>
+
+        <button type="submit" class="gl-btn w-100">Submit Return Request</button>
+      </form>
+    </div>
+
+    <div class="gl-care-container text-center" style="margin-top: 30px; color: var(--gl-muted);">
+      <p><strong>Need immediate help?</strong><br>
+      Email: <a href="mailto:support@globalluxury.com" style="color:var(--gl-gold)">support@globalluxury.com</a><br>
+      Call/WhatsApp: <strong>+92 21 111 000 000</strong></p>
+    </div>
+  </div>
+
+  <footer>
       <footer class="gl-footer">
-          <div class="gl-footer-container">
-              
-              <!-- Column 1: About -->
-              <div class="gl-footer-col">
-                  <h3>Global Luxury</h3>
-                  <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
-                  <div class="gl-cod-badge">
-                      🚚 Cash on Delivery Nationwide
-                  </div>
-              </div>
+    <div class="gl-footer-container">
+        
+        <!-- Column 1: About -->
+        <div class="gl-footer-col">
+            <h3>Global Luxury</h3>
+            <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
+            <div class="gl-cod-badge">
+                🚚 Cash on Delivery Nationwide
+            </div>
+        </div>
 
-              <!-- Column 2: Info -->
-              <div class="gl-footer-col">
-                  <h3>Information</h3>
-                  <ul>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Contact Us</a></li>
-                      <li><a href="#">Store Locations</a></li>
-                      <li><a href="#">Track Your Order</a></li>
-                      <li><a href="#">FAQs</a></li>
-                  </ul>
-              </div>
+        <!-- Column 2: Info -->
+        <div class="gl-footer-col">
+            <h3>Information</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="stores.html">Store Locations</a></li>
+                <li><a href="#">Track Your Order</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+        </div>
 
-              <!-- Column 3: Customer Care -->
-              <div class="gl-footer-col">
-                  <h3>Customer Care</h3>
-                  <ul>
-                      <li><a href="#">Shipping & Delivery</a></li>
-                      <li><a href="#">Return & Exchange</a></li>
-                      <li><a href="#">Privacy Policy</a></li>
-                      <li><a href="#">Care Instructions</a></li>
-                  </ul>
-              </div>
+        <!-- Column 3: Customer Care -->
+        <div class="gl-footer-col">
+            <h3>Customer Care</h3>
+            <ul>
+                <li><a href="#">Shipping & Delivery</a></li>
+                <li><a href="#">Return & Exchange</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Care Instructions</a></li>
+            </ul>
+        </div>
 
-              <!-- Column 4: Newsletter -->
-              <div class="gl-footer-col">
-                  <h3>Join The Luxury Circle</h3>
-                  <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
-                  <form class="gl-newsletter-form">
-                      <input type="email" placeholder="Your Email Address" required>
-                      <button type="submit">SUBSCRIBE</button>
-                  </form>
-              </div>
+        <!-- Column 4: Newsletter -->
+        <div class="gl-footer-col">
+            <h3>Join The Luxury Circle</h3>
+            <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
+            <form class="gl-newsletter-form">
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit">SUBSCRIBE</button>
+            </form>
+        </div>
 
-          </div>
+    </div>
 
-          <!-- Bottom Bar -->
-          <div class="gl-footer-bottom">
-              <div class="gl-footer-bottom-content">
-                  <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>
-                  <div class="gl-payment-icons">
-                      <span>💸 COD</span>
-                      <span>💳 Visa</span>
-                      <span>💳 Mastercard</span>
-                  </div>
-              </div>
-          </div>
-      </footer>
+    <!-- Bottom Bar -->
+    <div class="gl-footer-bottom">
+        <div class="gl-footer-bottom-content">
+            <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>
+            <div class="gl-payment-icons">
+                <span>💸 COD</span>
+                <span>💳 Visa</span>
+                <span>💳 Mastercard</span>
+            </div>
+        </div>
+    </div>
+</footer>
     </footer>
-    <!-- Bootstrap JavaScript Bundle (includes Popper) -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
 
-    <script src="Scripts/Search.Js"></script>
-    <script src="Scripts/Nav.js"></script>
-    <script src="Scripts/sidenav.js"></script>
-    <script src="Scripts/Carousel.js"></script>
-    <script src="Scripts/addToCart.js"></script>
-    <script src="Scripts/favorites.js"></script>
-    <script src="Scripts/products-filter.js"></script>
-    <script src="Scripts/feature-cards.js"></script>
-    <script src="Scripts/product-card-links.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="Scripts/Search.Js"></script>
+  <script src="Scripts/Nav.js"></script>
+  <script src="Scripts/sidenav.js"></script>
+  <script src="Scripts/Carousel.js"></script>
+  <script src="Scripts/addToCart.js"></script>
+  <script src="Scripts/favorites.js"></script>
+  <script src="Scripts/products-filter.js"></script>
+  <script src="Scripts/feature-cards.js"></script>
+  <script src="Scripts/product-card-links.js"></script>
+  <script src="Scripts/products-filter.js"></script>
     
-    
-  </body>
+</body>
 </html>

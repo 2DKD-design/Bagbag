@@ -38,14 +38,14 @@ const categoryData = {
     { text: "Hub", url: "#" },
   ],
   "Services": [
-    { text: "Fast Delivery", url: "#" },
-    { text: "Easy Returns", url: "#" },
-    { text: "Catalog", url: "#" }
+    { text: "Track Your Order", url: "track-order.html" },
+    { text: "Easy Returns", url: "returns.html" },
+    { text: "Catalog", url: "catalog.xlsx", download: true }
   ],
   "Contact us": [
-    { text: "Customer Care", url: "#" },
-    { text: "Store Locator", url: "#" },
-    { text: "FAQ", url: "#" }
+    { text: "Customer Care", url: "customerCare.html" },
+    { text: "Store Locator", url: "stores.html" },
+    { text: "FAQ", url: "faq.html" }
   ]
 };
 

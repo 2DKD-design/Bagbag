@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>FAQ | Global Luxury</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles/Sidenav.css">
+  <link rel="stylesheet" href="styles/SearchOverlay.css">
+  <link rel="stylesheet" href="styles/nav.css">
+  <link rel="stylesheet" href="styles/addToCart.css">
+  <link rel="stylesheet" href="styles/favorites.css">
+  <link rel="stylesheet" href="styles/footer.css">
+
+  <style>
+    /* ══════════ TOKENS ══════════ */
+    :root {
+      --gl-gold:      #b89a5e;
+      --gl-gold-pale: rgba(184,154,94,0.10);
+      --gl-dark:      #1a1a18;
+      --gl-mid:       #2e2e2c;
+      --gl-ink:       #3a3830;
+      --gl-muted:     #7a7670;
+      --gl-border:    #e0dbd2;
+      --gl-bg:        #faf8f5;
+      --gl-white:     #ffffff;
+      --gl-teal:      #2ec4b6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--gl-bg);
+      color: var(--gl-ink);
+      overflow-x: hidden;
+    }
+
+    /* ══════════ HERO ══════════ */
+    .gl-faq-hero {
+      background: var(--gl-dark);
+      padding: 56px 48px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .gl-faq-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 48px; height: 2px;
+      background: var(--gl-gold);
+    }
+    .gl-hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gl-gold);
+      margin-bottom: 14px;
+    }
+    .gl-hero-title {
+      font-size: 2.4rem;
+      /* font-weight: 300; */
+      color: var(--gl-white);
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+    .gl-hero-sub {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
+
+    /* Hero search */
+    .gl-faq-search-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 4px;
+    }
+    .gl-faq-search {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+    }
+    .gl-faq-search i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gl-muted);
+      font-size: 0.8rem;
+      pointer-events: none;
+    }
+    .gl-faq-search input {
+      width: 100%;
+      padding: 12px 16px 12px 38px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--gl-white);
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .gl-faq-search input::placeholder { color: rgba(255,255,255,0.35); }
+    .gl-faq-search input:focus {
+      border-color: var(--gl-gold);
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* ══════════ CATEGORY TABS ══════════ */
+    .gl-faq-tabs {
+      background: var(--gl-white);
+      border-bottom: 1px solid var(--gl-border);
+      padding: 0 40px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .gl-faq-tabs::-webkit-scrollbar { display: none; }
+
+    .gl-tab-btn {
+      flex-shrink: 0;
+      padding: 16px 22px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-size: 0.68rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gl-muted);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .gl-tab-btn:hover { color: var(--gl-ink); }
+    .gl-tab-btn.active {
+      color: var(--gl-ink);
+      border-bottom-color: var(--gl-gold);
+      font-weight: 600;
+    }
+
+    /* ══════════ MAIN LAYOUT ══════════ */
+    .gl-faq-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 52px 24px 80px;
+    }
+
+    /* No-results message */
+    .gl-no-results {
+      display: none;
+      text-align: center;
+      padding: 48px 0;
+      color: var(--gl-muted);
+      font-size: 0.85rem;
+    }
+    .gl-no-results i {
+      font-size: 2rem;
+      color: var(--gl-border);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* ══════════ FAQ SECTION ══════════ */
+    .gl-faq-section {
+      margin-bottom: 48px;
+    }
+    .gl-faq-section:last-child { margin-bottom: 0; }
+
+    .gl-section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .gl-section-label i {
+      font-size: 1rem;
+      color: var(--gl-gold);
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--gl-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .gl-section-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gl-ink);
+    }
+    .gl-section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--gl-border);
+    }
+
+    /* ══════════ ACCORDION ITEMS ══════════ */
+    .gl-faq-item {
+      border-bottom: 1px solid var(--gl-border);
+    }
+    .gl-faq-item:first-of-type {
+      border-top: 1px solid var(--gl-border);
+    }
+
+    .gl-faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .gl-faq-q:hover .gl-q-text { color: var(--gl-gold); }
+
+    .gl-q-text {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--gl-dark);
+      line-height: 1.45;
+      transition: color 0.2s;
+      flex: 1;
+    }
+    .gl-faq-item.open .gl-q-text { color: var(--gl-gold); }
+
+    .gl-q-icon {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border: 1px solid var(--gl-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: var(--gl-muted);
+      margin-top: 2px;
+      transition: transform 0.25s, border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .gl-faq-item.open .gl-q-icon {
+      transform: rotate(45deg);
+      border-color: var(--gl-gold);
+      background: var(--gl-gold);
+      color: var(--gl-white);
+    }
+
+    .gl-faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .gl-faq-item.open .gl-faq-a { max-height: 600px; }
+
+    .gl-a-content {
+      padding: 0 32px 22px 0;
+      font-size: 0.84rem;
+      line-height: 1.75;
+      color: var(--gl-muted);
+    }
+    .gl-a-content a {
+      color: var(--gl-gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(184,154,94,0.3);
+      transition: border-color 0.2s;
+    }
+    .gl-a-content a:hover { border-bottom-color: var(--gl-gold); }
+
+    .gl-a-content ul {
+      padding-left: 0;
+      list-style: none;
+      margin-top: 8px;
+    }
+    .gl-a-content ul li {
+      padding: 3px 0 3px 16px;
+      position: relative;
+    }
+    .gl-a-content ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--gl-gold);
+    }
+
+    /* ══════════ CONTACT STRIP ══════════ */
+    .gl-contact-strip {
+      background: var(--gl-dark);
+      margin-top: 64px;
+      padding: 48px 40px;
+      text-align: center;
+      position: relative;
+    }
+    .gl-contact-strip::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 48px; height: 2px;
+      background: var(--gl-gold);
+    }
+    .gl-contact-eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gl-gold);
+      margin-bottom: 12px;
+    }
+    .gl-contact-title {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--gl-white);
+      margin-bottom: 8px;
+    }
+    .gl-contact-sub {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+    }
+    .gl-contact-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .gl-contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .gl-contact-btn.primary {
+      background: var(--gl-gold);
+      color: var(--gl-dark);
+      border: 1px solid var(--gl-gold);
+      font-weight: 600;
+    }
+    .gl-contact-btn.primary:hover {
+      background: var(--gl-gold-pale);
+      color: var(--gl-gold);
+    }
+    .gl-contact-btn.outline {
+      background: transparent;
+      color: var(--gl-white);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .gl-contact-btn.outline:hover {
+      border-color: var(--gl-gold);
+      color: var(--gl-gold);
+    }
+
+    /* ══════════ RESPONSIVE ══════════ */
+    @media (max-width: 640px) {
+      .gl-faq-hero { padding: 40px 24px 36px; }
+      .gl-hero-title { font-size: 1.8rem; }
+      .gl-faq-tabs { padding: 0 16px; }
+      .gl-tab-btn { padding: 14px 14px; font-size: 0.62rem; }
+      .gl-faq-wrap { padding: 36px 16px 60px; }
+      .gl-contact-strip { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ YOUR NAV GOES HERE ══════════ -->
+  <header>
+      <nav
+        class="navbar navbar-expand navbar-dark bg-transparent hover-bg-custom fixed-top"
+       >
+        <div class="container-fluid">
+          
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+              <li class="nav-item">
+              <a class="nav-link px-2" href="#" aria-current="page"><span onclick=" event.preventDefault(); openNav()" class="d-flex flex-row flex-sm-col flex-md-row"><i class="bi bi-list pe-1 pt-2 "></i><p class="ps-2 pe-1 pt-2 d-none d-md-block "> Menu</p></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" aria-current="page"><span onclick="event.preventDefault(); openSearch()" class="d-flex flex-row flex-sm-col flex-md-row pt-2"><i class="bi bi-search p-1 fs-6 "></i><p class=" d-none d-md-block ">Search</p></span></a>
+            </li>
+            </ul>
+            <ul class="navbar-nav container-fluid mt-sm-0 ms-md-5 ms-sm-0 mt-1 mb-1 fs-5">
+              <a class="navbar-brand d-flex align-items-center justify-content-center flex-fill my-0 pe-md-4 me-md-5" href="index.html"><img class="logo" src="Assets/logo/logoo.png" alt=""> <img class="logo2" src="Assets/logo/logo3.png" alt=""></a>
+            </ul>
+            
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0 fs-5">
+
+              <a href="javascript:void(0)" class="nav-link d-flex flex-row flex-sm-col flex-md-row" onclick="event.preventDefault(); openFavoritesNav()">
+                <i class="bi bi-heart px-md-5 fs-4 visual-fav-btn" style="cursor: pointer;"></i>
+              </a>
+
+              <div id="myFavoritesNav" class="cart-sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeFavoritesNav()">&times;</a>
+                
+                <h2>My Favorites</h2>
+                
+                <div id="favItemsContainer">
+                  <p class="empty-cart-msg">Your favorites list is empty!</p>
+                </div>
+                
+                <div class="fav-footer" id="favFooterArea" style="display: none;">
+                  <button class="fav-add-all-btn" onclick="addAllFavoritesToCart()">
+                    Add All to Cart
+                  </button>
+                </div>
+              </div>
+          
+
+              <a href="#" class="nav-link d-flex flex-row flex-sm-col">
+                <i onclick="event.preventDefault(); openCartNav()" class="bi bi-bag fs-4 cart-btn"></i>
+              </a>
+              <div id="myCartNav" class="cart-sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeCartNav()">&times;</a>
+              
+              <h2>Your Cart</h2>
+              
+              <div id="cartItemsContainer">
+                <p class="empty-cart-msg">Your cart is empty!</p>
+              </div>
+              
+              <div class="cart-footer">
+                <div class="cart-total">
+                  <span>Total:</span>
+                  <span id="cartTotalAmount">Rs. 0</span>
+                </div>
+                <button class="checkout-btn" onclick="goToCheckout()">Continue to Checkout</button>
+              </div>
+            </div>
+            </ul>
+          
+          </div>
+        </div>
+       </nav>
+
+         <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Women')">Women</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Men')">Men</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Brands')">Brands</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Services')">Services</a>
+          <a href="#" onclick="event.preventDefault(); openSecondaryNav('Contact us')">Contact us</a>
+          <a href="about.html">About us</a>
+        </div>
+
+        <div id="mySecondaryNav" class="secondary-sidenav">
+          <a href="javascript:void(0)" class="backbtn" onclick="closeSecondaryNav()"><i class="bi bi-arrow-left"></i> Back</a>
+          <a href="javascript:void(0)" class="closebtn" onclick="closeAllNavs()">&times;</a>
+          <h2 id="secondaryTitle" style="padding-left: 32px; font-size: 25px;">Category</h2>
+          <div id="secondaryLinks">
+            <a href="#">New Arrivals</a>
+            <a href="#">Clothing</a>
+            <a href="#">Shoes</a>
+            <a href="#">Accessories</a>
+          </div>
+        </div>
+        
+      <div id="myNav" class="overlay">
+        <a onclick="event.preventDefault();" class="navbar-brand d-flex align-items-center justify-content-center flex-fill" href="#">
+          <img class="logo" src="Assets/logo/logoo.png" alt="Logo Main" onclick="closeSearch()"> 
+          <img class="logo2" src="Assets/logo/logo3.png" alt="Logo Sub" onclick="closeSearch()">
+        </a>
+        
+        <a href="javascript:void(0)" class="closebtn fs-3 m-0 p-0" onclick="closeSearch()">&times;</a>
+
+        <div class="overlay-content container mt-5">
+          <div class="form-outline pb-5 mt-0 d-flex justify-content-center position-relative" data-mdb-input-init>
+            <input type="text" id="overlay-search-input" class="form-control p-3 rounded-pill border-secondary-subtle w-75" placeholder="Search for a product" aria-label="Search" />
+          </div>
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-0 mt-5 pt-5" id="search-results-grid">
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="15" data-name="Convertible Pochette" data-price="83720" data-image="Assets/Products/product-15.png" onclick="event.stopPropagation(); toggleFavorite({ id: 15, name: 'Convertible Pochette', price: 83720, image: 'Assets/Products/product-15.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-15.png" class="card-img-top p-3" alt="Convertible Pochette" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Convertible Pochette</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Michael Kors Classic</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="20" data-name="Crackled Leather Case" data-price="83720" data-image="Assets/Products/product-20.png" onclick="event.stopPropagation(); toggleFavorite({ id: 20, name: 'Crackled Leather Case', price: 83720, image: 'Assets/Products/product-20.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-20.png" class="card-img-top p-3" alt="Crackled Leather Case" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Crackled Leather Case</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Includes matching card holder</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="23" data-name="Saint Laurent Bag" data-price="83720" data-image="Assets/Products/product-23.png" onclick="event.stopPropagation(); toggleFavorite({ id: 23, name: 'Saint Laurent Bag', price: 83720, image: 'Assets/Products/product-23.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-23.png" class="card-img-top p-3" alt="Saint Laurent Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Luxury French craftsmanship</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="36" data-name="Leather Satchel" data-price="83720" data-image="Assets/Products/product-36.png" onclick="event.stopPropagation(); toggleFavorite({ id: 36, name: 'Leather Satchel', price: 83720, image: 'Assets/Products/product-36.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-36.png" class="card-img-top p-3" alt="Leather Satchel" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Leather Satchel</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Premium structural top handle</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="10" data-name="Leather Tote Bag" data-price="83720" data-image="Assets/Products/product-10.png" onclick="event.stopPropagation(); toggleFavorite({ id: 10, name: 'Leather Tote Bag', price: 83720, image: 'Assets/Products/product-10.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-10.png" class="card-img-top p-3" alt="Leather Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Leather Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Spacious everyday luxury carrier</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="71" data-name="Medium Tote Bag" data-price="83720" data-image="Assets/Products/product-71.png" onclick="event.stopPropagation(); toggleFavorite({ id: 71, name: 'Medium Tote Bag', price: 83720, image: 'Assets/Products/product-71.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-71.png" class="card-img-top p-3" alt="Medium Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Medium Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Perfect size minimalist essential</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="62" data-name="Saint Laurent Envelope" data-price="83720" data-image="Assets/Products/product-62.png" onclick="event.stopPropagation(); toggleFavorite({ id: 62, name: 'Saint Laurent Envelope', price: 83720, image: 'Assets/Products/product-62.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-62.png" class="card-img-top p-3" alt="Saint Laurent Envelope" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Envelope</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Iconic textured matelassé leather</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="83" data-name="Pebbled Tote Bag" data-price="83720" data-image="Assets/Products/product-83.png" onclick="event.stopPropagation(); toggleFavorite({ id: 83, name: 'Pebbled Tote Bag', price: 83720, image: 'Assets/Products/product-83.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-83.png" class="card-img-top p-3" alt="Pebbled Tote Bag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Pebbled Tote Bag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Soft grain scratch-resistant leather</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="14" data-name="Saint Laurent Handbag" data-price="83720" data-image="Assets/Products/product-14.png" onclick="event.stopPropagation(); toggleFavorite({ id: 14, name: 'Saint Laurent Handbag', price: 83720, image: 'Assets/Products/product-14.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-14.png" class="card-img-top p-3" alt="Saint Laurent Handbag" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saint Laurent Handbag</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Elegant evening shoulder statement</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="2" data-name="Denim Crossbody" data-price="83720" data-image="Assets/Products/product-2.png" onclick="event.stopPropagation(); toggleFavorite({ id: 2, name: 'Denim Crossbody', price: 83720, image: 'Assets/Products/product-2.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-2.png" class="card-img-top p-3" alt="Denim Crossbody" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Denim Crossbody</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Casual luxury streetwear edition</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="12" data-name="Saffiano Leather Pochette" data-price="83720" data-image="Assets/Products/product-12.png" onclick="event.stopPropagation(); toggleFavorite({ id: 12, name: 'Saffiano Leather Pochette', price: 83720, image: 'Assets/Products/product-12.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-12.png" class="card-img-top p-3" alt="Saffiano Leather Pochette" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Saffiano Leather Pochette</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Sleek compact zip-top silhouette</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 product-card border-0 shadow-sm position-relative text-start">
+                <button class="fav-btn btn position-absolute top-0 end-0 m-2 border-0 bg-transparent text-secondary fs-5" type="button" aria-label="Add to favorites" data-id="27" data-name="Quilted Chain Crossbody" data-price="83720" data-image="Assets/Products/product-27.png" onclick="event.stopPropagation(); toggleFavorite({ id: 27, name: 'Quilted Chain Crossbody', price: 83720, image: 'Assets/Products/product-27.png' }, this)">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <img src="Assets/Products/product-27.png" class="card-img-top p-3" alt="Quilted Chain Crossbody" style="height: 180px; object-fit: contain;">
+                <div class="card-body d-flex flex-column p-3">
+                  <h6 class="card-title text-dark fw-semibold text-truncate mb-1" style="font-size: 0.92rem;">Quilted Chain Crossbody</h6>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Polished metallic hardware accents</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </header>
+
+  <!-- ══════════ HERO ══════════ -->
+  <div class="gl-faq-hero">
+    <!-- <div class="gl-hero-eyebrow">Global Luxury — Help Centre</div> -->
+    <h1 class="gl-hero-title mt-5">Frequently Asked Questions</h1>
+    <p class="gl-hero-sub">Everything you need to know about orders, delivery, and care</p>
+    <div class="gl-faq-search-wrap">
+      <div class="gl-faq-search">
+        <i class="bi bi-search"></i>
+        <input type="text" id="faqSearchInput" placeholder="Search a question…" oninput="searchFAQ(this.value)">
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ CATEGORY TABS ══════════ */
+  <div class="gl-faq-tabs" id="faqTabs">
+    <button class="gl-tab-btn active" onclick="filterCategory('all', this)">All</button>
+    <button class="gl-tab-btn" onclick="filterCategory('orders', this)">Orders</button>
+    <button class="gl-tab-btn" onclick="filterCategory('delivery', this)">Delivery</button>
+    <button class="gl-tab-btn" onclick="filterCategory('returns', this)">Returns</button>
+    <button class="gl-tab-btn" onclick="filterCategory('payment', this)">Payment</button>
+    <button class="gl-tab-btn" onclick="filterCategory('products', this)">Products & Care</button>
+    <button class="gl-tab-btn" onclick="filterCategory('authenticity', this)">Authenticity</button>
+  </div>
+
+  <!-- ══════════ FAQ BODY ══════════ -->
+  <div class="gl-faq-wrap">
+
+    <div class="gl-no-results" id="noResults">
+      <i class="bi bi-search"></i>
+      No questions match your search. Try different words or <a href="https://wa.me/923456789012" style="color:var(--gl-gold);">contact us directly</a>.
+    </div>
+
+    <!-- ── ORDERS ── -->
+    <div class="gl-faq-section" data-category="orders">
+      <div class="gl-section-label">
+        <span class="gl-section-label-icon"><i class="bi bi-bag"></i></span>
+        <span class="gl-section-title">Orders</span>
+        <span class="gl-section-rule"></span>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">How do I place an order?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Browse our collection, add items to your cart, and click "Continue to Checkout." Fill in your delivery details, choose a payment method, and click "Place Order." You'll receive an order confirmation, and our team will reach out to confirm shortly after.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Can I modify or cancel my order after placing it?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Yes — but only before your order has been dispatched. Contact us immediately on WhatsApp at <a href="https://wa.me/923456789012">+92 345 6789012</a> with your order number and the change you need. Once dispatched, we're unable to modify the order.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">How will I know my order has been confirmed?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            After placing your order, you'll see a confirmation screen with your unique order number (e.g. GL-XXXXXX). If you provided an email address, you'll also receive a receipt there. Our team will additionally call or WhatsApp you within a few hours to confirm your order details and delivery time.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Do I need an account to place an order?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            No account is required. You can shop as a guest — simply add items to your cart and check out. Providing your phone number ensures our team can reach you for delivery coordination.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DELIVERY ── -->
+    <div class="gl-faq-section" data-category="delivery">
+      <div class="gl-section-label">
+        <span class="gl-section-label-icon"><i class="bi bi-truck"></i></span>
+        <span class="gl-section-title">Delivery</span>
+        <span class="gl-section-rule"></span>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Which cities do you deliver to?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            We deliver nationwide across Pakistan, including Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Peshawar, Quetta, Multan, Hyderabad, and Sialkot. For areas not listed at checkout, contact us on WhatsApp and we'll arrange delivery manually.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">How long does delivery take?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            We offer two delivery options:
+            <ul>
+              <li><strong>Standard Delivery</strong> — 3 to 7 business days, completely free</li>
+              <li><strong>Express Delivery</strong> — 1 to 2 business days, Rs. 200</li>
+            </ul>
+            Delivery times are counted from the day your order is dispatched, not the day it's placed.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Is delivery really free?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Yes — Standard Delivery is free on all orders across Pakistan, with no minimum order value. Express Delivery carries a flat fee of Rs. 200 regardless of order size or destination.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">How can I track my order?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Once your order is dispatched, our team will send you a tracking update via WhatsApp. You can also reach out any time at <a href="https://wa.me/923456789012">+92 345 6789012</a> with your order number for a status update.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">What if I'm not available when my order arrives?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Our delivery partner will attempt re-delivery or contact you on the number provided. You can leave special instructions at checkout — such as a preferred time window or an alternate recipient — and we'll do our best to accommodate. You can also add notes when placing your order.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RETURNS ── -->
+    <div class="gl-faq-section" data-category="returns">
+      <div class="gl-section-label">
+        <span class="gl-section-label-icon"><i class="bi bi-arrow-counterclockwise"></i></span>
+        <span class="gl-section-title">Returns &amp; Exchanges</span>
+        <span class="gl-section-rule"></span>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">What is your return policy?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            We offer a 7-day hassle-free return policy from the date of delivery. Items must be unused, in their original condition, and with all original packaging intact. Items showing signs of use, damage, or missing packaging will not be accepted for return.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">How do I initiate a return or exchange?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Contact us on WhatsApp at <a href="https://wa.me/923456789012">+92 345 6789012</a> within 7 days of receiving your order. Include your order number and a brief description of the reason for return. Our team will guide you through the next steps, including collection arrangements.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Do you offer exchanges for a different size or colour?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Yes, exchanges are available subject to stock availability. If the item you want is available, we'll arrange a direct swap. If not, we'll issue a store credit or full refund. Contact us within 7 days of delivery to begin an exchange.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">When will I receive my refund?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Once we receive and inspect the returned item, refunds are processed within 3–5 business days. For Cash on Delivery orders, refunds are issued via bank transfer or JazzCash/Easypaisa to the account details you provide. For online payments, the refund is returned to the original payment method.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAYMENT ── -->
+    <div class="gl-faq-section" data-category="payment">
+      <div class="gl-section-label">
+        <span class="gl-section-label-icon"><i class="bi bi-credit-card"></i></span>
+        <span class="gl-section-title">Payment</span>
+        <span class="gl-section-rule"></span>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">What payment methods do you accept?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            We currently accept:
+            <ul>
+              <li><strong>Cash on Delivery (COD)</strong> — pay when your order arrives</li>
+              <li><strong>JazzCash</strong> — mobile wallet transfer</li>
+              <li><strong>Easypaisa</strong> — mobile wallet transfer</li>
+            </ul>
+            For JazzCash and Easypaisa, send your payment after placing the order and share the transaction ID with us on WhatsApp.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Is Cash on Delivery available everywhere?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Yes. Cash on Delivery is available on all orders across Pakistan, with no additional charge. Simply select COD at checkout and pay the courier when your parcel arrives.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Do you offer promo codes or discounts?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Yes — we run seasonal promotions and loyalty offers. You can enter a promo code at checkout in the "Gift card or promo code" field. Follow our social channels or subscribe to our newsletter to be the first to receive exclusive discount codes.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Is my payment information secure?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Absolutely. We do not store any card or wallet credentials on our servers. JazzCash and Easypaisa transactions are handled entirely through their own secure platforms. For COD orders, no financial information is shared at any point during checkout.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PRODUCTS & CARE ── -->
+    <div class="gl-faq-section" data-category="products">
+      <div class="gl-section-label">
+        <span class="gl-section-label-icon"><i class="bi bi-handbag"></i></span>
+        <span class="gl-section-title">Products &amp; Care</span>
+        <span class="gl-section-rule"></span>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">What brands do you carry?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Global Luxury carries a curated selection of premium and luxury brands, including:
+            <ul>
+              <li>Michael Kors</li>
+              <li>Saint Laurent (YSL)</li>
+              <li>Montblanc</li>
+              <li>Coach</li>
+              <li>Ralph Lauren</li>
+              <li>Adidas</li>
+              <li>Jafferjees, AK Galleria, Hub, and more</li>
+            </ul>
+            Our catalogue is updated regularly — browse the full range on our <a href="products.html">Products page</a>.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">How should I care for my leather bag?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            To keep your bag looking its best:
+            <ul>
+              <li>Wipe clean with a soft, dry, lint-free cloth after each use</li>
+              <li>Keep away from direct sunlight, heat sources, and humidity</li>
+              <li>Avoid contact with cosmetics, perfumes, and alcohol-based products</li>
+              <li>Store in a dust bag or pillowcase when not in use</li>
+              <li>Stuff loosely with tissue paper to help the bag hold its shape in storage</li>
+              <li>For deep stains, consult a professional leather care specialist</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Are the products in your catalogue always in stock?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            We maintain a live catalogue, but stock is limited for many items due to the exclusive nature of our inventory. If an item you're interested in appears unavailable, contact us on WhatsApp — we can often source it or add you to a waitlist when it's back.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Do the bags come with a dust bag or original packaging?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            This varies by brand and item. Product pages specify what is included. Where original packaging and dust bags are available, they will be included with your order. If you require original packaging for a specific item, mention this at checkout in the Order Notes field and we'll confirm availability.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── AUTHENTICITY ── -->
+    <div class="gl-faq-section" data-category="authenticity">
+      <div class="gl-section-label">
+        <span class="gl-section-label-icon"><i class="bi bi-patch-check"></i></span>
+        <span class="gl-section-title">Authenticity</span>
+        <span class="gl-section-rule"></span>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Are all your products 100% authentic?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Yes — authenticity is the foundation of Global Luxury. Every product we sell is genuine and sourced through verified channels. We do not deal in replicas, inspired pieces, or counterfeit goods of any kind. If you ever have a concern about an item you've received, contact us immediately and we will resolve it.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">How can I verify the authenticity of my purchase?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            Authentic luxury pieces carry hallmarks specific to each brand — serial numbers, authenticity cards, hardware engravings, and quality stitching. If you'd like guidance on what to look for for a specific brand, reach out to us on WhatsApp and we'll walk you through the verification points for your item.
+          </div>
+        </div>
+      </div>
+
+      <div class="gl-faq-item" onclick="toggleFAQ(this)">
+        <button class="gl-faq-q" aria-expanded="false">
+          <span class="gl-q-text">Where do you source your products from?</span>
+          <span class="gl-q-icon"><i class="bi bi-plus"></i></span>
+        </button>
+        <div class="gl-faq-a">
+          <div class="gl-a-content">
+            We source directly from brand authorised channels, verified international distributors, and trusted resellers with provenance documentation. Our buying process includes authentication checks before any item enters our inventory.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ CONTACT STRIP ══════════ -->
+    <div class="gl-contact-strip">
+      <div class="gl-contact-eyebrow">Still have questions?</div>
+      <div class="gl-contact-title">We're here to help</div>
+      <div class="gl-contact-sub">Our team typically responds within a few hours</div>
+      <div class="gl-contact-actions">
+        <a href="https://wa.me/923456789012" class="gl-contact-btn primary" target="_blank" rel="noopener">
+          <i class="bi bi-whatsapp"></i> WhatsApp Us
+        </a>
+        <a href="tel:+923456789012" class="gl-contact-btn outline">
+          <i class="bi bi-telephone"></i> +92 345 6789012
+        </a>
+        <a href="stores.html" class="gl-contact-btn outline">
+          <i class="bi bi-geo-alt"></i> Find a Store
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /faq-wrap -->
+
+  <!-- ══════════ YOUR FOOTER GOES HERE ══════════ -->
+  <footer>
+      <footer class="gl-footer">
+    <div class="gl-footer-container">
+        
+        <!-- Column 1: About -->
+        <div class="gl-footer-col">
+            <h3>Global Luxury</h3>
+            <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
+            <div class="gl-cod-badge">
+                🚚 Cash on Delivery Nationwide
+            </div>
+        </div>
+
+        <!-- Column 2: Info -->
+        <div class="gl-footer-col">
+            <h3>Information</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Store Locations</a></li>
+                <li><a href="#">Track Your Order</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Customer Care -->
+        <div class="gl-footer-col">
+            <h3>Customer Care</h3>
+            <ul>
+                <li><a href="#">Shipping & Delivery</a></li>
+                <li><a href="#">Return & Exchange</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Care Instructions</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 4: Newsletter -->
+        <div class="gl-footer-col">
+            <h3>Join The Luxury Circle</h3>
+            <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
+            <form class="gl-newsletter-form">
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit">SUBSCRIBE</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="gl-footer-bottom">
+        <div class="gl-footer-bottom-content">
+            <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>
+            <div class="gl-payment-icons">
+                <span>💸 COD</span>
+                <span>💳 Visa</span>
+                <span>💳 Mastercard</span>
+            </div>
+        </div>
+    </div>
+</footer>
+  </footer>
+
+  <script src="Scripts/addToCart.js"></script>
+  <script src="Scripts/favorites.js"></script>
+  <script src="Scripts/Nav.js"></script>
+  <script src="Scripts/sidenav.js"></script>
+
+  <script>
+    // ── Toggle individual FAQ item ──
+    function toggleFAQ(item) {
+      const isOpen = item.classList.contains('open');
+
+      // Close all others in same section
+      item.closest('.gl-faq-section').querySelectorAll('.gl-faq-item').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.gl-faq-q').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.gl-faq-q').setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // ── Category tab filter ──
+    function filterCategory(cat, btn) {
+      // Update active tab
+      document.querySelectorAll('.gl-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Clear search
+      document.getElementById('faqSearchInput').value = '';
+
+      const sections = document.querySelectorAll('.gl-faq-section');
+      sections.forEach(section => {
+        if (cat === 'all' || section.dataset.category === cat) {
+          section.style.display = '';
+        } else {
+          section.style.display = 'none';
+        }
+      });
+
+      document.getElementById('noResults').style.display = 'none';
+    }
+
+    // ── Search ──
+    function searchFAQ(query) {
+      const q = query.trim().toLowerCase();
+
+      // Reset tab UI
+      document.querySelectorAll('.gl-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.gl-tab-btn').classList.add('active');
+
+      const sections = document.querySelectorAll('.gl-faq-section');
+      let totalVisible = 0;
+
+      sections.forEach(section => {
+        let sectionHasMatch = false;
+
+        section.querySelectorAll('.gl-faq-item').forEach(item => {
+          const questionText = item.querySelector('.gl-q-text').textContent.toLowerCase();
+          const answerText   = item.querySelector('.gl-a-content').textContent.toLowerCase();
+          const matches = !q || questionText.includes(q) || answerText.includes(q);
+
+          item.style.display = matches ? '' : 'none';
+          if (matches) sectionHasMatch = true;
+        });
+
+        section.style.display = sectionHasMatch ? '' : 'none';
+        if (sectionHasMatch) totalVisible++;
+      });
+
+      document.getElementById('noResults').style.display = totalVisible === 0 ? 'block' : 'none';
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
