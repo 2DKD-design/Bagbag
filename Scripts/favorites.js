@@ -154,22 +154,6 @@ function addFavoriteToCart(id) {
 }
 
 
-function addAllFavoritesToCart() {
-  if (favoriteItems.length === 0) return;
-
-  favoriteItems.forEach(item => {
-    if (typeof addToCart === "function") {
-      addToCart(item.id, item.name, item.price);
-    }
-  });
-
-  favoriteItems = [];
-  saveFavorites();
-  updateNavbarHeartColor();
-  renderFavorites();
-  syncProductCardButtons();
-}
-
 function openFavoritesNav() {
   const sidebar = document.getElementById("myFavoritesNav");
   if (sidebar) {

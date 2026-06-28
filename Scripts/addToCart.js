@@ -121,11 +121,11 @@ function removeItem(id) {
 
 
 function goToCheckout() {
-  if(cartItems.length === 0) {
+  const currentCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+  if (currentCart.length === 0) {
     alert("Your Cart is empty.");
   } else {
-    window.location.href = "checkout.html"
-    
+    window.location.href = "checkout.html";
   }
 }
 
