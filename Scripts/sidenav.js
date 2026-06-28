@@ -12,7 +12,6 @@ const categoryData = {
     { text: "Wallets", url: "#" },
     { text: "Tote Bags", url: "#" },
     { text: "Pochette", url: "#" },
-    { text: "Pochette", url: "#" },
   ],
   "Men": [
     { text: "Backpacks", url: "#" },
