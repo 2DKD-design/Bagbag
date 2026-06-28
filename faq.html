@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="styles/footer.css">
 
   <style>
-    /* ══════════ TOKENS ══════════ */
+    
     :root {
       --gl-gold:      #b89a5e;
       --gl-gold-pale: rgba(184,154,94,0.10);
@@ -40,7 +40,7 @@
       overflow-x: hidden;
     }
 
-    /* ══════════ HERO ══════════ */
+    
     .gl-faq-hero {
       background: var(--gl-dark);
       padding: 56px 48px 48px;
@@ -65,7 +65,7 @@
     }
     .gl-hero-title {
       font-size: 2.4rem;
-      /* font-weight: 300; */
+      
       color: var(--gl-white);
       letter-spacing: 0.02em;
       margin-bottom: 14px;
@@ -77,7 +77,7 @@
       margin-bottom: 28px;
     }
 
-    /* Hero search */
+    
     .gl-faq-search-wrap {
       display: flex;
       justify-content: center;
@@ -114,7 +114,7 @@
       background: rgba(255,255,255,0.12);
     }
 
-    /* ══════════ CATEGORY TABS ══════════ */
+    
     .gl-faq-tabs {
       background: var(--gl-white);
       border-bottom: 1px solid var(--gl-border);
@@ -147,14 +147,14 @@
       font-weight: 600;
     }
 
-    /* ══════════ MAIN LAYOUT ══════════ */
+    
     .gl-faq-wrap {
       max-width: 860px;
       margin: 0 auto;
       padding: 52px 24px 80px;
     }
 
-    /* No-results message */
+    
     .gl-no-results {
       display: none;
       text-align: center;
@@ -169,7 +169,7 @@
       margin-bottom: 12px;
     }
 
-    /* ══════════ FAQ SECTION ══════════ */
+    
     .gl-faq-section {
       margin-bottom: 48px;
     }
@@ -205,7 +205,7 @@
       background: var(--gl-border);
     }
 
-    /* ══════════ ACCORDION ITEMS ══════════ */
+    
     .gl-faq-item {
       border-bottom: 1px solid var(--gl-border);
     }
@@ -295,7 +295,7 @@
       color: var(--gl-gold);
     }
 
-    /* ══════════ CONTACT STRIP ══════════ */
+    
     .gl-contact-strip {
       background: var(--gl-dark);
       margin-top: 64px;
@@ -367,7 +367,7 @@
       color: var(--gl-gold);
     }
 
-    /* ══════════ RESPONSIVE ══════════ */
+    
     @media (max-width: 640px) {
       .gl-faq-hero { padding: 40px 24px 36px; }
       .gl-hero-title { font-size: 1.8rem; }
@@ -380,7 +380,7 @@
 </head>
 <body>
 
-  <!-- ══════════ YOUR NAV GOES HERE ══════════ -->
+  
   <header>
       <nav
         class="navbar navbar-expand navbar-dark bg-transparent hover-bg-custom fixed-top"
@@ -645,9 +645,9 @@
       </div>
   </header>
 
-  <!-- ══════════ HERO ══════════ -->
+  
   <div class="gl-faq-hero">
-    <!-- <div class="gl-hero-eyebrow">Global Luxury — Help Centre</div> -->
+    
     <h1 class="gl-hero-title mt-5">Frequently Asked Questions</h1>
     <p class="gl-hero-sub">Everything you need to know about orders, delivery, and care</p>
     <div class="gl-faq-search-wrap">
@@ -658,18 +658,7 @@
     </div>
   </div>
 
-  <!-- ══════════ CATEGORY TABS ══════════ */
-  <div class="gl-faq-tabs" id="faqTabs">
-    <button class="gl-tab-btn active" onclick="filterCategory('all', this)">All</button>
-    <button class="gl-tab-btn" onclick="filterCategory('orders', this)">Orders</button>
-    <button class="gl-tab-btn" onclick="filterCategory('delivery', this)">Delivery</button>
-    <button class="gl-tab-btn" onclick="filterCategory('returns', this)">Returns</button>
-    <button class="gl-tab-btn" onclick="filterCategory('payment', this)">Payment</button>
-    <button class="gl-tab-btn" onclick="filterCategory('products', this)">Products & Care</button>
-    <button class="gl-tab-btn" onclick="filterCategory('authenticity', this)">Authenticity</button>
-  </div>
-
-  <!-- ══════════ FAQ BODY ══════════ -->
+  
   <div class="gl-faq-wrap">
 
     <div class="gl-no-results" id="noResults">
@@ -677,7 +666,7 @@
       No questions match your search. Try different words or <a href="https://wa.me/923456789012" style="color:var(--gl-gold);">contact us directly</a>.
     </div>
 
-    <!-- ── ORDERS ── -->
+    
     <div class="gl-faq-section" data-category="orders">
       <div class="gl-section-label">
         <span class="gl-section-label-icon"><i class="bi bi-bag"></i></span>
@@ -734,7 +723,7 @@
       </div>
     </div>
 
-    <!-- ── DELIVERY ── -->
+    
     <div class="gl-faq-section" data-category="delivery">
       <div class="gl-section-label">
         <span class="gl-section-label-icon"><i class="bi bi-truck"></i></span>
@@ -808,7 +797,7 @@
       </div>
     </div>
 
-    <!-- ── RETURNS ── -->
+    
     <div class="gl-faq-section" data-category="returns">
       <div class="gl-section-label">
         <span class="gl-section-label-icon"><i class="bi bi-arrow-counterclockwise"></i></span>
@@ -865,7 +854,7 @@
       </div>
     </div>
 
-    <!-- ── PAYMENT ── -->
+    
     <div class="gl-faq-section" data-category="payment">
       <div class="gl-section-label">
         <span class="gl-section-label-icon"><i class="bi bi-credit-card"></i></span>
@@ -928,7 +917,7 @@
       </div>
     </div>
 
-    <!-- ── PRODUCTS & CARE ── -->
+    
     <div class="gl-faq-section" data-category="products">
       <div class="gl-section-label">
         <span class="gl-section-label-icon"><i class="bi bi-handbag"></i></span>
@@ -1003,7 +992,7 @@
       </div>
     </div>
 
-    <!-- ── AUTHENTICITY ── -->
+    
     <div class="gl-faq-section" data-category="authenticity">
       <div class="gl-section-label">
         <span class="gl-section-label-icon"><i class="bi bi-patch-check"></i></span>
@@ -1048,7 +1037,7 @@
       </div>
     </div>
 
-    <!-- ══════════ CONTACT STRIP ══════════ -->
+    
     <div class="gl-contact-strip">
       <div class="gl-contact-eyebrow">Still have questions?</div>
       <div class="gl-contact-title">We're here to help</div>
@@ -1066,14 +1055,14 @@
       </div>
     </div>
 
-  </div><!-- /faq-wrap -->
+  </div>
 
-  <!-- ══════════ YOUR FOOTER GOES HERE ══════════ -->
+  
   <footer>
       <footer class="gl-footer">
     <div class="gl-footer-container">
         
-        <!-- Column 1: About -->
+        
         <div class="gl-footer-col">
             <h3>Global Luxury</h3>
             <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
@@ -1082,7 +1071,7 @@
             </div>
         </div>
 
-        <!-- Column 2: Info -->
+        
         <div class="gl-footer-col">
             <h3>Information</h3>
             <ul>
@@ -1094,7 +1083,7 @@
             </ul>
         </div>
 
-        <!-- Column 3: Customer Care -->
+        
         <div class="gl-footer-col">
             <h3>Customer Care</h3>
             <ul>
@@ -1105,7 +1094,7 @@
             </ul>
         </div>
 
-        <!-- Column 4: Newsletter -->
+        
         <div class="gl-footer-col">
             <h3>Join The Luxury Circle</h3>
             <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
@@ -1117,7 +1106,7 @@
 
     </div>
 
-    <!-- Bottom Bar -->
+    
     <div class="gl-footer-bottom">
         <div class="gl-footer-bottom-content">
             <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>
@@ -1137,11 +1126,11 @@
   <script src="Scripts/sidenav.js"></script>
 
   <script>
-    // ── Toggle individual FAQ item ──
+    
     function toggleFAQ(item) {
       const isOpen = item.classList.contains('open');
 
-      // Close all others in same section
+      
       item.closest('.gl-faq-section').querySelectorAll('.gl-faq-item').forEach(el => {
         el.classList.remove('open');
         el.querySelector('.gl-faq-q').setAttribute('aria-expanded', 'false');
@@ -1153,13 +1142,13 @@
       }
     }
 
-    // ── Category tab filter ──
+    
     function filterCategory(cat, btn) {
-      // Update active tab
+      
       document.querySelectorAll('.gl-tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // Clear search
+      
       document.getElementById('faqSearchInput').value = '';
 
       const sections = document.querySelectorAll('.gl-faq-section');
@@ -1174,11 +1163,11 @@
       document.getElementById('noResults').style.display = 'none';
     }
 
-    // ── Search ──
+    
     function searchFAQ(query) {
       const q = query.trim().toLowerCase();
 
-      // Reset tab UI
+      
       document.querySelectorAll('.gl-tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelector('.gl-tab-btn').classList.add('active');
 

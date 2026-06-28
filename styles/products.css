@@ -43,17 +43,16 @@
     box-shadow: -5px 5px 15px rgba(46, 204, 113, 0.3);
 }
 
-/* Responsive Viewport Tracker: Locks sidebar position on large screens only */
+
 @media (min-width: 992px) {
     .gl-sticky-sidebar-desktop {
-        position: -webkit-sticky; /* Legacy engine fallback */
+        position: -webkit-sticky; 
         position: sticky;
         
-        /* Sets the exact resting line beneath your global navbar menu */
+        
         top: 100px; 
         
-        /* Containment rule: prevents long brand filters lists from overflowing 
-           and getting cropped out on smaller laptop monitors */
+        
         max-height: calc(100vh - 140px);
         overflow-y: auto;
     }

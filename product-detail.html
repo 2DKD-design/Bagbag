@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Your existing stylesheets -->
+  
   <link rel="stylesheet" href="styles/Sidenav.css">
   <link rel="stylesheet" href="styles/SearchOverlay.css">
   <link rel="stylesheet" href="styles/Carousel.css">
@@ -22,7 +22,7 @@
 
 
   <style>
-    /* ══════════ TOKENS ══════════ */
+    
     :root {
       --gl-gold:       #b89a5e;
       --gl-gold-light: #d4b87a;
@@ -49,7 +49,7 @@
       color: var(--gl-ink);
     }
 
-    /* ── Breadcrumb ── */
+    
     .gl-breadcrumb {
       padding: 14px 40px;
       font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -71,14 +71,14 @@
     .gl-breadcrumb .sep { opacity: 0.4; }
     .gl-breadcrumb .current { color: var(--gl-ink); font-weight: 600; }
 
-    /* ── Main layout ── */
+    
     .gl-product-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: start;
     }
 
-    /* ══════════ LEFT: SCROLLABLE GALLERY ══════════ */
+    
     .gl-gallery {
       display: flex;
       flex-direction: row;
@@ -86,7 +86,7 @@
       border-right: 1px solid var(--gl-border);
     }
 
-    /* ── Sticky thumbnail strip ── */
+    
     .gl-thumbs {
       position: sticky;
       top: 0;
@@ -127,7 +127,7 @@
       opacity: 1;
     }
 
-    /* ── Stacked image column ── */
+    
     .gl-img-stack {
       flex: 1;
       display: flex;
@@ -175,7 +175,7 @@
     }
     .gl-stack-slide:hover .gl-zoom-hint { opacity: 1; }
 
-    /* ══════════ ZOOM LIGHTBOX ══════════ */
+    
     .gl-lightbox {
       position: fixed;
       inset: 0;
@@ -285,7 +285,7 @@
       white-space: nowrap;
     }
 
-    /* ══════════ RIGHT: INFO PANEL (sticky) ══════════ */
+    
     .gl-info-panel {
       position: sticky;
       top: 0;
@@ -296,7 +296,7 @@
       scrollbar-color: var(--gl-border) transparent;
     }
 
-    /* Brand & name */
+    
     .gl-brand {
       font-family: 'Helvetica Neue', Arial, sans-serif;
       font-size: 0.7rem;
@@ -323,7 +323,7 @@
       margin-bottom: 32px;
     }
 
-    /* Gold rule divider */
+    
     .gl-rule {
       width: 40px;
       height: 1.5px;
@@ -331,7 +331,7 @@
       margin-bottom: 28px;
     }
 
-    /* Description */
+    
     .gl-description {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 0.93rem;
@@ -340,7 +340,7 @@
       margin-bottom: 32px;
     }
 
-    /* ── CTA Buttons ── */
+    
     .gl-cta-group {
       display: flex;
       align-items: center;
@@ -412,7 +412,7 @@
     .gl-btn-wishlist.active { border-color: #c00; color: #c00; }
     .gl-btn-wishlist.active i { font-weight: 900; }
 
-    /* Cart add confirmation */
+    
     .gl-cart-confirm {
       font-family: 'Helvetica Neue', Arial, sans-serif;
       font-size: 0.72rem;
@@ -428,7 +428,7 @@
     }
     .gl-cart-confirm.show { opacity: 1; }
 
-    /* ── Details accordion ── */
+    
     .gl-accordion {
       border-top: 1px solid var(--gl-border);
       margin-bottom: 0;
@@ -493,7 +493,7 @@
       color: var(--gl-gold);
     }
 
-    /* ── Trust row ── */
+    
     .gl-trust-row {
       display: flex;
       gap: 0;
@@ -528,13 +528,13 @@
       margin-top: 2px;
     }
 
-    /* ══════════ RESPONSIVE ══════════ */
+    
     @media (max-width: 900px) {
       .gl-product-wrap {
         grid-template-columns: 1fr;
       }
       .gl-gallery {
-        /* On mobile: thumbs hide, images scroll horizontally */
+        
         flex-direction: column;
         border-right: none;
         border-bottom: 1px solid var(--gl-border);
@@ -553,7 +553,7 @@
         gap: 8px;
       }
       .gl-stack-slide {
-        aspect-ratio: 4 / 3;  /* wider on mobile */
+        aspect-ratio: 4 / 3;  
       }
       .gl-info-panel {
         position: static;
@@ -562,7 +562,7 @@
       }
       .gl-product-name { font-size: 1.55rem; }
       .gl-breadcrumb { padding: 12px 24px; }
-      /* Hide arrows on mobile, swipe instead */
+      
       .gl-lb-arrow { display: none; }
     }
 
@@ -576,8 +576,8 @@
 </head>
 <body>
 
-  <!-- ══════════ YOUR EXISTING NAV GOES HERE ══════════ -->
-  <!-- Include your nav partial / sidenav HTML here, same as index.html -->
+  
+  
    <header>
       <nav
         class="navbar navbar-expand navbar-dark bg-transparent hover-bg-custom"
@@ -842,23 +842,23 @@
       </div>
     </header>
 
-  <!-- ══════════ PRODUCT LAYOUT ══════════ -->
+  
   <div class="gl-product-wrap">
 
-    <!-- ── LEFT: SCROLLABLE IMAGE GALLERY ── -->
+    
     <div class="gl-gallery">
-      <!-- Sticky thumbnail strip (scroll-linked) -->
+      
       <div class="gl-thumbs" id="thumbStrip">
-        <!-- Populated by JS -->
+        
       </div>
 
-      <!-- Stacked full images (scroll to browse) -->
+      
       <div class="gl-img-stack" id="imgStack">
-        <!-- Populated by JS -->
+        
       </div>
     </div>
 
-    <!-- ── RIGHT: PRODUCT INFO ── -->
+    
     <div class="gl-info-panel">
 
       <div class="gl-brand" id="productBrand">Brand</div>
@@ -871,7 +871,7 @@
         Loading product description…
       </p>
 
-      <!-- CTA Buttons -->
+      
       <div class="gl-cta-group">
         <button class="gl-btn-primary" id="addToCartBtn" onclick="handleAddToCart()">
           Add to Cart
@@ -884,15 +884,15 @@
         </button>
       </div>
 
-      <!-- Subtle add-to-cart confirmation -->
+      
       <div class="gl-cart-confirm" id="cartConfirm">
         <i class="bi bi-check-circle"></i> Added to your cart
       </div>
 
-      <!-- ── ACCORDION SECTIONS ── -->
+      
       <div class="gl-accordion">
 
-        <!-- Details & Specifications -->
+        
         <div class="gl-acc-item open" id="acc-details">
           <button class="gl-acc-header" onclick="toggleAcc('acc-details')" aria-expanded="true">
             Details &amp; Specifications
@@ -901,14 +901,14 @@
           <div class="gl-acc-body">
             <div class="gl-acc-content">
               <ul id="productSpecs">
-                <!-- Populated by JS -->
+                
               </ul>
             </div>
           </div>
         </div>
 
 
-        <!-- Delivery & Returns -->
+        
         <div class="gl-acc-item" id="acc-delivery">
           <button class="gl-acc-header" onclick="toggleAcc('acc-delivery')" aria-expanded="false">
             Delivery &amp; Returns
@@ -927,9 +927,9 @@
           </div>
         </div>
 
-      </div><!-- /accordion -->
+      </div>
 
-      <!-- Trust strip -->
+      
       <div class="gl-trust-row">
         <div class="gl-trust-item">
           <i class="bi bi-patch-check"></i>
@@ -953,45 +953,45 @@
         </div>
       </div>
 
-    </div><!-- /info-panel -->
-  </div><!-- /product-wrap -->
+    </div>
+  </div>
 
-  <!-- ══════════ ZOOM LIGHTBOX ══════════ -->
+  
   <div class="gl-lightbox" id="glLightbox" role="dialog" aria-modal="true" aria-label="Image zoom viewer">
-    <!-- Close -->
+    
     <button class="gl-lb-close" onclick="closeLightbox()" aria-label="Close zoom view">
       <i class="bi bi-x-lg"></i>
     </button>
-    <!-- Arrows -->
+    
     <button class="gl-lb-arrow gl-lb-prev" onclick="lbNavigate(-1)" aria-label="Previous image">
       <i class="bi bi-chevron-left"></i>
     </button>
     <button class="gl-lb-arrow gl-lb-next" onclick="lbNavigate(1)" aria-label="Next image">
       <i class="bi bi-chevron-right"></i>
     </button>
-    <!-- Pan/zoom stage -->
+    
     <div class="gl-lb-stage" id="lbStage">
       <img class="gl-lb-img" id="lbImg" src="" alt="" onerror="this.src='Assets/logo/logoo.png'">
     </div>
-    <!-- Counter & tip -->
+    
     <div class="gl-lb-tip">Click to zoom · scroll to zoom · drag to pan</div>
     <div class="gl-lb-counter" id="lbCounter">1 / 1</div>
   </div>
 
-  <!-- ══════════ YOUR EXISTING CART SIDENAV ══════════ -->
-  <!-- Include your cart sidenav HTML from index.html here -->
+  
+  
 
-  <!-- ══════════ YOUR EXISTING FAVORITES SIDENAV ══════════ -->
-  <!-- Include your favorites sidenav HTML from index.html here -->
+  
+  
 
-  <!-- ══════════ YOUR EXISTING FOOTER ══════════ -->
-  <!-- Include your footer HTML here -->
+  
+  
 
   <footer>
       <footer class="gl-footer">
     <div class="gl-footer-container">
         
-        <!-- Column 1: About -->
+        
         <div class="gl-footer-col">
             <h3>Global Luxury</h3>
             <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
@@ -1000,7 +1000,7 @@
             </div>
         </div>
 
-        <!-- Column 2: Info -->
+        
         <div class="gl-footer-col">
             <h3>Information</h3>
             <ul>
@@ -1012,7 +1012,7 @@
             </ul>
         </div>
 
-        <!-- Column 3: Customer Care -->
+        
         <div class="gl-footer-col">
             <h3>Customer Care</h3>
             <ul>
@@ -1023,7 +1023,7 @@
             </ul>
         </div>
 
-        <!-- Column 4: Newsletter -->
+        
         <div class="gl-footer-col">
             <h3>Join The Luxury Circle</h3>
             <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
@@ -1035,7 +1035,7 @@
 
     </div>
 
-    <!-- Bottom Bar -->
+    
     <div class="gl-footer-bottom">
         <div class="gl-footer-bottom-content">
             <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>
@@ -1049,25 +1049,25 @@
 </footer>
   </footer>
 
-  <!-- ══════════ SCRIPTS ══════════ -->
+  
   <script src="Scripts/addToCart.js"></script>
   <script src="Scripts/favorites.js"></script>
 
   <script>
-    // ════════════════════════════════════════════
-    //  PRODUCT DATABASE
-    //  HOW TO ADD IMAGES:
-    //  Each product has an "images" array. The first image
-    //  is shown as the main image on page load.
-    //  Add your image paths like:
-    //    images: [
-    //      "Assets/Products/mk-pochette-front.png",
-    //      "Assets/Products/mk-pochette-side.png",
-    //      "Assets/Products/mk-pochette-interior.png"
-    //    ]
-    //  Use as many or as few images as you have.
-    //  If you only have 1 image, the thumbnail strip won't show.
-    // ════════════════════════════════════════════
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     const products = [
   { id: 1, name: "Ultra Light Nylon Cross Body bottle bag", brand: "Aodour", price: 6955, images: ["Assets/Products/1/O1CN01XN7Gkf1NhlRabNys9__2353591602-0-cib.webp","Assets/Products/1/993bedaf-f464-464c-9651-4f7915db44dd.webp","Assets/Products/1/5607b832-60d4-429e-9dff-42a00840bb16.webp","Assets/Products/1/d21e77df-1942-447c-b25e-69ec32654fa6.webp"], description: "A lightweight, functional bottle bag designed for convenience and versatility. Perfect for hands-free carrying during outdoor activities.", specs: ["Type: Bottle Bag / Crossbody", "Material: Nylon", "Unisex design", "Lightweight construction"] },
@@ -1168,7 +1168,7 @@
   { id: 96, name: "A tailor's son GG stripe cross bag", brand: "AK Galleria", price: 2200, images: ["Assets/Products/96/guccistripe1.webp","Assets/Products/96/guccistripe3.webp","Assets/Products/96/7u.webp","Assets/Products/96/GGSTRIPEMODELIMAGE.webp"], description: "Stripe design crossbody bag for everyday wear.", specs: ["Type: Crossbody", "Brand: AK Galleria", "Stripe", "Casual"] }
 ];
 
-    // ── Grab product ID from URL and match it against the catalog array ──
+    
     const urlParams = new URLSearchParams(window.location.search);
     const productId = parseInt(urlParams.get('id'), 10) || 1;
     const product = products.find(p => p.id === productId) || null;
@@ -1187,7 +1187,7 @@
       }
     }
 
-    // ── Render product ──
+    
     if (product) {
       document.title = `${product.name} | Global Luxury`;
       setText('breadcrumbName', product.name);
@@ -1225,7 +1225,7 @@
       }
     }
 
-    // ── Gallery builder: stacked scroll + scroll-linked thumbnails ──
+    
     function buildGallery(images, altText) {
       const thumbStrip = document.getElementById('thumbStrip');
       const imgStack   = document.getElementById('imgStack');
@@ -1234,13 +1234,13 @@
       thumbStrip.innerHTML = '';
       imgStack.innerHTML   = '';
 
-      // Only show thumb strip if more than 1 image
+      
       if (images.length <= 1) {
         thumbStrip.style.display = 'none';
       }
 
       images.forEach((src, i) => {
-        // ── Stacked slide ──
+        
         const slide = document.createElement('div');
         slide.className   = 'gl-stack-slide';
         slide.dataset.idx = i;
@@ -1256,7 +1256,7 @@
         slide.addEventListener('click', () => openLightbox(i));
         imgStack.appendChild(slide);
 
-        // ── Thumbnail ──
+        
         if (images.length > 1) {
           const thumb = document.createElement('div');
           thumb.className   = 'gl-thumb' + (i === 0 ? ' active' : '');
@@ -1267,7 +1267,7 @@
         }
       });
 
-      // ── IntersectionObserver: update active thumb as user scrolls ──
+      
       if (images.length > 1) {
         const observer = new IntersectionObserver(entries => {
           entries.forEach(entry => {
@@ -1276,7 +1276,7 @@
               document.querySelectorAll('.gl-thumb').forEach((t, i) => {
                 t.classList.toggle('active', i === idx);
               });
-              // Keep active thumb visible in strip
+              
               const activeThumb = thumbStrip.children[idx];
               if (activeThumb) {
                 activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
@@ -1289,7 +1289,7 @@
       }
     }
 
-    // Scroll gallery to a specific slide (called by thumbnail click)
+    
     function scrollToSlide(index) {
       const slides = document.querySelectorAll('.gl-stack-slide');
       if (slides[index]) {
@@ -1297,9 +1297,9 @@
       }
     }
 
-    // ════════════════════════════════════════════
-    //  LIGHTBOX — click to zoom, scroll/pinch, drag to pan
-    // ════════════════════════════════════════════
+    
+    
+    
     let lbImages    = [];
     let lbCurrent   = 0;
     let lbScale     = 1;
@@ -1349,7 +1349,7 @@
       stage.classList.remove('zoomed');
       counter.textContent = `${lbCurrent + 1} / ${lbImages.length}`;
 
-      // Hide arrows if only 1 image
+      
       document.querySelectorAll('.gl-lb-arrow').forEach(a => {
         a.style.display = lbImages.length > 1 ? '' : 'none';
       });
@@ -1366,15 +1366,15 @@
       requestAnimationFrame(() => img.classList.remove('no-transition'));
     }
 
-    // ── Click to zoom in/out ──
+    
     document.getElementById('lbStage').addEventListener('click', function(e) {
-      // Don't trigger if we just dragged
+      
       if (lbDragging) return;
       const img   = document.getElementById('lbImg');
       const stage = document.getElementById('lbStage');
 
       if (lbScale < 2) {
-        // Zoom in to click point
+        
         const rect = stage.getBoundingClientRect();
         const cx   = (e.clientX - rect.left - rect.width  / 2);
         const cy   = (e.clientY - rect.top  - rect.height / 2);
@@ -1389,7 +1389,7 @@
       applyLbTransform(img, false);
     });
 
-    // ── Mouse wheel zoom ──
+    
     document.getElementById('lbStage').addEventListener('wheel', function(e) {
       e.preventDefault();
       const img   = document.getElementById('lbImg');
@@ -1403,7 +1403,7 @@
       applyLbTransform(img, true);
     }, { passive: false });
 
-    // ── Mouse drag to pan ──
+    
     document.getElementById('lbStage').addEventListener('mousedown', function(e) {
       if (lbScale <= 1) return;
       lbDragging  = false;
@@ -1427,7 +1427,7 @@
       window.addEventListener('mouseup',   onUp);
     });
 
-    // ── Keyboard navigation ──
+    
     document.addEventListener('keydown', e => {
       const lb = document.getElementById('glLightbox');
       if (!lb.classList.contains('open')) return;
@@ -1436,12 +1436,12 @@
       if (e.key === 'ArrowLeft')  lbNavigate(-1);
     });
 
-    // ── Click backdrop to close ──
+    
     document.getElementById('glLightbox').addEventListener('click', function(e) {
       if (e.target === this) closeLightbox();
     });
 
-    // ── Accordion ──
+    
     function toggleAcc(id) {
       const item    = document.getElementById(id);
       const isOpen  = item.classList.contains('open');
@@ -1449,28 +1449,28 @@
       item.querySelector('.gl-acc-header').setAttribute('aria-expanded', String(!isOpen));
     }
 
-    // ── Add to Cart ──
+    
     function handleAddToCart() {
       if (!product) return;
       if (typeof addToCart === 'function') {
         addToCart(product.id, product.name, product.price);
       }
-      // Show brief confirmation
+      
       const msg = document.getElementById('cartConfirm');
       msg.classList.add('show');
       setTimeout(() => msg.classList.remove('show'), 2500);
     }
 
-    // ── Buy Now (add to cart then go to checkout) ──
+    
     function handleBuyNow() {
       if (!product) return;
       if (typeof addToCart === 'function') {
         addToCart(product.id, product.name, product.price);
       }
-      // Navigation happens via the href on the <a> tag
+      
     }
 
-    // ── Wishlist toggle ──
+    
     function handleWishlist(btn) {
       if (!product) return;
       if (typeof toggleFavorite === 'function') {

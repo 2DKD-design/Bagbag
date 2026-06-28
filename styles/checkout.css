@@ -1,6 +1,4 @@
-    /* =========================================
-       GLOBAL LUXURY — CHECKOUT PAGE STYLES
-       ========================================= */
+    
     :root {
       --gl-sage:       #8C907E;
       --gl-sage-dark:  #767a6a;
@@ -26,7 +24,7 @@
       overflow-x: hidden;
     }
 
-    /* ── HEADER ──────────────────────────────── */
+    
     .gl-checkout-header {
       background: var(--gl-white);
       border-bottom: 1px solid var(--gl-border);
@@ -64,7 +62,7 @@
 
     .gl-checkout-header .back-link:hover { color: var(--gl-sage-dark); }
 
-    /* ── BREADCRUMB STEPS ────────────────────── */
+    
     .gl-steps {
       display: flex;
       align-items: center;
@@ -104,7 +102,7 @@
       margin: 0 8px;
     }
 
-    /* ── MAIN LAYOUT ─────────────────────────── */
+    
     .gl-checkout-wrap {
       max-width: 1100px;
       margin: 0 auto;
@@ -115,7 +113,7 @@
       align-items: start;
     }
 
-    /* ── SECTION CARDS ───────────────────────── */
+    
     .gl-card {
       background: var(--gl-white);
       border: 1px solid var(--gl-border);
@@ -135,7 +133,7 @@
       border-bottom: 1px solid var(--gl-blush);
     }
 
-    /* ── FORM FIELDS ─────────────────────────── */
+    
     .gl-form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -186,7 +184,7 @@
     }
     .gl-form-group input.error + .error-msg { display: block; }
 
-    /* ── DELIVERY OPTIONS ─────────────────────── */
+    
     .gl-delivery-option {
       border: 1px solid var(--gl-border);
       border-radius: 5px;
@@ -239,7 +237,7 @@
     .gl-delivery-sub  { font-size: 0.74rem; color: var(--gl-muted); }
     .gl-delivery-price { font-size: 0.88rem; font-weight: 700; color: var(--gl-text); }
 
-    /* ── PAYMENT METHODS ─────────────────────── */
+    
     .gl-pay-option {
       border: 1px solid var(--gl-border);
       border-radius: 5px;
@@ -311,7 +309,7 @@
       border-top: 1px solid var(--gl-border);
     }
 
-    /* ── ORDER SUMMARY (Right) ───────────────── */
+    
     .gl-summary-sticky {
       position: sticky;
       top: 90px;
@@ -385,7 +383,7 @@
       display: block;
     }
 
-    /* Middle: name + qty controls */
+    
     .gl-item-meta {
       flex: 1;
       min-width: 0;
@@ -402,7 +400,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Inline qty controls */
+    
     .gl-qty-controls {
       display: flex;
       align-items: center;
@@ -442,7 +440,7 @@
       user-select: none;
     }
 
-    /* Right: price + remove */
+    
     .gl-item-right {
       display: flex;
       flex-direction: column;
@@ -471,7 +469,7 @@
 
     .gl-item-remove:hover { color: #c0392b; transform: scale(1.15); }
 
-    /* Promo code */
+    
     .gl-promo-area {
       padding: 14px 24px;
       border-top: 1px solid var(--gl-border);
@@ -512,7 +510,7 @@
     .gl-promo-msg.success { color: var(--gl-teal); }
     .gl-promo-msg.error   { color: #c0392b; }
 
-    /* Totals */
+    
     .gl-totals {
       padding: 16px 24px;
       border-top: 1px solid var(--gl-border);
@@ -539,7 +537,7 @@
 
     .gl-shipping-free { color: var(--gl-teal); font-weight: 600; }
 
-    /* Place Order CTA */
+    
     .gl-place-order-btn {
       display: block;
       width: 100%;
@@ -564,7 +562,7 @@
       cursor: not-allowed;
     }
 
-    /* ── TRUST BADGES ─────────────────────────── */
+    
     .gl-trust-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -590,7 +588,7 @@
     .gl-trust-badge .tb-title { font-size: 0.74rem; font-weight: 700; color: var(--gl-text); letter-spacing: 0.4px; }
     .gl-trust-badge .tb-sub   { font-size: 0.68rem; color: var(--gl-muted); margin-top: 2px; }
 
-    /* ── EMPTY CART STATE ────────────────────── */
+    
     .gl-empty-checkout {
       text-align: center;
       padding: 60px 20px;
@@ -615,7 +613,7 @@
 
     .gl-back-shop-btn:hover { background: var(--gl-sage-dark); color: white; }
 
-    /* ── SUCCESS OVERLAY ─────────────────────── */
+    
     .gl-success-overlay {
       display: none;
       position: fixed;
@@ -681,35 +679,33 @@
 
     .gl-continue-btn:hover { background: var(--gl-sage); color: white; }
 
-    /* ── STICKY MOBILE BOTTOM BAR ───────────────
-       Hidden on desktop, shown on tablet/mobile   */
+    
     .gl-mobile-cta {
       display: none;
     }
 
     @media (max-width: 900px) {
-      /* ── Single-column layout ── */
+      
       .gl-checkout-wrap {
         grid-template-columns: 1fr;
         gap: 20px;
-        padding: 16px 14px 100px; /* bottom padding reserves space for sticky bar */
+        padding: 16px 14px 100px; 
       }
 
-      /* Summary on top, form below */
+      
       .gl-summary-col { order: -1; }
       .gl-summary-sticky { position: static; }
 
-      /* Hide the Place Order button inside the card on mobile —
-         the sticky bottom bar takes over */
+      
       .gl-place-order-btn { display: none; }
 
-      /* Reduce summary item list height so it doesn't eat the whole screen */
+      
       .gl-items-list { max-height: 220px; }
 
-      /* Trust badges: 3 across still fits on tablet */
+      
       .gl-trust-strip { grid-template-columns: repeat(3, 1fr); }
 
-      /* ── Sticky bottom CTA bar ── */
+      
       .gl-mobile-cta {
         display: flex;
         align-items: center;
@@ -764,7 +760,7 @@
       .gl-mobile-cta-btn:disabled { background: #bbb; cursor: not-allowed; }
     }
 
-    /* ── Common phone widths (iPhone / Samsung) ─────────────── */
+    
     @media (max-width: 430px) {
       .gl-checkout-wrap {
         padding: 12px 12px 108px;
@@ -812,7 +808,7 @@
       }
     }
 
-    /* ── Samsung-style phone viewport (≈ 360px wide) ─────────────── */
+    
     @media (max-width: 390px) {
       .gl-checkout-wrap {
         padding: 8px 8px 112px;
@@ -872,9 +868,9 @@
       }
     }
 
-    /* ── Small phones (≤ 600px) ─────────────── */
+    
     @media (max-width: 600px) {
-      /* Header */
+      
       .gl-checkout-header {
         padding: 10px 14px;
       }
@@ -882,33 +878,33 @@
       .gl-checkout-header .logo-area img:first-child { height: 34px; }
       .gl-checkout-header .logo-area img:last-child  { height: 26px; }
 
-      .gl-checkout-header .back-link span { display: none; } /* icon only */
+      .gl-checkout-header .back-link span { display: none; } 
       .gl-checkout-header .back-link {
-        font-size: 1.1rem; /* bigger icon tap target */
+        font-size: 1.1rem; 
       }
 
-      /* Steps: show numbers only, no text */
+      
       .gl-steps { padding: 12px 10px 6px; }
       .gl-step span:not(.gl-step-num) { display: none; }
       .gl-step-divider { width: 20px; margin: 0 4px; }
 
-      /* Cards */
+      
       .gl-card {
         padding: 18px 14px;
         margin-bottom: 14px;
       }
 
-      /* Form */
+      
       .gl-form-row { grid-template-columns: 1fr; gap: 0; }
 
       .gl-form-group input,
       .gl-form-group select,
       .gl-form-group textarea {
-        font-size: 16px; /* prevents iOS zoom on focus */
+        font-size: 16px; 
         padding: 12px 12px;
       }
 
-      /* Qty buttons — bigger touch targets on mobile */
+      
       .gl-qty-btn {
         width: 34px;
         height: 34px;
@@ -921,16 +917,16 @@
         font-size: 0.88rem;
       }
 
-      /* Item row: tighter on very small screens */
+      
       .gl-item-img { width: 50px; height: 50px; }
 
-      /* Summary card internals */
+      
       .gl-items-list   { padding: 12px 14px; max-height: 200px; }
       .gl-promo-area   { padding: 12px 14px; }
       .gl-totals       { padding: 14px 14px; }
       .gl-summary-header { padding: 14px 14px; }
 
-      /* Trust badges: 3 small badges in a row */
+      
       .gl-trust-strip {
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
@@ -942,11 +938,11 @@
       .gl-trust-badge .tb-title { font-size: 0.65rem; }
       .gl-trust-badge .tb-sub   { display: none; }
 
-      /* Delivery + payment option rows */
+      
       .gl-delivery-option,
       .gl-pay-option { padding: 12px 12px; }
 
-      /* Success overlay buttons stack */
+      
       .gl-success-overlay { padding: 30px 20px; }
       .gl-success-overlay h2 { font-size: 1.3rem; }
 
@@ -958,7 +954,7 @@
       }
     }
 
-    /* ── Tiny phones (≤ 380px) ──────────────── */
+    
     @media (max-width: 380px) {
       .gl-checkout-wrap { padding: 10px 10px 100px; }
 

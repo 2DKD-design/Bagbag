@@ -1,6 +1,6 @@
-/* Footer Styles */
+
 .gl-footer {
-    background-color: #decfcf; /* Minimal Black */
+    background-color: #decfcf; 
     color: #cccccc;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -58,7 +58,7 @@
     color: #ffffff;
 }
 
-/* COD Badge Style */
+
 .gl-cod-badge {
     display: inline-block;
     margin-top: 15px;
@@ -72,7 +72,7 @@
     letter-spacing: 1px;
 }
 
-/* Newsletter Form */
+
 .gl-newsletter-form {
     display: flex;
     margin-top: 15px;
@@ -106,7 +106,7 @@
     background-color: #646464;
 }
 
-/* Footer Bottom Bar */
+
 .gl-footer-bottom {
     border-top: 1px solid #9f9797;
     margin-top: 40px;
@@ -131,7 +131,7 @@
     font-weight: 500;
 }
 
-/* Responsive design for Mobile Screen */
+
 @media (max-width: 768px) {
     .gl-footer-container {
         flex-direction: column;

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Link your existing stylesheets -->
+  
   <link rel="stylesheet" href="styles/addToCart.css">
   <link rel="stylesheet" href="styles/favorites.css">
   <link rel="stylesheet" href="styles/nav.css">
@@ -18,7 +18,7 @@
 </head>
 <body>
 
-  <!-- ══════════ HEADER ══════════ -->
+  
   <header class="gl-checkout-header">
     <a href="index.html" class="logo-area">
       <img src="Assets/logo/logoo.png" alt="Global Luxury Logo" onerror="this.style.display='none'">
@@ -29,7 +29,7 @@
     </a>
   </header>
 
-  <!-- ══════════ STEP INDICATOR ══════════ -->
+  
   <div class="gl-steps">
     <div class="gl-step done">
       <span class="gl-step-num"><i class="bi bi-check" style="font-size:0.65rem;"></i></span>
@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <!-- ══════════ EMPTY CART STATE ══════════ -->
+  
   <div class="gl-empty-checkout" id="emptyCartState" style="display:none;">
     <i class="bi bi-bag"></i>
     <h3>Your cart is empty</h3>
@@ -60,13 +60,13 @@
     <a href="index.html" class="gl-back-shop-btn">Back to Shop</a>
   </div>
 
-  <!-- ══════════ MAIN CHECKOUT LAYOUT GIFT CODES = LUXURY10, WELCOME15, VIP20 ══════════ -->
+  
   <div class="gl-checkout-wrap" id="checkoutWrap">
 
-    <!-- ── LEFT: FORM COLUMN ── -->
+    
     <div class="gl-form-col">
 
-      <!-- Contact Information -->
+      
       <div class="gl-card">
         <div class="gl-card-title">Contact Information</div>
 
@@ -95,7 +95,7 @@
         </div>
       </div>
 
-      <!-- Delivery Address -->
+      
       <div class="gl-card">
         <div class="gl-card-title">Delivery Address</div>
 
@@ -136,7 +136,7 @@
         </div>
       </div>
 
-      <!-- Delivery Method -->
+      
       <div class="gl-card">
         <div class="gl-card-title">Delivery Method</div>
 
@@ -165,11 +165,11 @@
         </div>
       </div>
 
-      <!-- Payment Method -->
+      
       <div class="gl-card">
         <div class="gl-card-title">Payment Method</div>
 
-        <!-- COD -->
+        
         <div class="gl-pay-option selected" id="payCOD" onclick="selectPayment('cod')">
           <span class="gl-pay-radio"></span>
           <span class="gl-pay-icon-placeholder">COD</span>
@@ -179,7 +179,7 @@
           </div>
         </div>
 
-        <!-- JazzCash -->
+        
         <div class="gl-pay-option" id="payJazz" onclick="selectPayment('jazzcash')">
           <span class="gl-pay-radio"></span>
           <span class="gl-pay-icon-placeholder" style="background:#c8102e;color:white;font-size:0.55rem;">JAZZ</span>
@@ -189,7 +189,7 @@
           </div>
         </div>
 
-        <!-- Easypaisa -->
+        
         <div class="gl-pay-option" id="payEasy" onclick="selectPayment('easypaisa')">
           <span class="gl-pay-radio"></span>
           <span class="gl-pay-icon-placeholder" style="background:#4caf50;color:white;font-size:0.52rem;">EASY</span>
@@ -199,7 +199,7 @@
           </div>
         </div>
 
-        <!-- Online fields (shown for JazzCash / Easypaisa) -->
+        
         <div class="gl-pay-online-fields" id="onlinePayFields">
           <div class="gl-form-group" style="margin-bottom:0;">
             <label id="onlinePayLabel">JazzCash Account Number</label>
@@ -211,9 +211,9 @@
         </div>
       </div>
 
-    </div><!-- /form-col -->
+    </div>
 
-    <!-- ── RIGHT: ORDER SUMMARY COLUMN ── -->
+    
     <div class="gl-summary-col">
       <div class="gl-summary-sticky">
 
@@ -226,19 +226,19 @@
           </div>
 
           <div id="summaryBody">
-            <!-- Items List -->
+            
             <div class="gl-items-list" id="checkoutItemsList">
-              <!-- Populated by JS -->
+              
             </div>
 
-            <!-- Promo Code -->
+            
             <div class="gl-promo-area">
               <input type="text" id="promoInput" placeholder="Gift card or promo code" />
               <button class="gl-promo-apply" onclick="applyPromo()">Apply</button>
             </div>
             <div class="gl-promo-msg" id="promoMsg"></div>
 
-            <!-- Totals -->
+            
             <div class="gl-totals">
               <div class="gl-total-row">
                 <span>Subtotal (<span id="itemCountLabel">0</span> items)</span>
@@ -257,14 +257,14 @@
                 <span id="summaryTotal">Rs. 0</span>
               </div>
             </div>
-          </div><!-- /summaryBody -->
+          </div>
 
           <button class="gl-place-order-btn" onclick="placeOrder()" id="placeOrderBtn">
             Place Order &nbsp;<i class="bi bi-lock-fill" style="font-size:0.8rem;opacity:0.7;"></i>
           </button>
         </div>
 
-        <!-- Trust Badges -->
+        
         <div class="gl-trust-strip">
           <div class="gl-trust-badge">
             <i class="bi bi-truck"></i>
@@ -284,11 +284,11 @@
         </div>
 
       </div>
-    </div><!-- /summary-col -->
+    </div>
 
-  </div><!-- /checkout-wrap -->
+  </div>
 
-  <!-- ══════════ SUCCESS OVERLAY ══════════ -->
+  
   <div class="gl-success-overlay" id="successOverlay">
     <div class="gl-success-icon">
       <i class="bi bi-check-lg"></i>
@@ -308,7 +308,7 @@
 
   <script src="Scripts/checkout.js"></script>
 
-  <!-- ══════════ MOBILE STICKY BOTTOM BAR ══════════ -->
+  
   <div class="gl-mobile-cta" id="mobileCta">
     <div class="gl-mobile-cta-total">
       <span class="gl-mobile-cta-label">Total</span>
@@ -323,7 +323,7 @@
       <footer class="gl-footer">
     <div class="gl-footer-container">
         
-        <!-- Column 1: About -->
+        
         <div class="gl-footer-col">
             <h3>Global Luxury</h3>
             <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
@@ -332,7 +332,7 @@
             </div>
         </div>
 
-        <!-- Column 2: Info -->
+        
         <div class="gl-footer-col">
             <h3>Information</h3>
             <ul>
@@ -344,7 +344,7 @@
             </ul>
         </div>
 
-        <!-- Column 3: Customer Care -->
+        
         <div class="gl-footer-col">
             <h3>Customer Care</h3>
             <ul>
@@ -355,7 +355,7 @@
             </ul>
         </div>
 
-        <!-- Column 4: Newsletter -->
+        
         <div class="gl-footer-col">
             <h3>Join The Luxury Circle</h3>
             <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
@@ -367,7 +367,7 @@
 
     </div>
 
-    <!-- Bottom Bar -->
+    
     <div class="gl-footer-bottom">
         <div class="gl-footer-bottom-content">
             <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>

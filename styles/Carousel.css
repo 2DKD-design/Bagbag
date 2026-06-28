@@ -1,6 +1,4 @@
-/* #carouselId .carousel-item {
-  transition: none !important;
-} */
+
 * {
       margin: 0;
       padding: 0;
@@ -25,7 +23,7 @@ body {
       object-fit: cover;
       overflow: hidden;
     }
-/* Caption Layer Positioning */
+
 .caption-container {
   position: absolute;
   top: 0;
@@ -47,10 +45,7 @@ body {
   padding-left: 10vw;
 }
 
-/* Captions are completely independent of sliding/staggered transitions.
-    They rely directly on the parent's opacity state to appear instantly 
-    without any transform motions or delay offsets.
-*/
+
 .caption-block .sub-tag,
 .caption-block .main-title,
 .caption-block .description,
@@ -59,7 +54,7 @@ body {
   transition: none;
 }
 
-/* Typography Details */
+
 .caption-block .sub-tag {
   display: block;
   font-size: 2rem;
@@ -103,7 +98,7 @@ body {
   color: #000000;
 }
 
-/* Quick Responsive Tweak for Mobile Screen views */
+
 @media (max-width: 768px) {
   .caption-block .main-title { font-size: 3.2rem; }
   .caption-container { padding-left: 5%; }

@@ -1,8 +1,8 @@
-    // ═══════════════════════════════════════════
-    //  CHECKOUT PAGE — JAVASCRIPT
-    // ═══════════════════════════════════════════
+    
+    
+    
 
-    // ── State ──
+    
     let cartItems     = JSON.parse(localStorage.getItem("cartItems")) || [];
     let shippingCost  = 0;
     let discountAmt   = 0;
@@ -15,7 +15,7 @@
       "VIP20": 0.20
     };
 
-    // ── Init ──
+    
     document.addEventListener("DOMContentLoaded", () => {
       if (cartItems.length === 0) {
         document.getElementById("emptyCartState").style.display = "block";
@@ -26,7 +26,7 @@
       }
     });
 
-    // ── Render items in summary (with qty controls + remove) ──
+    
     function renderCheckoutItems() {
       const list = document.getElementById("checkoutItemsList");
       list.innerHTML = "";
@@ -67,7 +67,7 @@
       });
     }
 
-    // ── Adjust quantity (+ or –) ──
+    
     function checkoutQtyChange(id, delta) {
       const item = cartItems.find(i => i.id === id);
       if (!item) return;
@@ -79,7 +79,7 @@
         return;
       }
 
-      // Patch the DOM in-place (no full re-render flicker)
+      
       const qtyEl   = document.getElementById(`qty-val-${id}`);
       const priceEl = document.getElementById(`item-price-${id}`);
       if (qtyEl)   qtyEl.textContent   = item.quantity;
@@ -88,11 +88,11 @@
       saveAndRefresh();
     }
 
-    // ── Remove item ──
+    
     function checkoutRemoveItem(id) {
       cartItems = cartItems.filter(i => i.id !== id);
 
-      // Animate row out then remove it
+      
       const row = document.getElementById(`checkout-item-${id}`);
       if (row) {
         row.style.transition = "opacity 0.2s, transform 0.2s";
@@ -110,11 +110,11 @@
       saveAndRefresh();
     }
 
-    // ── Persist to localStorage and refresh totals ──
+    
     function saveAndRefresh() {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-      // Recalculate discount against new subtotal
+      
       const code = document.getElementById("promoInput").value.trim().toUpperCase();
       if (PROMOS[code]) {
         discountAmt = Math.round(getSubtotal() * PROMOS[code]);
@@ -125,7 +125,7 @@
       updateTotals();
     }
 
-    // ── Totals ──
+    
     function getSubtotal() {
       return cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0);
     }
@@ -142,11 +142,11 @@
       document.getElementById("summarySubtotal").textContent = `Rs. ${sub.toLocaleString()}`;
       document.getElementById("summaryTotal").textContent    = `Rs. ${Math.max(0, total).toLocaleString()}`;
 
-      // Keep mobile sticky bar in sync
+      
       const mobileAmt = document.getElementById("mobileCtaTotal");
       if (mobileAmt) mobileAmt.textContent = `Rs. ${Math.max(0, total).toLocaleString()}`;
 
-      // Shipping
+      
       const shipEl = document.getElementById("summaryShipping");
       if (shippingCost === 0) {
         shipEl.textContent  = "Free";
@@ -156,7 +156,7 @@
         shipEl.className    = "";
       }
 
-      // Discount
+      
       const discRow = document.getElementById("discountRow");
       if (discountAmt > 0) {
         discRow.style.display = "flex";
@@ -166,7 +166,7 @@
       }
     }
 
-    // ── Delivery selection ──
+    
     function selectDelivery(type) {
       document.getElementById("deliveryStandard").classList.remove("selected");
       document.getElementById("deliveryExpress").classList.remove("selected");
@@ -181,7 +181,7 @@
       updateTotals();
     }
 
-    // ── Payment selection ──
+    
     function selectPayment(method) {
       ["payCOD", "payJazz", "payEasy"].forEach(id =>
         document.getElementById(id).classList.remove("selected")
@@ -206,7 +206,7 @@
       }
     }
 
-    // ── Promo code ──
+    
     function applyPromo() {
       const code    = document.getElementById("promoInput").value.trim().toUpperCase();
       const msgEl   = document.getElementById("promoMsg");
@@ -227,14 +227,14 @@
       }
     }
 
-    // ── Summary toggle (mobile) ──
+    
     function toggleSummary() {
       summaryOpen = !summaryOpen;
       document.getElementById("summaryBody").style.display = summaryOpen ? "block" : "none";
       document.getElementById("summaryToggleIcon").className = summaryOpen ? "bi bi-chevron-up" : "bi bi-chevron-down";
     }
 
-    // ── Validation ──
+    
     function validateForm() {
       let valid = true;
 
@@ -260,16 +260,16 @@
       return valid;
     }
 
-    // Remove error on input
+    
     ["firstName","lastName","phone","address","city"].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener("input", () => el.classList.remove("error"));
     });
 
-    // ── Place Order ──
+    
     function placeOrder() {
       if (!validateForm()) {
-        // Scroll to first error
+        
         const firstError = document.querySelector("input.error, select.error");
         if (firstError) firstError.scrollIntoView({ behavior: "smooth", block: "center" });
         return;
@@ -280,15 +280,15 @@
 
       [btn, mobileBtn].forEach(b => { if (b) { b.disabled = true; b.textContent = "Placing Order…"; } });
 
-      // Simulate order processing
+      
       setTimeout(() => {
         const orderId = "GL-" + Math.floor(100000 + Math.random() * 900000);
         document.getElementById("successOrderId").textContent = `Order #${orderId}`;
 
-        // Clear cart from localStorage
+        
         localStorage.removeItem("cartItems");
 
-        // Show success overlay
+        
         document.getElementById("successOverlay").classList.add("show");
 
         [btn, mobileBtn].forEach(b => { if (b) { b.disabled = false; b.textContent = "Place Order"; } });

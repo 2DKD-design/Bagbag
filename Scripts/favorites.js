@@ -1,4 +1,4 @@
-// ====================== FIXED FAVORITES SYSTEM ======================
+
 let favoriteItems = JSON.parse(localStorage.getItem("favoriteItems")) || [];
 
 const FAV_SIDEBAR_WIDTH = "350px";
@@ -37,7 +37,7 @@ function updateNavbarHeartColor() {
   }
 }
 
-// Main function used by all buttons
+
 function toggleFavorite(product, buttonElement) {
   const id = parseInt(product.id);
   const existingIndex = favoriteItems.findIndex(item => item.id === id);
@@ -70,18 +70,18 @@ function removeSingleFavorite(id) {
   syncProductCardButtons();
 }
 
-// Add this function to your favorites.js
+
 function addAllFavoritesToCart() {
   if (favoriteItems.length === 0) return;
 
-  // Add all to cart
+  
   favoriteItems.forEach(item => {
     if (typeof addToCart === "function") {
       addToCart(item.id, item.name, item.price);
     }
   });
 
-  // Clear favorites
+  
   favoriteItems = [];
   saveFavorites();
   updateNavbarHeartColor();
@@ -89,10 +89,10 @@ function addAllFavoritesToCart() {
   syncProductCardButtons();
 }
 
-// Update the renderFavorites function to use minimalist icons
+
 function renderFavorites() {
   const container = document.getElementById("favItemsContainer");
-  const footer = document.getElementById("favFooterArea"); // New footer ID
+  const footer = document.getElementById("favFooterArea"); 
   if (!container) return;
 
   container.innerHTML = "";
@@ -137,7 +137,7 @@ function renderFavorites() {
   });
 }
 
-// Add single favorite item to cart
+
 function addFavoriteToCart(id) {
   const item = favoriteItems.find(fav => fav.id === id);
   if (!item) return;
@@ -153,7 +153,7 @@ function addFavoriteToCart(id) {
   syncProductCardButtons();
 }
 
-// Add ALL favorites to cart
+
 function addAllFavoritesToCart() {
   if (favoriteItems.length === 0) return;
 
@@ -191,7 +191,7 @@ function syncProductCardButtons() {
   });
 }
 
-// Initialize
+
 document.addEventListener("DOMContentLoaded", () => {
   updateNavbarHeartColor();
   syncProductCardButtons();

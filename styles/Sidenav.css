@@ -1,22 +1,22 @@
 
-/* The side navigation menu */
+
       .sidenav {
-        height: 100%; /* 100% Full-height */
-        width: 0; /* 0 width - change this with JavaScript */
-        position: fixed; /* Stay in place */
-        pointer-events: auto; /* Mouse ignores the overlay */
-        z-index: 9997; /* Sit on top */
+        height: 100%; 
+        width: 0; 
+        position: fixed; 
+        pointer-events: auto; 
+        z-index: 9997; 
         left: 0;
-        top: 0; /* Stay on top */
-        top: 0; /* Stay at the top */
+        top: 0; 
+        top: 0; 
         left: 0;
-        background-color: white; /* Black*/
-        overflow-x: hidden; /* Disable horizontal scroll */
-        padding-top: 60px; /* Place content 60px from the top */
-        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+        background-color: white; 
+        overflow-x: hidden; 
+        padding-top: 60px; 
+        transition: 0.5s; 
       }
 
-      /* The navigation menu links */
+      
       .sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -26,12 +26,12 @@
         transition: 0.3s;
       }
 
-      /* When you mouse over the navigation links, change their color */
+      
       .sidenav a:hover {
         color: #999999;
       }
 
-      /* Position and style the close button (top right corner) */
+      
       .sidenav .closebtn {
         position: absolute;
         top: 0;
@@ -40,38 +40,38 @@
         margin-left: 50px;
       }
 
-      /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+      
       #main {
         transition: margin-left .5s;
         padding: 20px;
       }
 
-      /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+      
       @media screen and (max-height: 450px) {
         .sidenav {padding-top: 15px;}
         .sidenav a {font-size: 18px;}
       }
 
-      /* The Secondary side navigation menu */
+      
       .secondary-sidenav {
         height: 100%;
-        width: 0; /* Starts hidden */
+        width: 0; 
         position: fixed;
-        z-index: 9996; /* Just below main sidenav so it slides out from underneath */
-        left: 0; /* Starts at 0, JavaScript will push it or reveal it */
+        z-index: 9996; 
+        left: 0; 
         top: 0;
-        background-color: #f1f1f1; /* Off-white to distinguish from primary */
+        background-color: #f1f1f1; 
         overflow-x: hidden;
         padding-top: 60px;
-        transition: 0.5s; /* Smooth slide out matching your primary nav */
-        /* border-left: 1px solid #ddd; Subtle separation line */
+        transition: 0.5s; 
+        
       }
 
-      /* Secondary menu links */
+      
       .secondary-sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
-        font-size: 20px; /* Slightly smaller than primary */
+        font-size: 20px; 
         color: black;
         display: block;
         transition: 0.3s;
@@ -81,30 +81,30 @@
         color: #999999;
       }
 
-      /* Secondary close button */
+      
       .secondary-sidenav .closebtn {
         position: absolute;
         top: 0;
         right: 25px;
         font-size: 36px;
       }
-      /* Responsive adjustments for smaller screens */
+      
 @media screen and (max-width: 768px) {
-  /* Make primary nav wider/full screen on mobile */
+  
   .sidenav {
     width: 0;
     max-width: 100%;
   }
 
-  /* Make secondary nav stack directly over the primary one */
+  
   .secondary-sidenav {
     width: 0;
     max-width: 100%;
-    left: 0 !important; /* Forces it to start from the left edge, replacing primary view */
-    z-index: 9998; /* Sit on top of the primary nav */
+    left: 0 !important; 
+    z-index: 9998; 
   }
 
-  /* Styling for the back button */
+  
   .secondary-sidenav .backbtn {
     display: inline-block;
     padding: 15px 8px 0px 32px;
@@ -114,10 +114,10 @@
   }
 }
 
-/* Desktop setting for back button */
+
 @media screen and (min-width: 769px) {
   .secondary-sidenav .backbtn {
-    display: none; /* Hide back button on desktop since they sit side-by-side */
+    display: none; 
   }
 }
 

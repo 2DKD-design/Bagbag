@@ -1,25 +1,25 @@
-/* Open Search Overlay */
+
 function openSearch() {
   document.getElementById("myNav").style.height = "100%";
-  // Automatically focuses the cursor on your search box when it slides open
+  
   setTimeout(() => {
     document.getElementById("overlay-search-input")?.focus();
   }, 300);
 }
 
-/* Close Search Overlay */
+
 function closeSearch() {
   document.getElementById("myNav").style.height = "0%";
 }
 
-// Keep a variable to store your initial aesthetic template structure
+
 let defaultOverlayContent = "";
 
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("overlay-search-input");
   const resultsContainer = document.getElementById("search-results-grid");
   
-  // Save the visual layout structure exactly as it is on page load
+  
   if (resultsContainer) {
     defaultOverlayContent = resultsContainer.innerHTML;
   }
@@ -45,13 +45,13 @@ function executeOverlaySearch(keyword) {
   const resultsContainer = document.getElementById("search-results-grid");
   if (!resultsContainer) return;
 
-  // FIX: If the user clears the search box, put the original visual look back instantly!
+  
   if (keyword === "") {
     resultsContainer.innerHTML = defaultOverlayContent;
     return;
   }
 
-  // Clear container to draw filter matches
+  
   resultsContainer.innerHTML = "";
 
   const activeCatalog = typeof productsData !== "undefined" ? productsData : [];
@@ -73,7 +73,7 @@ function executeOverlaySearch(keyword) {
     return;
   }
 
-  // Draw cards matching layout design
+  
   matches.forEach(product => {
     const displayPrice = product.price ? `Rs. ${product.price}` : "Price Upon Request";
     const safeNumPrice = parseFloat(product.price.toString().replace(/,/g, '')) || 0;

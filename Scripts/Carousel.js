@@ -1,22 +1,22 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//       const slides = document.querySelectorAll(".hub-slide");
-//       let currentIndex = 0;
-//       const displayDuration = 4000; // Rotates every 5 seconds
 
-//       function advanceSlide() {
-//         // Clear active class from the current slide
-//         slides[currentIndex].classList.remove("active");
 
-//         // Move to next slide layout index position
-//         currentIndex = (currentIndex + 1) % slides.length;
 
-//         // Apply active class to the newly targeted slide index
-//         slides[currentIndex].classList.add("active");
-//       }
 
-//       // Initialize automated seamless loop cycle
-//       setInterval(advanceSlide, displayDuration);
-//     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     $(document).ready(function(){
         new Typed('.text-animate', {

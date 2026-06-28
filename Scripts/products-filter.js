@@ -1,4 +1,4 @@
-// 1. UPDATED CATALOG DATA ARRAY FOR ALL 96 PRODUCTS
+
 const productsData = [
   { id: 1, name: "Ultra Light Nylon Cross Body bottle bag", gender: "Unisex", type: "Bottle Bag / Crossbody", brand: "Aodour", price: "6,955", image: "Assets/Products/product-1.png" },
   { id: 2, name: "Men's retro leather large capacity backpack", gender: "Men", type: "Backpack", brand: "Aodour", price: "7,169", image: "Assets/Products/product-2.png" },
@@ -98,24 +98,24 @@ const productsData = [
   { id: 96, name: "A tailor's son GG stripe cross bag", gender: "Men", type: "Crossbody Bag", brand: "AK Galleria", price: "2,200", image: "Assets/Products/product-96.png" }
 ];
 
-// 2. LIFECYCLE LISTENERS AND RE-RENDER TRIGGERS
-// =========================================================================
-// =========================================================================
-// GLOBAL FILTER ENGINE PIPELINE WITH INTEGRATED FAVORITES & GENDER MUTATION
-// =========================================================================
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Bind dynamic click listener onto all sidebar inputs
+  
   document.querySelectorAll(".filter-checkbox").forEach(input => {
     input.addEventListener("change", renderFilteredProducts);
   });
 
-  // Check URL params if a customer arrived via a SideNav action link
+  
   applyUrlQueryFilters();
 
-  // Initial gallery view draw invocation
+  
   renderFilteredProducts();
 
-  // Listen to product sorting rule adjustments
+  
   const sortDropdown = document.getElementById("product-sort");
   if (sortDropdown) {
     sortDropdown.addEventListener("change", renderFilteredProducts);
@@ -128,16 +128,16 @@ function renderFilteredProducts() {
   const counterLabel = document.getElementById("product-count");
   const currentSortValue = document.getElementById("product-sort")?.value || "default";
   
-  // Aggregate checked values by filter type categories
+  
   const activeFilters = {
     gender: Array.from(document.querySelectorAll('.filter-checkbox[data-filter-type="gender"]:checked')).map(el => el.value),
     type: Array.from(document.querySelectorAll('.filter-checkbox[data-filter-type="type"]:checked')).map(el => el.value),
     brand: Array.from(document.querySelectorAll('.filter-checkbox[data-filter-type="brand"]:checked')).map(el => el.value)
   };
 
-  // =========================================================================
-  // DYNAMIC SIDEBAR VISIBILITY MUTATION ENGINE
-  // =========================================================================
+  
+  
+  
   const isMenChecked = activeFilters.gender.includes("Men");
   const isWomenChecked = activeFilters.gender.includes("Women");
 
@@ -147,7 +147,7 @@ function renderFilteredProducts() {
   if ((isMenChecked && !isWomenChecked) || (!isMenChecked && isWomenChecked)) {
     const activeTargetGender = isMenChecked ? "men" : "women";
 
-    // A. Evaluate Product Types Visibility
+    
     allTypeCheckboxes.forEach(cb => {
       const parentRow = cb.closest('.form-check');
       if (!parentRow) return;
@@ -170,7 +170,7 @@ function renderFilteredProducts() {
       }
     });
 
-    // B. Evaluate Luxury Brand Elements Visibility
+    
     allBrandCheckboxes.forEach(cb => {
       const parentRow = cb.closest('.form-check');
       if (!parentRow) return;
@@ -193,21 +193,21 @@ function renderFilteredProducts() {
     });
 
   } else {
-    // If BOTH genders are selected or NEITHER is checked, restore absolute default layout views
+    
     allTypeCheckboxes.forEach(cb => cb.closest('.form-check')?.classList.remove("d-none"));
     allBrandCheckboxes.forEach(cb => cb.closest('.form-check')?.classList.remove("d-none"));
   }
 
-  // =========================================================================
-  // CORE FILTRATION MATCHING SCHEME
-  // =========================================================================
+  
+  
+  
   let processedList = productsData.filter(product => {
-    // 1. Gender Evaluation Loop
+    
     const isMatchedGender = activeFilters.gender.length === 0 || 
                              activeFilters.gender.includes(product.gender) || 
                              product.gender === "Unisex";
                              
-    // 2. Bag Type Substring Matrix matching
+    
     const isMatchedType = activeFilters.type.length === 0 || 
                            activeFilters.type.some(filterType => {
                              const targetType = product.type.toLowerCase();
@@ -215,19 +215,19 @@ function renderFilteredProducts() {
                              return targetType.includes(inputType) || inputType.includes(targetType);
                            });
                            
-    // 3. Brand Evaluation Loop
+    
     const isMatchedBrand = activeFilters.brand.length === 0 || activeFilters.brand.includes(product.brand);
     
     return isMatchedGender && isMatchedType && isMatchedBrand;
   });
 
-  // String sanitizer to handle localized pricing values cleanly
+  
   const cleanNumberValue = (priceString) => {
     if (!priceString) return 0;
     return parseFloat(priceString.toString().replace(/,/g, '')) || 0;
   };
 
-  // Sort Rules Blocks Execution
+  
   if (currentSortValue === "price-asc") {
     processedList.sort((itemA, itemB) => cleanNumberValue(itemA.price) - cleanNumberValue(itemB.price));
   } else if (currentSortValue === "price-desc") {
@@ -236,10 +236,10 @@ function renderFilteredProducts() {
     processedList.sort((itemA, itemB) => itemA.name.localeCompare(itemB.name));
   }
 
-  // Update dynamic count item totalizer metrics
+  
   if (counterLabel) counterLabel.innerText = processedList.length;
 
-  // Clear previous template gallery nodes iterations
+  
   grid.innerHTML = "";
   if (processedList.length === 0) {
     if (fallbackMsg) fallbackMsg.classList.remove("d-none");
@@ -247,11 +247,11 @@ function renderFilteredProducts() {
   }
   if (fallbackMsg) fallbackMsg.classList.add("d-none");
 
-  // DOM node cards production engine loop
+  
   processedList.forEach(product => {
     const displayPrice = product.price ? `Rs. ${product.price}` : "Price Upon Request";
     
-    // Clean string formatted values (e.g. "6,955" -> 6955) for accurate calculation metrics
+    
     const safeNumPrice = parseFloat(product.price.toString().replace(/,/g, '')) || 0;
 
     const colCard = document.createElement("div");
@@ -282,13 +282,13 @@ function renderFilteredProducts() {
     grid.appendChild(colCard);
   });
 
-  // Sync heart filled/outline button icons right after rendering the grid
+  
   if (typeof syncProductCardButtons === "function") {
     syncProductCardButtons();
   }
 }
 
-// Maps incoming SideNav navigation actions into checked inputs state
+
 function applyUrlQueryFilters() {
   const params = new URLSearchParams(window.location.search);
   const genderParam = params.get('gender');
@@ -302,7 +302,7 @@ function applyUrlQueryFilters() {
   }
 
   if (typeParam) {
-    // Normalizes singular variants from target link clicks
+    
     let checkValue = typeParam;
     if (typeParam === "Shoulder Bags") checkValue = "Shoulder";
     if (typeParam === "Crossbody Bags") checkValue = "Crossbody";

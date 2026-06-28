@@ -13,7 +13,7 @@
             padding: 40px 20px;
         }
 
-        /* Responsive grid that adjusts based on screen size */
+        
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -28,15 +28,12 @@
             border: 1px solid var(--light-border);
             overflow: hidden;
             position: relative;
-            /* transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease; */
+            
         }
 
-        /* .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        } */
+        
 
-        /* 1:1 Aspect Ratio Box for Product Images */
+        
         .image-frame {
             position: relative;
             width: 100%;
@@ -60,11 +57,11 @@
             opacity: 1;
         }
 
-        /* Handles the hover switch effect smoothly */
+        
         .hover-view { z-index: 1; }
         .product-card:hover .visible + .hover-view { opacity: 1; }
 
-        /* Badges */
+        
         .discount-tag {
             position: absolute;
             top: 12px;
@@ -79,7 +76,7 @@
             text-transform: uppercase;
         }
 
-        /* Content Layout */
+        
         .card-body {
             padding: 20px;
             display: flex;
@@ -132,7 +129,7 @@
             font-size: 0.9rem;
         }
 
-        /* Variant Swatches */
+        
         .swatch-group {
             border: none;
             margin: 0;
@@ -171,11 +168,11 @@
         }
 
         .variant-input:checked + .swatch-btn {
-            /* border-color: var(--brand-accent); */
+            
             transform: scale(1.07);
         }
 
-        /* Ratings */
+        
         .rating-row {
             display: flex;
             align-items: center;
@@ -203,7 +200,7 @@
             font-weight: 600;
         }
 
-        /* Cart Button */
+        
         .action-row {
             width: 100%;
         }

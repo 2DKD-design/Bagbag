@@ -5,16 +5,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Bootstrap -->
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Leaflet (free, no API key) -->
+  
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <!-- Your existing stylesheets -->
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles/Sidenav.css">
     <link rel="stylesheet" href="styles/SearchOverlay.css">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="styles/cards-summer.css">
 
   <style>
-    /* ══════════ TOKENS ══════════ */
+    
     :root {
       --gl-gold:    #b89a5e;
       --gl-dark:    #1a1a18;
@@ -51,7 +51,7 @@
       overflow-x: hidden;
     }
 
-    /* ── Hero strip ── */
+    
     .gl-store-hero {
       background: var(--gl-dark);
       padding: 52px 48px 44px;
@@ -89,7 +89,7 @@
       letter-spacing: 0.06em;
     }
 
-    /* ── Search bar ── */
+    
     .gl-search-bar {
       background: var(--gl-white);
       border-bottom: 1px solid var(--gl-border);
@@ -134,7 +134,7 @@
       white-space: nowrap;
     }
 
-    /* ══════════ MAIN: SPLIT LAYOUT ══════════ */
+    
     .gl-locator-wrap {
       display: flex;
       height: calc(100vh - 170px);
@@ -142,7 +142,7 @@
       width: 100%
     }
 
-    /* ── Left panel ── */
+    
     .gl-panel {
       width: var(--gl-panel);
       min-width: var(--gl-panel);
@@ -155,7 +155,7 @@
     .gl-panel::-webkit-scrollbar { width: 4px; }
     .gl-panel::-webkit-scrollbar-thumb { background: var(--gl-border); }
 
-    /* City group */
+    
     .gl-city-group {
       border-bottom: 1px solid var(--gl-border);
     }
@@ -174,7 +174,7 @@
       z-index: 2;
     }
 
-    /* Store card */
+    
     .gl-store-card {
       padding: 20px 24px;
       border-bottom: 1px solid var(--gl-border);
@@ -233,7 +233,7 @@
     }
     .gl-store-hours i { color: var(--gl-gold); font-size: 0.63rem; }
 
-    /* Directions link */
+    
     .gl-directions-link {
       font-family: inherit;
       font-size: 0.65rem;
@@ -253,7 +253,7 @@
       border-bottom-color: var(--gl-gold);
     }
 
-    /* ── Map ── */
+    
     .gl-map-col {
       flex: 1;
       position: relative;
@@ -266,7 +266,7 @@
       display: block;
     }
 
-    /* Custom Leaflet marker */
+    
     .gl-map-marker {
       width: 28px;
       height: 28px;
@@ -282,7 +282,7 @@
       transform: rotate(-45deg) scale(1.2);
     }
 
-    /* Leaflet popup custom style */
+    
     .leaflet-popup-content-wrapper {
       border-radius: 0 !important;
       padding: 0 !important;
@@ -323,20 +323,20 @@
     .gl-popup-ph:hover { color: var(--gl-gold); }
     .gl-popup-ph i { color: var(--gl-gold); }
 
-    /* ── Responsive ── */
+    
     @media (max-width: 992px) {
       .gl-locator-wrap {
         flex-direction: column;
-        height: auto; /* Allow height to grow based on content */
+        height: auto; 
       }
 
       .gl-panel {
         width: 100%;
-        max-height: 300px; /* Limit height of list on small screens so map remains visible */
+        max-height: 300px; 
       }
 
       .gl-map-col {
-        height: 400px; /* Map takes up 50% of the screen height on mobile */
+        height: 400px; 
         min-height: 400px;
       }
     }
@@ -363,7 +363,7 @@
 </head>
 <body>
 
-  <!-- ══════════ YOUR NAV GOES HERE ══════════ -->
+  
   <header >
       <nav
         class="navbar navbar-expand navbar-dark bg-transparent hover-bg-custom fixed-top"
@@ -629,14 +629,14 @@
   </header>
 
 
-  <!-- ══════════ HERO ══════════ -->
+  
   <div class="gl-store-hero">
-    <!-- <div class="gl-hero-eyebrow">Global Luxury Pakistan</div> -->
+    
     <h1 class="gl-hero-title mt-5">Locate a Store</h1>
     <p class="gl-hero-sub">8 stores across Pakistan &nbsp;·&nbsp; Open 7 days a week</p>
   </div>
 
-  <!-- ══════════ SEARCH / FILTER BAR ══════════ -->
+  
   <div class="gl-search-bar">
     <div class="gl-search-input-wrap">
       <i class="bi bi-search"></i>
@@ -647,27 +647,27 @@
     <span class="gl-store-count" id="storeCountLabel">6 Stores</span>
   </div>
 
-  <!-- ══════════ SPLIT: LIST + MAP ══════════ -->
+  
   <div class="gl-locator-wrap">
 
-    <!-- ── Store List ── -->
+    
     <div class="gl-panel" id="storePanel">
-      <!-- Populated by JS -->
+      
     </div>
 
-    <!-- ── Map ── -->
+    
     <div class="gl-map-col">
       <div id="storeMap"></div>
     </div>
 
   </div>
 
-  <!-- ══════════ YOUR FOOTER GOES HERE ══════════ -->
+  
   <footer>
       <footer class="gl-footer">
     <div class="gl-footer-container">
         
-        <!-- Column 1: About -->
+        
         <div class="gl-footer-col">
             <h3>Global Luxury</h3>
             <p>We design premium, handcrafted bags that combine timeless elegance with modern functionality. Crafted for those who stand out.</p>
@@ -676,7 +676,7 @@
             </div>
         </div>
 
-        <!-- Column 2: Info -->
+        
         <div class="gl-footer-col">
             <h3>Information</h3>
             <ul>
@@ -688,7 +688,7 @@
             </ul>
         </div>
 
-        <!-- Column 3: Customer Care -->
+        
         <div class="gl-footer-col">
             <h3>Customer Care</h3>
             <ul>
@@ -699,7 +699,7 @@
             </ul>
         </div>
 
-        <!-- Column 4: Newsletter -->
+        
         <div class="gl-footer-col">
             <h3>Join The Luxury Circle</h3>
             <p>Subscribe for exclusive access to new arrivals and insider offers.</p>
@@ -711,7 +711,7 @@
 
     </div>
 
-    <!-- Bottom Bar -->
+    
     <div class="gl-footer-bottom">
         <div class="gl-footer-bottom-content">
             <p>&copy; 2026 Global Luxury. All Rights Reserved.</p>
@@ -738,13 +738,13 @@
   <script src="Scripts/products-filter.js"></script>
 
   <script>
-    // ════════════════════════════════════════════
-    //  STORE DATA
-    // ════════════════════════════════════════════
+    
+    
+    
     const PHONE = "+923456789012";
 
     const stores = [
-      // ── Karachi (3 stores) ──
+      
       {
         id: 1, city: "Karachi",
         name: "Global Luxury — Clifton",
@@ -766,7 +766,7 @@
         lat: 24.8686, lng: 67.0607,
         hours: "Mon–Sun  10:00 – 22:00"
       },
-      // ── Lahore ──
+      
       {
         id: 4, city: "Lahore",
         name: "Global Luxury — Gulberg",
@@ -774,7 +774,7 @@
         lat: 31.5139, lng: 74.3435,
         hours: "Mon–Sun  11:00 – 21:00"
       },
-      // ── Islamabad ──
+      
       {
         id: 5, city: "Islamabad",
         name: "Global Luxury — F-7 Markaz",
@@ -782,7 +782,7 @@
         lat: 33.7215, lng: 73.0580,
         hours: "Mon–Sun  11:00 – 21:00"
       },
-      // ── Rawalpindi ──
+      
       {
         id: 6, city: "Rawalpindi",
         name: "Global Luxury — Bahria Town",
@@ -790,7 +790,7 @@
         lat: 33.5100, lng: 73.0880,
         hours: "Mon–Sun  11:00 – 21:00"
       },
-      // ── Faisalabad ──
+      
       {
         id: 7, city: "Faisalabad",
         name: "Global Luxury — Susan Road",
@@ -798,7 +798,7 @@
         lat: 31.4200, lng: 73.0800,
         hours: "Mon–Sun  10:00 – 21:00"
       },
-      // ── Peshawar ──
+      
       {
         id: 8, city: "Peshawar",
         name: "Global Luxury — Hayatabad",
@@ -808,11 +808,11 @@
       }
     ];
 
-    // ════════════════════════════════════════════
-    //  MAP INIT (Leaflet + OpenStreetMap — free, no key)
-    // ════════════════════════════════════════════
+    
+    
+    
     const map = L.map('storeMap', {
-      center: [30.3753, 69.3451], // Centre of Pakistan
+      center: [30.3753, 69.3451], 
       zoom: 5,
       zoomControl: true,
       scrollWheelZoom: false
@@ -826,7 +826,7 @@
     map.invalidateSize();
   });
 
-    // CartoDB Positron — free, no API key, no referrer blocks
+    
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
       subdomains: 'abcd',
@@ -834,7 +834,7 @@
     }).addTo(map);
 
 
-    // Custom marker icon factory
+    
     function makeIcon(active = false) {
       return L.divIcon({
         className: '',
@@ -845,7 +845,7 @@
       });
     }
 
-    // Track markers & active state
+    
     const markers = {};
     let activeId = null;
 
@@ -869,14 +869,14 @@
       markers[store.id] = marker;
     });
 
-    // ════════════════════════════════════════════
-    //  STORE LIST RENDER
-    // ════════════════════════════════════════════
+    
+    
+    
     function renderPanel(list) {
       const panel = document.getElementById('storePanel');
       panel.innerHTML = '';
 
-      // Group by city
+      
       const cities = [...new Set(list.map(s => s.city))];
 
       if (list.length === 0) {
@@ -923,14 +923,14 @@
       });
     }
 
-    // ════════════════════════════════════════════
-    //  ACTIVATE A STORE (sync card + marker + map)
-    // ════════════════════════════════════════════
+    
+    
+    
     function activateStore(id) {
       const store = stores.find(s => s.id === id);
       if (!store) return;
 
-      // Deactivate previous
+      
       if (activeId !== null) {
         const prevCard = document.getElementById(`store-card-${activeId}`);
         if (prevCard) prevCard.classList.remove('active');
@@ -939,14 +939,14 @@
 
       activeId = id;
 
-      // Activate card
+      
       const card = document.getElementById(`store-card-${id}`);
       if (card) {
         card.classList.add('active');
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
-      // Activate marker & fly map
+      
       if (markers[id]) {
         markers[id].setIcon(makeIcon(true));
         map.flyTo([store.lat, store.lng], 14, { duration: 0.8 });
@@ -954,9 +954,9 @@
       }
     }
 
-    // ════════════════════════════════════════════
-    //  SEARCH / FILTER
-    // ════════════════════════════════════════════
+    
+    
+    
     function filterStores(query) {
       const q = query.trim().toLowerCase();
       const filtered = q
@@ -967,7 +967,7 @@
           )
         : stores;
 
-      // Show/hide markers
+      
       stores.forEach(s => {
         const m = markers[s.id];
         if (!m) return;
@@ -980,14 +980,14 @@
 
       renderPanel(filtered);
 
-      // Fit map to filtered markers
+      
       if (filtered.length > 0) {
         const bounds = L.latLngBounds(filtered.map(s => [s.lat, s.lng]));
         map.fitBounds(bounds, { padding: [40, 40] });
       }
     }
 
-    // ── Initial render ──
+    
     renderPanel(stores);
   </script>
 
