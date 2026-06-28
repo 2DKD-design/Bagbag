@@ -75,23 +75,22 @@
     .gl-product-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: calc(100vh - 50px);
+      align-items: start;
     }
 
-    /* ══════════ LEFT: GALLERY ══════════ */
+    /* ══════════ LEFT: SCROLLABLE GALLERY ══════════ */
     .gl-gallery {
-      position: sticky;
-      top: 0;
-      height: 100vh;
       display: flex;
       flex-direction: row;
-      gap: 0;
       background: var(--gl-white);
       border-right: 1px solid var(--gl-border);
     }
 
-    /* Thumbnail strip */
+    /* ── Sticky thumbnail strip ── */
     .gl-thumbs {
+      position: sticky;
+      top: 0;
+      height: 100vh;
       width: 80px;
       min-width: 80px;
       padding: 24px 12px;
@@ -101,6 +100,7 @@
       overflow-y: auto;
       border-right: 1px solid var(--gl-border);
       scrollbar-width: none;
+      z-index: 2;
     }
     .gl-thumbs::-webkit-scrollbar { display: none; }
 
@@ -112,7 +112,7 @@
       overflow: hidden;
       cursor: pointer;
       transition: border-color 0.2s, opacity 0.2s;
-      opacity: 0.55;
+      opacity: 0.5;
       flex-shrink: 0;
     }
     .gl-thumb img {
@@ -127,47 +127,171 @@
       opacity: 1;
     }
 
-    /* Main image */
-    .gl-main-img-wrap {
+    /* ── Stacked image column ── */
+    .gl-img-stack {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gl-stack-slide {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: var(--gl-white);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px 24px;
-      position: relative;
+      border-bottom: 1px solid var(--gl-border);
       overflow: hidden;
+      cursor: zoom-in;
     }
-    .gl-main-img {
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      transition: opacity 0.25s ease;
-    }
+    .gl-stack-slide:last-child { border-bottom: none; }
 
-    /* Zoom hint */
+    .gl-stack-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 28px;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gl-stack-slide:hover .gl-stack-img { transform: scale(1.03); }
+
     .gl-zoom-hint {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-size: 0.65rem;
+      bottom: 14px;
+      right: 16px;
+      font-size: 0.6rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gl-muted);
       display: flex;
       align-items: center;
-      gap: 5px;
-      opacity: 0.7;
+      gap: 4px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .gl-stack-slide:hover .gl-zoom-hint { opacity: 1; }
+
+    /* ══════════ ZOOM LIGHTBOX ══════════ */
+    .gl-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 10, 8, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .gl-lightbox.open {
+      opacity: 1;
+      pointer-events: all;
     }
 
-    /* ══════════ RIGHT: INFO PANEL ══════════ */
+    .gl-lb-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+    .gl-lb-stage.zoomed { cursor: grab; }
+    .gl-lb-stage.zoomed:active { cursor: grabbing; }
+
+    .gl-lb-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      transition: transform 0.3s ease;
+      will-change: transform;
+    }
+    .gl-lb-img.no-transition { transition: none; }
+
+    .gl-lb-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10000;
+      transition: background 0.15s, color 0.15s;
+    }
+    .gl-lb-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    .gl-lb-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10000;
+      transition: background 0.15s;
+      user-select: none;
+    }
+    .gl-lb-arrow:hover { background: rgba(255,255,255,0.14); color: #fff; }
+    .gl-lb-prev { left: 16px; }
+    .gl-lb-next { right: 16px; }
+
+    .gl-lb-counter {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      z-index: 10000;
+    }
+
+    .gl-lb-tip {
+      position: fixed;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      z-index: 10000;
+      white-space: nowrap;
+    }
+
+    /* ══════════ RIGHT: INFO PANEL (sticky) ══════════ */
     .gl-info-panel {
+      position: sticky;
+      top: 0;
+      height: 100vh;
       padding: 48px 52px 60px 52px;
       overflow-y: auto;
-      max-height: 100vh;
       scrollbar-width: thin;
       scrollbar-color: var(--gl-border) transparent;
     }
@@ -406,27 +530,43 @@
 
     /* ══════════ RESPONSIVE ══════════ */
     @media (max-width: 900px) {
-      .gl-product-wrap { grid-template-columns: 1fr; }
-
-      .gl-gallery {
-        position: relative;
-        height: auto;
-        min-height: 380px;
-        max-height: 480px;
+      .gl-product-wrap {
+        grid-template-columns: 1fr;
       }
-
+      .gl-gallery {
+        /* On mobile: thumbs hide, images scroll horizontally */
+        flex-direction: column;
+        border-right: none;
+        border-bottom: 1px solid var(--gl-border);
+      }
+      .gl-thumbs {
+        position: static;
+        height: auto;
+        width: 100%;
+        min-width: 0;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 10px 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--gl-border);
+        gap: 8px;
+      }
+      .gl-stack-slide {
+        aspect-ratio: 4 / 3;  /* wider on mobile */
+      }
       .gl-info-panel {
-        max-height: none;
+        position: static;
+        height: auto;
         padding: 32px 24px 48px;
       }
-
       .gl-product-name { font-size: 1.55rem; }
-
       .gl-breadcrumb { padding: 12px 24px; }
+      /* Hide arrows on mobile, swipe instead */
+      .gl-lb-arrow { display: none; }
     }
 
     @media (max-width: 520px) {
-      .gl-thumbs { width: 60px; min-width: 60px; padding: 16px 8px; }
       .gl-thumb { width: 44px; height: 44px; }
       .gl-info-panel { padding: 24px 16px 60px; }
       .gl-cta-group { flex-wrap: nowrap; }
@@ -705,24 +845,16 @@
   <!-- ══════════ PRODUCT LAYOUT ══════════ -->
   <div class="gl-product-wrap">
 
-    <!-- ── LEFT: IMAGE GALLERY ── -->
+    <!-- ── LEFT: SCROLLABLE IMAGE GALLERY ── -->
     <div class="gl-gallery">
-      <!-- Thumbnail strip -->
+      <!-- Sticky thumbnail strip (scroll-linked) -->
       <div class="gl-thumbs" id="thumbStrip">
         <!-- Populated by JS -->
       </div>
 
-
-      <!-- Main image -->
-      <div class="gl-main-img-wrap">
-        <img id="mainProductImage"
-             class="gl-main-img"
-             src=""
-             alt=""
-             onerror="this.src='Assets/logo/logoo.png'">
-        <!-- <div class="gl-zoom-hint">
-          <i class="bi bi-zoom-in"></i> Tap to zoom
-        </div> -->
+      <!-- Stacked full images (scroll to browse) -->
+      <div class="gl-img-stack" id="imgStack">
+        <!-- Populated by JS -->
       </div>
     </div>
 
@@ -824,6 +956,28 @@
     </div><!-- /info-panel -->
   </div><!-- /product-wrap -->
 
+  <!-- ══════════ ZOOM LIGHTBOX ══════════ -->
+  <div class="gl-lightbox" id="glLightbox" role="dialog" aria-modal="true" aria-label="Image zoom viewer">
+    <!-- Close -->
+    <button class="gl-lb-close" onclick="closeLightbox()" aria-label="Close zoom view">
+      <i class="bi bi-x-lg"></i>
+    </button>
+    <!-- Arrows -->
+    <button class="gl-lb-arrow gl-lb-prev" onclick="lbNavigate(-1)" aria-label="Previous image">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+    <button class="gl-lb-arrow gl-lb-next" onclick="lbNavigate(1)" aria-label="Next image">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+    <!-- Pan/zoom stage -->
+    <div class="gl-lb-stage" id="lbStage">
+      <img class="gl-lb-img" id="lbImg" src="" alt="" onerror="this.src='Assets/logo/logoo.png'">
+    </div>
+    <!-- Counter & tip -->
+    <div class="gl-lb-tip">Click to zoom · scroll to zoom · drag to pan</div>
+    <div class="gl-lb-counter" id="lbCounter">1 / 1</div>
+  </div>
+
   <!-- ══════════ YOUR EXISTING CART SIDENAV ══════════ -->
   <!-- Include your cart sidenav HTML from index.html here -->
 
@@ -850,11 +1004,11 @@
         <div class="gl-footer-col">
             <h3>Information</h3>
             <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Store Locations</a></li>
-                <li><a href="#">Track Your Order</a></li>
-                <li><a href="#">FAQs</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="customerCare.html">Contact Us</a></li>
+                <li><a href="stores.html">Store Locations</a></li>
+                <li><a href="track-order.html">Track Your Order</a></li>
+                <li><a href="faq.html">FAQs</a></li>
             </ul>
         </div>
 
@@ -863,7 +1017,7 @@
             <h3>Customer Care</h3>
             <ul>
                 <li><a href="#">Shipping & Delivery</a></li>
-                <li><a href="#">Return & Exchange</a></li>
+                <li><a href="returns.html">Return & Exchange</a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Care Instructions</a></li>
             </ul>
@@ -996,22 +1150,22 @@
   { id: 78, name: "Cooper Burnished Calfskin Duffel", brand: "Ralph Lauren", price: 1161850, images: ["Assets/Products/78/s7-1466254_lifestyle.avif","Assets/Products/78/s7-1466254_alternate1.avif","Assets/Products/78/s7-1466254_alternate3.avif","Assets/Products/78/s7-1466254_alternate8.avif"], description: "High-end burnished leather bag with heritage style.", specs: ["Type: Duffel", "Brand: Ralph Lauren", "Premium Calfskin", "Luxury"] },
   { id: 79, name: "Leather-Trim Indigo Denim Duffel", brand: "Ralph Lauren", price: 200100, images: ["Assets/Products/79/s7-AI417959843001_lifestyle.avif","Assets/Products/79/s7-AI417959843001_alternate1.avif","Assets/Products/79/s7-AI417959843001_alternate3.avif","Assets/Products/79/s7-AI417959843001_alternate7.avif"], description: "Rugged denim duffel with leather trim, versatile and timeless.", specs: ["Type: Duffel", "Material: Denim/Leather", "Rugged style", "Travel ready"] },
   { id: 80, name: "Wimbledon Leather-Trim Canvas Tennis Bag", brand: "Ralph Lauren", price: 179100, images: ["Assets/Products/80/s7-AI405P13609001_lifestyle.avif","Assets/Products/80/s7-AI405P13609001_alternate1.avif","Assets/Products/80/s7-AI405P13609001_alternate3.avif","Assets/Products/80/s7-AI405P13609001_alternate7.avif"], description: "Heritage inspired tennis bag, stylish and functional.", specs: ["Type: Duffel", "Brand: Ralph Lauren", "Tennis-ready", "Canvas/Leather"] },
-  { id: 81, name: "Heritage Leather Backpack", brand: "Ralph Lauren", price: 201320, images: ["Assets/Products/RL/heritage_backpack.jpg"], description: "Timeless leather backpack with artisan construction.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Heritage", "Leather"] },
-  { id: 82, name: "Indigo Denim Rucksack", brand: "Ralph Lauren", price: 200100, images: ["Assets/Products/RL/denim_rucksack.jpg"], description: "Classic rucksack in indigo denim, durable and casual.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Denim finish", "Casual"] },
-  { id: 83, name: "Pebbled Leather Backpack", brand: "Ralph Lauren", price: 181800, images: ["Assets/Products/RL/pebbled_backpack.jpg"], description: "Durable pebbled leather backpack for daily use.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Pebbled leather", "Durable"] },
-  { id: 84, name: "Flap-Top Canvas Backpack", brand: "Ralph Lauren", price: 39270, images: ["Assets/Products/RL/canvas_backpack.jpg"], description: "Everyday canvas backpack for light travel.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Canvas finish", "Lightweight"] },
-  { id: 85, name: "LARGE DUFFLE", brand: "Adidas", price: 21419, images: ["Assets/Products/Adidas/large_duffle.jpg"], description: "Sporty large duffel bag for gym or travel.", specs: ["Type: Duffel", "Brand: Adidas", "Sporty", "Spacious"] },
-  { id: 86, name: "Prime 7 Backpack", brand: "Adidas", price: 14465, images: ["Assets/Products/Adidas/prime7_backpack.jpg"], description: "Athletic backpack designed for gear.", specs: ["Type: Backpack", "Brand: Adidas", "Athletic", "Durable"] },
-  { id: 87, name: "Utility 4 Sling bag", brand: "Adidas", price: 8067, images: ["Assets/Products/Adidas/utility4_sling.jpg"], description: "Sling bag for active use and quick gear.", specs: ["Type: Sling", "Brand: Adidas", "Active", "Quick-access"] },
-  { id: 88, name: "Beacon Backpack", brand: "Adidas", price: 20863, images: ["Assets/Products/Adidas/beacon_backpack.jpg"], description: "Technical backpack for professional sports gear.", specs: ["Type: Backpack", "Brand: Adidas", "Technical", "Sport-ready"] },
-  { id: 89, name: "Essentials 3 Slingbag", brand: "Adidas", price: 13352, images: ["Assets/Products/Adidas/essentials_sling.jpg"], description: "Simple sling for essentials, perfect for city walking.", specs: ["Type: Sling", "Brand: Adidas", "Essential", "Compact"] },
-  { id: 90, name: "Excel 7 backpack", brand: "Adidas", price: 10849, images: ["Assets/Products/Adidas/excel7_backpack.jpg"], description: "Reliable athletic backpack for school or gym.", specs: ["Type: Backpack", "Brand: Adidas", "Reliable", "School-ready"] },
-  { id: 91, name: "Mexico 26 Backpack", brand: "Adidas", price: 15299, images: ["Assets/Products/Adidas/mexico26_backpack.jpg"], description: "Special edition backpack, stylish and sporty.", specs: ["Type: Backpack", "Brand: Adidas", "Special Edition", "Unique"] },
-  { id: 92, name: "A tailor's son cairo backpack", brand: "AK Galleria", price: 4900, images: ["Assets/Products/AK/cairo_backpack.jpg"], description: "Stylish urban backpack from AK Galleria.", specs: ["Type: Backpack", "Brand: AK Galleria", "Urban", "Stylish"] },
-  { id: 93, name: "A tailor's son Denim Rucksack backpack", brand: "AK Galleria", price: 5600, images: ["Assets/Products/AK/denim_rucksack.jpg"], description: "Modern rucksack in durable denim fabric.", specs: ["Type: Backpack", "Brand: AK Galleria", "Denim", "Modern"] },
-  { id: 94, name: "A tailor's son Mid Black Backpack", brand: "AK Galleria", price: 4200, images: ["Assets/Products/AK/mid_black_backpack.jpg"], description: "Black minimalist backpack, versatile and clean.", specs: ["Type: Backpack", "Brand: AK Galleria", "Black", "Minimalist"] },
-  { id: 95, name: "A tailor's son Black monogram cross bag", brand: "AK Galleria", price: 2200, images: ["Assets/Products/AK/monogram_cross.jpg"], description: "Monogram cross body bag with elegant stripe.", specs: ["Type: Crossbody", "Brand: AK Galleria", "Monogram", "Chic"] },
-  { id: 96, name: "A tailor's son GG stripe cross bag", brand: "AK Galleria", price: 2200, images: ["Assets/Products/AK/gg_stripe.jpg"], description: "Stripe design crossbody bag for everyday wear.", specs: ["Type: Crossbody", "Brand: AK Galleria", "Stripe", "Casual"] }
+  { id: 81, name: "Heritage Leather Backpack", brand: "Ralph Lauren", price: 201320, images: ["Assets/Products/81/s7-AI405946036001_lifestyle.avif", "Assets/Products/81/s7-AI405946036001_alternate1.avif","Assets/Products/81/s7-AI405946036001_alternate3.avif","Assets/Products/81/s7-AI405946036001_alternate8.avif"], description: "Timeless leather backpack with artisan construction.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Heritage", "Leather"] },
+  { id: 82, name: "Indigo Denim Rucksack", brand: "Ralph Lauren", price: 200100, images: ["Assets/Products/82/s7-1260391_lifestyle.avif","Assets/Products/82/s7-1260391_alternate1.avif","Assets/Products/82/s7-1260391_alternate2.avif","Assets/Products/82/s7-1260391_alternate3.avif"], description: "Classic rucksack in indigo denim, durable and casual.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Denim finish", "Casual"] },
+  { id: 83, name: "Pebbled Leather Backpack", brand: "Ralph Lauren", price: 181800, images: ["Assets/Products/83/s7-AI405962456001_lifestyle.avif","Assets/Products/83/s7-AI405962456001_alternate1.avif","Assets/Products/83/s7-AI405962456001_alternate3.avif","Assets/Products/83/s7-AI405962456001_alternate8.avif"], description: "Durable pebbled leather backpack for daily use.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Pebbled leather", "Durable"] },
+  { id: 84, name: "Flap-Top Canvas Backpack", brand: "Ralph Lauren", price: 39270, images: ["Assets/Products/84/s7-AI405945881001_lifestyle.avif","Assets/Products/84/s7-AI405945881001_alternate1.avif","Assets/Products/84/s7-AI405945881001_alternate3.avif","Assets/Products/84/s7-AI405945881001_alternate8.avif"], description: "Everyday canvas backpack for light travel.", specs: ["Type: Backpack", "Brand: Ralph Lauren", "Canvas finish", "Lightweight"] },
+  { id: 85, name: "LARGE DUFFLE", brand: "Adidas", price: 21419, images: ["Assets/Products/85/LARGE_DUFFLE_Green_KE2315_01_00_standard.avif","Assets/Products/85/LARGE_DUFFLE_Green_KE2315_02_standard.avif","Assets/Products/85/LARGE_DUFFLE_Green_KE2315_04_standard_hover.avif","Assets/Products/85/LARGE_DUFFLE_Green_KE2315_05_hover_standard.avif"], description: "Sporty large duffel bag for gym or travel.", specs: ["Type: Duffel", "Brand: Adidas", "Sporty", "Spacious"] },
+  { id: 86, name: "Prime 7 Backpack", brand: "Adidas", price: 14465, images: ["Assets/Products/86/Prime_7_Backpack_Black_JK3451_01_00_standard.avif","Assets/Products/86/Prime_7_Backpack_Black_JK3451_02_standard.avif","Assets/Products/86/Prime_7_Backpack_Black_JK3451_41_detail.avif","Assets/Products/86/Prime_7_Backpack_Black_JK3451_42_detail.avif"], description: "Athletic backpack designed for gear.", specs: ["Type: Backpack", "Brand: Adidas", "Athletic", "Durable"] },
+  { id: 87, name: "Utility 4 Sling bag", brand: "Adidas", price: 8067, images: ["Assets/Products/87/Utility_4_Sling_Bag_Black_JJ7418_01_standard.avif","Assets/Products/87/Utility_4_Sling_Bag_Black_JJ7418_02_standard.avif","Assets/Products/87/Utility_4_Sling_Bag_Black_JJ7418_05_hover_standard.avif","Assets/Products/87/Utility_4_Sling_Bag_Black_JJ7418_41_detail.avif"], description: "Sling bag for active use and quick gear.", specs: ["Type: Sling", "Brand: Adidas", "Active", "Quick-access"] },
+  { id: 88, name: "Beacon Backpack", brand: "Adidas", price: 20863, images: ["Assets/Products/88/Beacon_Backpack_Black_JL1245_01_00_standard.avif","Assets/Products/88/Beacon_Backpack_Black_JL1245_02_standard.avif","Assets/Products/88/Beacon_Backpack_Black_JL1245_05_hover_standard.avif","Assets/Products/88/Beacon_Backpack_Black_JL1245_42_detail.avif"], description: "Technical backpack for professional sports gear.", specs: ["Type: Backpack", "Brand: Adidas", "Technical", "Sport-ready"] },
+  { id: 89, name: "Essentials 3 Slingbag", brand: "Adidas", price: 13352, images: ["Assets/Products/89/Essentials_3_Sling_Bag_Black_JJ7419_01_standard.avif","Assets/Products/89/Essentials_3_Sling_Bag_Black_JJ7419_02_standard.avif","Assets/Products/89/Essentials_3_Sling_Bag_Black_JJ7419_41_detail.avif","Assets/Products/89/Essentials_3_Sling_Bag_Black_JJ7419_42_detail.avif"], description: "Simple sling for essentials, perfect for city walking.", specs: ["Type: Sling", "Brand: Adidas", "Essential", "Compact"] },
+  { id: 90, name: "Excel 7 backpack", brand: "Adidas", price: 10849, images: ["Assets/Products/90/Excel_7_Backpack_Black_JK3411_01_00_standard.avif","Assets/Products/90/Excel_7_Backpack_Black_JK3411_02_standard.avif","Assets/Products/90/Excel_7_Backpack_Black_JK3411_41_detail.avif","Assets/Products/90/Excel_7_Backpack_Black_JK3411_42_detail.avif"], description: "Reliable athletic backpack for school or gym.", specs: ["Type: Backpack", "Brand: Adidas", "Reliable", "School-ready"] },
+  { id: 91, name: "Mexico 26 Backpack", brand: "Adidas", price: 15299, images: ["Assets/Products/91/Mexico_26_Backpack_Green_KD1769_01_00_standard.avif","Assets/Products/91/Mexico_26_Backpack_Green_KD1769_02_standard.avif","Assets/Products/91/Mexico_26_Backpack_Green_KD1769_04_standard.avif","Assets/Products/91/Mexico_26_Backpack_Green_KD1769_05_hover_standard.avif"], description: "Special edition backpack, stylish and sporty.", specs: ["Type: Backpack", "Brand: Adidas", "Special Edition", "Unique"] },
+  { id: 92, name: "A tailor's son cairo backpack", brand: "AK Galleria", price: 4900, images: ["Assets/Products/92/1c.png","Assets/Products/92/2c_8c218873-2a47-4740-b6d9-9294beb2a5c9.webp","Assets/Products/92/6_0be96e90-bf06-4ed7-8a0f-19123d1bec0a.webp","Assets/Products/92/7_e37d7949-7082-4f2b-b88c-2399da9ae8fa.webp"], description: "Stylish urban backpack from AK Galleria.", specs: ["Type: Backpack", "Brand: AK Galleria", "Urban", "Stylish"] },
+  { id: 93, name: "A tailor's son Denim Rucksack backpack", brand: "AK Galleria", price: 5600, images: ["Assets/Products/93/denimrucksack1_34e7c12b-1301-4529-99d7-2ee4cd6b475e.webp","Assets/Products/93/denimrucksack4_31ee2bfc-85ec-4b71-8418-2f2221715a3f.webp","Assets/Products/93/denimrucksack5_aabb54e1-8742-4be7-abcf-07d4af69ba73.webp","Assets/Products/93/denimrucksakmodelimage.webp"], description: "Modern rucksack in durable denim fabric.", specs: ["Type: Backpack", "Brand: AK Galleria", "Denim", "Modern"] },
+  { id: 94, name: "A tailor's son Mid Black Backpack", brand: "AK Galleria", price: 4200, images: ["Assets/Products/94/midblack1.webp","Assets/Products/94/midblack1.jpg2.webp","Assets/Products/94/midblack1.jpg2.jpg23.jpg","Assets/Products/94/midblack1.jpg2.jpg3.webp"], description: "Black minimalist backpack, versatile and clean.", specs: ["Type: Backpack", "Brand: AK Galleria", "Black", "Minimalist"] },
+  { id: 95, name: "A tailor's son Black monogram cross bag", brand: "AK Galleria", price: 2200, images: ["Assets/Products/95/black1.webp","Assets/Products/95/black2.webp","Assets/Products/95/black3.webp","Assets/Products/95/black5.webp"], description: "Monogram cross body bag with elegant stripe.", specs: ["Type: Crossbody", "Brand: AK Galleria", "Monogram", "Chic"] },
+  { id: 96, name: "A tailor's son GG stripe cross bag", brand: "AK Galleria", price: 2200, images: ["Assets/Products/96/guccistripe1.webp","Assets/Products/96/guccistripe3.webp","Assets/Products/96/7u.webp","Assets/Products/96/GGSTRIPEMODELIMAGE.webp"], description: "Stripe design crossbody bag for everyday wear.", specs: ["Type: Crossbody", "Brand: AK Galleria", "Stripe", "Casual"] }
 ];
 
     // ── Grab product ID from URL and match it against the catalog array ──
@@ -1071,43 +1225,221 @@
       }
     }
 
-    // ── Gallery builder ──
+    // ── Gallery builder: stacked scroll + scroll-linked thumbnails ──
     function buildGallery(images, altText) {
-      const mainImg   = document.getElementById('mainProductImage');
       const thumbStrip = document.getElementById('thumbStrip');
+      const imgStack   = document.getElementById('imgStack');
 
-      // Set main image
-      mainImg.src = images[0] || '';
-      mainImg.alt = altText;
+      if (!thumbStrip || !imgStack) return;
+      thumbStrip.innerHTML = '';
+      imgStack.innerHTML   = '';
 
-      // Only show thumbs if more than 1 image
+      // Only show thumb strip if more than 1 image
       if (images.length <= 1) {
         thumbStrip.style.display = 'none';
-        return;
       }
 
       images.forEach((src, i) => {
-        const thumb = document.createElement('div');
-        thumb.className = 'gl-thumb' + (i === 0 ? ' active' : '');
-        thumb.innerHTML = `<img src="${src}" alt="${altText} view ${i + 1}" onerror="this.src='Assets/logo/logoo.png'">`;
-        thumb.addEventListener('click', () => switchImage(src, i));
-        thumbStrip.appendChild(thumb);
+        // ── Stacked slide ──
+        const slide = document.createElement('div');
+        slide.className   = 'gl-stack-slide';
+        slide.dataset.idx = i;
+        slide.innerHTML   = `
+          <img class="gl-stack-img"
+               src="${src}"
+               alt="${altText} — view ${i + 1}"
+               onerror="this.src='Assets/logo/logoo.png'"
+               draggable="false">
+          <div class="gl-zoom-hint">
+            <i class="bi bi-zoom-in"></i> Click to zoom
+          </div>`;
+        slide.addEventListener('click', () => openLightbox(i));
+        imgStack.appendChild(slide);
+
+        // ── Thumbnail ──
+        if (images.length > 1) {
+          const thumb = document.createElement('div');
+          thumb.className   = 'gl-thumb' + (i === 0 ? ' active' : '');
+          thumb.dataset.idx = i;
+          thumb.innerHTML   = `<img src="${src}" alt="${altText} thumbnail ${i + 1}" onerror="this.src='Assets/logo/logoo.png'">`;
+          thumb.addEventListener('click', () => scrollToSlide(i));
+          thumbStrip.appendChild(thumb);
+        }
+      });
+
+      // ── IntersectionObserver: update active thumb as user scrolls ──
+      if (images.length > 1) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const idx = parseInt(entry.target.dataset.idx, 10);
+              document.querySelectorAll('.gl-thumb').forEach((t, i) => {
+                t.classList.toggle('active', i === idx);
+              });
+              // Keep active thumb visible in strip
+              const activeThumb = thumbStrip.children[idx];
+              if (activeThumb) {
+                activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+              }
+            }
+          });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.gl-stack-slide').forEach(slide => observer.observe(slide));
+      }
+    }
+
+    // Scroll gallery to a specific slide (called by thumbnail click)
+    function scrollToSlide(index) {
+      const slides = document.querySelectorAll('.gl-stack-slide');
+      if (slides[index]) {
+        slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ════════════════════════════════════════════
+    //  LIGHTBOX — click to zoom, scroll/pinch, drag to pan
+    // ════════════════════════════════════════════
+    let lbImages    = [];
+    let lbCurrent   = 0;
+    let lbScale     = 1;
+    let lbX         = 0;
+    let lbY         = 0;
+    let lbDragging  = false;
+    let lbDragStart = { x: 0, y: 0 };
+    let lbImgStart  = { x: 0, y: 0 };
+
+    const LB_MIN = 1;
+    const LB_MAX = 4;
+
+    function openLightbox(index) {
+      if (!product || !product.images) return;
+      lbImages  = product.images;
+      lbCurrent = index;
+      lbScale   = 1;
+      lbX       = 0;
+      lbY       = 0;
+
+      const lb = document.getElementById('glLightbox');
+      setLbImage(lbCurrent);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('glLightbox').classList.remove('open');
+      document.body.style.overflow = '';
+      lbScale = 1; lbX = 0; lbY = 0;
+    }
+
+    function setLbImage(index) {
+      lbCurrent = ((index % lbImages.length) + lbImages.length) % lbImages.length;
+      lbScale   = 1;
+      lbX       = 0;
+      lbY       = 0;
+
+      const img     = document.getElementById('lbImg');
+      const stage   = document.getElementById('lbStage');
+      const counter = document.getElementById('lbCounter');
+
+      img.classList.remove('no-transition');
+      img.src = lbImages[lbCurrent];
+      applyLbTransform(img, false);
+
+      stage.classList.remove('zoomed');
+      counter.textContent = `${lbCurrent + 1} / ${lbImages.length}`;
+
+      // Hide arrows if only 1 image
+      document.querySelectorAll('.gl-lb-arrow').forEach(a => {
+        a.style.display = lbImages.length > 1 ? '' : 'none';
       });
     }
 
-    function switchImage(src, index) {
-      const mainImg = document.getElementById('mainProductImage');
-      mainImg.style.opacity = '0';
-      setTimeout(() => {
-        mainImg.src = src;
-        mainImg.style.opacity = '1';
-      }, 200);
-
-      // Update active thumb
-      document.querySelectorAll('.gl-thumb').forEach((t, i) => {
-        t.classList.toggle('active', i === index);
-      });
+    function lbNavigate(dir) {
+      setLbImage(lbCurrent + dir);
     }
+
+    function applyLbTransform(img, instant) {
+      if (instant) img.classList.add('no-transition');
+      else img.classList.remove('no-transition');
+      img.style.transform = `translate(calc(-50% + ${lbX}px), calc(-50% + ${lbY}px)) scale(${lbScale})`;
+      requestAnimationFrame(() => img.classList.remove('no-transition'));
+    }
+
+    // ── Click to zoom in/out ──
+    document.getElementById('lbStage').addEventListener('click', function(e) {
+      // Don't trigger if we just dragged
+      if (lbDragging) return;
+      const img   = document.getElementById('lbImg');
+      const stage = document.getElementById('lbStage');
+
+      if (lbScale < 2) {
+        // Zoom in to click point
+        const rect = stage.getBoundingClientRect();
+        const cx   = (e.clientX - rect.left - rect.width  / 2);
+        const cy   = (e.clientY - rect.top  - rect.height / 2);
+        lbScale = 2.5;
+        lbX     = -cx * (lbScale - 1) / lbScale;
+        lbY     = -cy * (lbScale - 1) / lbScale;
+        stage.classList.add('zoomed');
+      } else {
+        lbScale = 1; lbX = 0; lbY = 0;
+        stage.classList.remove('zoomed');
+      }
+      applyLbTransform(img, false);
+    });
+
+    // ── Mouse wheel zoom ──
+    document.getElementById('lbStage').addEventListener('wheel', function(e) {
+      e.preventDefault();
+      const img   = document.getElementById('lbImg');
+      const stage = document.getElementById('lbStage');
+      const delta = e.deltaY > 0 ? -0.25 : 0.25;
+      lbScale     = Math.min(LB_MAX, Math.max(LB_MIN, lbScale + delta));
+
+      if (lbScale <= 1) { lbX = 0; lbY = 0; stage.classList.remove('zoomed'); }
+      else stage.classList.add('zoomed');
+
+      applyLbTransform(img, true);
+    }, { passive: false });
+
+    // ── Mouse drag to pan ──
+    document.getElementById('lbStage').addEventListener('mousedown', function(e) {
+      if (lbScale <= 1) return;
+      lbDragging  = false;
+      lbDragStart = { x: e.clientX, y: e.clientY };
+      lbImgStart  = { x: lbX, y: lbY };
+
+      const onMove = mv => {
+        const dx = mv.clientX - lbDragStart.x;
+        const dy = mv.clientY - lbDragStart.y;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) lbDragging = true;
+        lbX = lbImgStart.x + dx;
+        lbY = lbImgStart.y + dy;
+        applyLbTransform(document.getElementById('lbImg'), true);
+      };
+      const onUp = () => {
+        window.removeEventListener('mousemove', onMove);
+        window.removeEventListener('mouseup',   onUp);
+        setTimeout(() => { lbDragging = false; }, 50);
+      };
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup',   onUp);
+    });
+
+    // ── Keyboard navigation ──
+    document.addEventListener('keydown', e => {
+      const lb = document.getElementById('glLightbox');
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowRight') lbNavigate(1);
+      if (e.key === 'ArrowLeft')  lbNavigate(-1);
+    });
+
+    // ── Click backdrop to close ──
+    document.getElementById('glLightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
 
     // ── Accordion ──
     function toggleAcc(id) {
